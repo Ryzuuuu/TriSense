@@ -14,5 +14,9 @@ DTYPE = "int16"              # 16-bit signed integer PCM
 # Set TRISENSE_MOCK_AUDIO=0 in environment to force hardware microphone input
 MOCK_AUDIO = os.getenv("TRISENSE_MOCK_AUDIO", "1") == "1"
 
+# --- ASR Engine Settings ---
+VOSK_MODEL_PATH = os.getenv("VOSK_MODEL_PATH", "models/vosk-model-small-en-us")
+ASR_MOCK = os.getenv("TRISENSE_ASR_MOCK", "1") == "1"
+
 # --- Default paths ---
 DEFAULT_SAMPLE_WAV = "deaf_mode/sample_test.wav"
