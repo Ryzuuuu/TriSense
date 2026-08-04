@@ -18,10 +18,13 @@
 - **Phase 1B: Deaf Mode (Step 2.1)** — OLED Display Abstraction Layer complete.
   - `deaf_mode/oled_display.py` implemented (`OLEDDisplay` with `HardwareOLEDDisplay` via luma.oled / PIL and `MockOLEDDisplay` with ASCII box rendering).
   - Standalone verification suite implemented (`deaf_mode/test_oled_display.py`).
+- **Phase 1B: Deaf Mode (Step 2.2)** — 3-Line Rolling Caption UI Renderer complete.
+  - `deaf_mode/caption_renderer.py` implemented (`CaptionRenderer` for status banners, live partial speech streaming, utterance completion formatting, and session history logging).
+  - Standalone verification suite implemented (`deaf_mode/test_caption_renderer.py`).
 
 ## In Progress
-- **Phase 1B: Deaf Mode (Step 2.2)** — Audio-to-Visual Caption Rendering Integration (connecting ASREngine + CaptionFormatter + OLEDDisplay into a live captioning pipeline).
+- **Phase 1B: Deaf Mode (Step 3.1)** — Deaf Mode Main Loop (orchestrating `AudioStreamer`, `ASREngine`, and `CaptionRenderer` in a real-time asynchronous captioning loop).
 
 ## Next
-- **Phase 1B: Deaf Mode Implementation** — Step 3.1 (Deaf Mode Main Loop) & Step 3.2 (Deaf Mode System Verification).
+- **Phase 1B: Deaf Mode Implementation** — Step 3.2 (Deaf Mode System Verification & End-to-End Simulation).
 - **Hardware Deployment** — Physical wiring and validation of Blind Mode and Deaf Mode on Raspberry Pi 4.
