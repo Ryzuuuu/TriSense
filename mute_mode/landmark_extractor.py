@@ -58,16 +58,42 @@ class LandmarkExtractor:
         self.min_detection_confidence = min_detection_confidence
         self.min_tracking_confidence = min_tracking_confidence
 
-        self._mp_hands = mp.solutions.hands
-        try:
-            self.hands = self._mp_hands.Hands(
-                static_image_mode=False,
-                max_num_hands=self.max_num_hands,
-                min_detection_confidence=self.min_detection_confidence,
-                min_tracking_confidence=self.min_tracking_confidence
-            )
-        except Exception as e:
-            raise RuntimeError(f"Failed to initialize MediaPipe Hands: {e}")
+        self._use_tasks_api = False
+        if hasattr(mp, "solutions") and hasattr(mp.solutions, "hands"):
+            try:
+                self._mp_hands = mp.solutions.hands
+                self.hands = self._mp_hands.Hands(
+                    static_image_mode=False,
+                    max_num_hands=self.max_num_hands,
+                    min_detection_confidence=self.min_detection_confidence,
+                    min_tracking_confidence=self.min_tracking_confidence
+                )
+            except Exception as e:
+                raise RuntimeError(f"Failed to initialize MediaPipe Hands: {e}")
+        else:
+            try:
+                import os
+                import urllib.request
+                from mediapipe.tasks.python import vision
+                from mediapipe.tasks.python.core.base_options import BaseOptions
+
+                model_path = os.path.join(os.path.dirname(__file__), "models", "hand_landmarker.task")
+                if not os.path.exists(model_path):
+                    os.makedirs(os.path.dirname(model_path), exist_ok=True)
+                    url = "https://storage.googleapis.com/mediapipe-models/hand_landmarker/hand_landmarker/float16/1/hand_landmarker.task"
+                    urllib.request.urlretrieve(url, model_path)
+
+                options = vision.HandLandmarkerOptions(
+                    base_options=BaseOptions(model_asset_path=model_path),
+                    num_hands=self.max_num_hands,
+                    min_hand_detection_confidence=self.min_detection_confidence,
+                    min_hand_presence_confidence=self.min_detection_confidence,
+                    min_tracking_confidence=self.min_tracking_confidence
+                )
+                self.hands = vision.HandLandmarker.create_from_options(options)
+                self._use_tasks_api = True
+            except Exception as e:
+                raise RuntimeError(f"Failed to initialize MediaPipe Hands: {e}")
         print("[LANDMARK_EXTRACTOR] Initialized MediaPipe Hands (21 3D keypoints per hand).")
 
     def extract(self, bgr_frame: Any) -> Dict[str, Any]:
@@ -106,37 +132,55 @@ class LandmarkExtractor:
 
         # Convert frame to RGB for MediaPipe
         rgb_frame = cv2.cvtColor(bgr_frame, cv2.COLOR_BGR2RGB)
-        results = self.hands.process(rgb_frame)
 
-        if not results.multi_hand_landmarks:
+        if not self._use_tasks_api:
+            results = self.hands.process(rgb_frame)
+            multi_hand_landmarks = results.multi_hand_landmarks
+            multi_handedness = results.multi_handedness
+        else:
+            mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_frame)
+            results = self.hands.detect(mp_image)
+            multi_hand_landmarks = results.hand_landmarks
+            multi_handedness = results.handedness
+
+        if not multi_hand_landmarks:
             return {"num_hands_detected": 0, "hands": []}
 
         hands_list: List[Dict[str, Any]] = []
 
-        for hand_idx, hand_landmarks in enumerate(results.multi_hand_landmarks):
+        for hand_idx, hand_landmarks in enumerate(multi_hand_landmarks):
             # Extract handedness and classification score
             handedness_str = "Unknown"
             hand_conf = 0.0
-            if results.multi_handedness and hand_idx < len(results.multi_handedness):
-                cls = results.multi_handedness[hand_idx].classification[0]
-                handedness_str = cls.label
+            if multi_handedness and hand_idx < len(multi_handedness):
+                cls_item = multi_handedness[hand_idx]
+                if hasattr(cls_item, "classification"):
+                    cls = cls_item.classification[0]
+                elif isinstance(cls_item, (list, tuple)) and len(cls_item) > 0:
+                    cls = cls_item[0]
+                else:
+                    cls = cls_item
+                handedness_str = getattr(cls, "label", None) or getattr(cls, "category_name", "Unknown")
                 hand_conf = float(cls.score)
 
             hand_low_conf = (hand_conf < CONFIDENCE_FLAG_THRESHOLD)
 
             # Step 1: Extract raw coordinates and metadata for all 21 keypoints
             raw_pts = []
-            for idx, lm in enumerate(hand_landmarks.landmark):
-                vis = getattr(lm, "visibility", 1.0)
-                pres = getattr(lm, "presence", 1.0)
+            landmark_list = getattr(hand_landmarks, "landmark", hand_landmarks)
+            for idx, lm in enumerate(landmark_list):
+                vis = getattr(lm, "visibility", None)
+                vis_val = float(vis) if vis is not None else 1.0
+                pres = getattr(lm, "presence", None)
+                pres_val = float(pres) if pres is not None else 1.0
                 raw_pts.append({
                     "id": idx,
                     "name": LANDMARK_NAMES[idx],
                     "raw_x": float(lm.x),
                     "raw_y": float(lm.y),
                     "raw_z": float(lm.z),
-                    "visibility": float(vis),
-                    "presence": float(pres)
+                    "visibility": vis_val,
+                    "presence": pres_val
                 })
 
             # Step 2: Translate coordinates relative to wrist (index 0)

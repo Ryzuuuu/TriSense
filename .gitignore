@@ -15,3 +15,5 @@ venv/
 models/
 vosk-model*/
 *.wav
+*.mp4
+*.task

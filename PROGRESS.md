@@ -15,8 +15,8 @@
 - **Phase 1C: Mute Mode — Step 1: Landmark Extraction Pipeline**
   - `mute_mode/config.py`: MediaPipe Hands hyperparameters, 21 landmark indices, and low-confidence flagging thresholds.
   - `mute_mode/mock_video.py` & `mute_mode/video_stream.py`: Implemented `MockVideoStream` reading real recorded video files (`real_sign.mp4`) without synthetic generation, and unified `VideoStreamer` exposing `.mode` (`"VideoFileStream"` / `"HardwareCamera"`).
-  - `mute_mode/landmark_extractor.py`: Implemented `LandmarkExtractor` using real `mediapipe.solutions.hands.Hands` (failing loudly if MediaPipe is unavailable). Performs precise wrist translation (`wrist = (0.0, 0.0, 0.0)`) and bounding scale normalization (`scale_factor`). Exposes per-landmark visibility and flags low-confidence keypoints (`low_confidence: True`) without dropping or fabricating coordinates.
-  - `mute_mode/test_landmark_extractor.py`: Verification suite verifying stream mode, 21-landmark extraction, wrist origin normalization, scale invariance, and confidence score flagging.
+  - `mute_mode/landmark_extractor.py`: Implemented `LandmarkExtractor` supporting both legacy `mediapipe.solutions.hands` and modern `mediapipe.tasks.python.vision.HandLandmarker` (for Python 3.12+ compatibility, failing loudly if MediaPipe is unavailable). Performs precise wrist translation (`wrist = (0.0, 0.0, 0.0)`) and bounding scale normalization (`scale_factor`). Exposes per-landmark visibility and flags low-confidence keypoints (`low_confidence: True`) without dropping or fabricating coordinates.
+  - `mute_mode/test_landmark_extractor.py`: Verification suite verifying stream mode, 21-landmark extraction, wrist origin normalization, scale invariance, and confidence score flagging (`ALL MUTE MODE STEP 1 TESTS PASSED [PASS]`).
 
 ## Next
 - **Phase 1C: Mute Mode — Step 2**
