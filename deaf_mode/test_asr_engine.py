@@ -25,13 +25,13 @@ def run_test():
     print(" TriSense Deaf Mode — Step 1.2: Vosk ASR Verification")
     print("=========================================================\n")
 
-    test_wav = DEFAULT_SAMPLE_WAV
+    test_wav = "deaf_mode/real_speech.wav"
     if not os.path.exists(test_wav):
         create_sample_wav(test_wav, duration_s=3.0, sample_rate=SAMPLE_RATE)
 
-    # 1. Initialize ASR Engine
-    print("1. Initializing ASREngine...")
-    asr = ASREngine(sample_rate=SAMPLE_RATE, use_mock=True)
+    # 1. Initialize ASR Engine (uses real Vosk model by default if installed)
+    print("1. Initializing ASREngine with real Vosk offline model...")
+    asr = ASREngine(sample_rate=SAMPLE_RATE, use_mock=False)
 
     # 2. Stream audio blocks through ASR engine
     print(f"2. Feeding WAV audio blocks ({BLOCK_SIZE} frames per block) into ASREngine...")

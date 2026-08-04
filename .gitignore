@@ -8,3 +8,5 @@ venv/
 .env
 .DS_Store
 *.log
+models/
+vosk-model*/
