@@ -5,7 +5,7 @@
 # 1. OLEDDisplay initialization (auto-detect / mock mode) and screen clearing.
 # 2. Subtitle text rendering with status header.
 # 3. ASCII viewport formatting (for headless console visual inspection).
-# 4. Dynamic frame updates and subtitle transitions.
+# 4. Dynamic frame updates and subtitle transitions (with visual before/after frames).
 # -----------------------------------------------------------------------------
 
 import os
@@ -47,25 +47,30 @@ def run_test():
         print("   [FAIL] OLED buffer contents do not match input lines.")
         return False
 
-    print("\n3. Testing ASCII OLED Viewport Rendering...")
-    ascii_box = display.render_ascii()
-    print("   Rendered ASCII Viewport:")
-    for line in ascii_box.split("\n"):
+    print("\n3. Testing ASCII OLED Viewport Rendering (Frame 1)...")
+    ascii_box1 = display.render_ascii()
+    print("   Rendered ASCII Viewport (Frame 1 — Initial Subtitle):")
+    for line in ascii_box1.split("\n"):
         print(f"     {line}")
         
-    if "+--------------------+" in ascii_box and "TriSense ASR [REC]" in ascii_box and "head on your left" in ascii_box:
+    if "+--------------------+" in ascii_box1 and "TriSense ASR [REC]" in ascii_box1 and "head on your left" in ascii_box1:
         print("   [PASS] ASCII viewport box rendered header and text correctly.")
     else:
         print("   [FAIL] ASCII viewport box missing expected border or text.")
         return False
 
-    print("\n4. Testing dynamic subtitle transition (frame update)...")
+    print("\n4. Testing dynamic subtitle transition (Frame 1 -> Frame 2 update)...")
     new_header = "TriSense ASR [REC]"
     new_lines = [
         "Path clear.",
         "Resume normal pace."
     ]
     display.display_text_lines(new_lines, header=new_header)
+    ascii_box2 = display.render_ascii()
+    print("   Rendered ASCII Viewport (Frame 2 — Updated Subtitle):")
+    for line in ascii_box2.split("\n"):
+        print(f"     {line}")
+
     if display.get_current_lines() == new_lines and len(display.get_current_lines()) == 2:
         print("   [PASS] Display cleanly transitioned to new 2-line subtitle frame.")
     else:
