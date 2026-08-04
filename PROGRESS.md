@@ -12,7 +12,12 @@
   - Implemented adapter wrappers (`BlindModePipeline`, `DeafModePipeline`, and `MuteModePipeline` extension point) that start/stop existing pipelines without modifying internal module code.
   - Implemented mock keyboard mode-switch trigger (`handle_key_input`) standing in for GPIO button presses.
   - Verified via standalone test suite (`shared/test_mode_manager.py`) (`ALL MODE MANAGER (STEP 1) TESTS PASSED [PASS]`).
+- **Phase 1C: Mute Mode — Step 1: Landmark Extraction Pipeline**
+  - `mute_mode/config.py`: MediaPipe Hands hyperparameters, 21 landmark indices, and low-confidence flagging thresholds.
+  - `mute_mode/mock_video.py` & `mute_mode/video_stream.py`: Implemented `MockVideoStream` reading real recorded video files (`real_sign.mp4`) without synthetic generation, and unified `VideoStreamer` exposing `.mode` (`"VideoFileStream"` / `"HardwareCamera"`).
+  - `mute_mode/landmark_extractor.py`: Implemented `LandmarkExtractor` using real `mediapipe.solutions.hands.Hands` (failing loudly if MediaPipe is unavailable). Performs precise wrist translation (`wrist = (0.0, 0.0, 0.0)`) and bounding scale normalization (`scale_factor`). Exposes per-landmark visibility and flags low-confidence keypoints (`low_confidence: True`) without dropping or fabricating coordinates.
+  - `mute_mode/test_landmark_extractor.py`: Verification suite verifying stream mode, 21-landmark extraction, wrist origin normalization, scale invariance, and confidence score flagging.
 
 ## Next
-- **Awaiting User Scope**
-  - Standing by for instructions to scope either Phase 2 Step 2 (hardware button/mode switching) or Phase 1C (Mute Mode pipeline).
+- **Phase 1C: Mute Mode — Step 2**
+  - Feature smoothing and dynamic gesture sequence buffer for temporal sign language classification.
