@@ -59,3 +59,13 @@ LANDMARK_NAMES = [
 EMA_ALPHA = 0.6               # Exponential moving average smoothing factor (0 < alpha <= 1)
 WINDOW_SIZE = 30              # Sliding window buffer capacity (frames)
 MAX_HOLD_FRAMES = 5           # Max consecutive frames to hold last good value during occlusion
+
+# ── Sign Language Vocabulary & Classifier Configuration (Step 3) ──────────────
+VOCABULARY = [
+    "hello", "thank you", "help", "yes", "no", "water",
+    "food", "stop", "please", "sorry", "more", "done"
+]
+NUM_CLASSES = len(VOCABULARY)  # 12 classes
+SEQ_LENGTH = WINDOW_SIZE       # 30 frames
+FEATURE_DIM = 126              # 2 hands * 21 landmarks * 3 coords (x, y, z)
+
