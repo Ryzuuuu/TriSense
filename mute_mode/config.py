@@ -54,3 +54,8 @@ LANDMARK_NAMES = [
     "RING_FINGER_MCP", "RING_FINGER_PIP", "RING_FINGER_DIP", "RING_FINGER_TIP",
     "PINKY_MCP", "PINKY_PIP", "PINKY_DIP", "PINKY_TIP"
 ]
+
+# ── Temporal Smoothing & Sequence Buffer Configuration (Step 2) ───────────────
+EMA_ALPHA = 0.6               # Exponential moving average smoothing factor (0 < alpha <= 1)
+WINDOW_SIZE = 30              # Sliding window buffer capacity (frames)
+MAX_HOLD_FRAMES = 5           # Max consecutive frames to hold last good value during occlusion

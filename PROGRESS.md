@@ -16,8 +16,11 @@
   - `mute_mode/config.py`: MediaPipe Hands hyperparameters, 21 landmark indices, and low-confidence flagging thresholds.
   - `mute_mode/mock_video.py` & `mute_mode/video_stream.py`: Implemented `MockVideoStream` reading real recorded video files (`real_sign.mp4`) without synthetic generation, and unified `VideoStreamer` exposing `.mode` (`"VideoFileStream"` / `"HardwareCamera"`).
   - `mute_mode/landmark_extractor.py`: Implemented `LandmarkExtractor` supporting both legacy `mediapipe.solutions.hands` and modern `mediapipe.tasks.python.vision.HandLandmarker` (for Python 3.12+ compatibility, failing loudly if MediaPipe is unavailable). Performs precise wrist translation (`wrist = (0.0, 0.0, 0.0)`) and bounding scale normalization (`scale_factor`). Exposes per-landmark visibility and flags low-confidence keypoints (`low_confidence: True`) without dropping or fabricating coordinates.
-  - `mute_mode/test_landmark_extractor.py`: Verification suite verifying stream mode, 21-landmark extraction, wrist origin normalization, scale invariance, and confidence score flagging (`ALL MUTE MODE STEP 1 TESTS PASSED [PASS]`).
+- **Phase 1C: Mute Mode — Step 2: Feature Smoothing & Gesture Sequence Buffer**
+  - `mute_mode/config.py`: Added `EMA_ALPHA = 0.6`, `WINDOW_SIZE = 30`, and `MAX_HOLD_FRAMES = 5`.
+  - `mute_mode/sequence_buffer.py`: Implemented `LandmarkSmoother` applying Exponential Moving Average (EMA) smoothing across 21 3D coordinates per hand to eliminate jitter without lagging gesture motion. Implemented hold-last-good-value imputation for occluded/low-confidence frames (`imputed = True`, exponential confidence decay $0.5^k$ up to `MAX_HOLD_FRAMES = 5`), cleanly resetting to zero-coordinate placeholders (`missing = True`) on extended occlusion. Implemented `GestureSequenceBuffer` 30-frame rolling FIFO deque with warmup padding and explicit `buffer_full` status.
+  - `mute_mode/test_sequence_buffer.py`: Verification suite verifying EMA jitter reduction on real video (`real_sign.mp4`), 30-frame sliding window FIFO integrity, and explicit occlusion imputation (`ALL MUTE MODE STEP 2 TESTS PASSED [PASS]`).
 
 ## Next
-- **Phase 1C: Mute Mode — Step 2**
-  - Feature smoothing and dynamic gesture sequence buffer for temporal sign language classification.
+- **Phase 1C: Mute Mode — Step 3**
+  - Sign language gesture classification pipeline (evaluating buffered 30-frame landmark sequences against vocabulary gestures).
