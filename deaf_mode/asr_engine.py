@@ -118,17 +118,20 @@ class ASREngine:
         if self.use_mock:
             print(f"[ASR_ENGINE] Using MockRecognizer (Vosk available: {_HAS_VOSK}, Model path: '{self.model_path}').")
             self.recognizer = MockRecognizer(sample_rate=self.sample_rate)
+            self.mode = "MockRecognizer"
         else:
             print(f"[ASR_ENGINE] Loading Vosk offline model from '{self.model_path}'...")
             try:
                 vosk.SetLogLevel(-1)  # Silence verbose Kaldi logs
                 model = vosk.Model(self.model_path)
                 self.recognizer = vosk.KaldiRecognizer(model, self.sample_rate)
+                self.mode = "VoskRecognizer"
                 print("[ASR_ENGINE] Vosk KaldiRecognizer initialized successfully.")
             except Exception as e:
                 print(f"[ASR_ENGINE] Error loading Vosk model '{self.model_path}': {e}. Falling back to MockRecognizer.")
                 self.use_mock = True
                 self.recognizer = MockRecognizer(sample_rate=self.sample_rate)
+                self.mode = "MockRecognizer"
 
     def accept_waveform(self, data: bytes) -> bool:
         """
@@ -145,6 +148,10 @@ class ASREngine:
         except Exception:
             return ""
 
+    def result(self) -> str:
+        """Alias for get_result()."""
+        return self.get_result()
+
     def get_partial_result(self) -> str:
         """Returns in-progress partial transcription string."""
         raw_json = self.recognizer.PartialResult()
@@ -152,6 +159,10 @@ class ASREngine:
             return json.loads(raw_json).get("partial", "")
         except Exception:
             return ""
+
+    def partial_result(self) -> str:
+        """Alias for get_partial_result()."""
+        return self.get_partial_result()
 
     def get_final_result(self) -> str:
         """Returns final remaining text string when stream ends."""

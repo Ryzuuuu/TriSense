@@ -40,6 +40,13 @@ class AudioStreamer:
         self.wav_path = wav_path
         self.use_mock = use_mock or (not _HAS_SOUNDDEVICE)
         
+        if self.wav_path:
+            self.mode = "WAVFileStream"
+        elif self.use_mock:
+            self.mode = "MockAudioStream"
+        else:
+            self.mode = "HardwareMicrophone"
+        
         self._stream = None
         self._is_active = False
 
@@ -75,6 +82,7 @@ class AudioStreamer:
             except Exception as e:
                 print(f"[AUDIO_STREAM] Hardware audio initialization error: {e}. Falling back to MockAudioStream.")
                 self.use_mock = True
+                self.mode = "MockAudioStream"
                 self.start(real_time=real_time)
 
     def stop(self):

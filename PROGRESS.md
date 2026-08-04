@@ -21,10 +21,12 @@
 - **Phase 1B: Deaf Mode (Step 2.2)** — 3-Line Rolling Caption UI Renderer complete.
   - `deaf_mode/caption_renderer.py` implemented (`CaptionRenderer` for status banners, live partial speech streaming, utterance completion formatting, and session history logging).
   - Standalone verification suite implemented (`deaf_mode/test_caption_renderer.py`).
+- **Phase 1B: Deaf Mode (Step 3.1)** — Deaf Mode Main Loop complete.
+  - `deaf_mode/main_loop.py` implemented (`DeafModeApp` wiring real `AudioStreamer` -> real Vosk `ASREngine` -> real `CaptionFormatter` -> real `OLEDDisplay` & `CaptionRenderer`).
+  - Standalone end-to-end verification suite implemented (`deaf_mode/test_main_loop.py`), confirming true end-to-end chain operation without mocks substituting for any recognition or formatting stage.
 
 ## In Progress
-- **Phase 1B: Deaf Mode (Step 3.1)** — Deaf Mode Main Loop (orchestrating `AudioStreamer`, `ASREngine`, and `CaptionRenderer` in a real-time asynchronous captioning loop).
+- **Phase 1B: Deaf Mode (Step 3.2)** — Deaf Mode System Verification (comprehensive test suite & hardware readiness preparation).
 
 ## Next
-- **Phase 1B: Deaf Mode Implementation** — Step 3.2 (Deaf Mode System Verification & End-to-End Simulation).
 - **Hardware Deployment** — Physical wiring and validation of Blind Mode and Deaf Mode on Raspberry Pi 4.
