@@ -3,9 +3,10 @@
 # Standalone Verification Script for Step 1.3 (Caption Formatting & Wrapping).
 # Tests:
 # 1. Capitalization & final period insertion on completed sentence utterances.
-# 2. Smart OLED word wrapping (max 20 chars per line, max 3 lines).
-# 3. Live partial captions (no trailing period, smooth updates).
-# 4. Scrolling history retention when text exceeds max_lines.
+# 2. Smart OLED word wrapping (max 20 chars per line).
+# 3. Full text preservation (no silent word loss in format_caption) AND
+#    ellipsis indicator ('...') when truncating viewport in get_display_lines.
+# 4. Empty / whitespace handling.
 # -----------------------------------------------------------------------------
 
 import os
@@ -51,22 +52,47 @@ def run_test():
         print(f"   [FAIL] Expected {expected2}, got {res2}")
         passed = False
 
-    # Test 3: Word wrapping and max line constraint for 20-char OLED
-    print("\n3. Testing OLED word wrapping (20 chars max per line, 3 lines max)...")
+    # Test 3: Full line preservation (no silent word loss) + OLED viewport ellipsis
+    print("\n3. Testing full word preservation & OLED viewport truncation indicator...")
     raw3 = "hello tries and team and obstacle is a head on your left please stop now"
-    res3 = formatter.format_caption(raw3, is_final=True)
+    
+    # 3a: Verify format_caption retains ALL words across all wrapped lines
+    res3_full = formatter.format_caption(raw3, is_final=True)
+    full_text_joined = " ".join(res3_full)
     print(f"   Input : \"{raw3}\"")
-    print("   Formatted Display (OLED View):")
-    for idx, line in enumerate(res3, 1):
+    print(f"   Full Wrapped Lines ({len(res3_full)} lines total):")
+    for idx, line in enumerate(res3_full, 1):
         print(f"     Line {idx} ({len(line):02d} chars): | {line} |")
         if len(line) > 20:
             print(f"   [FAIL] Line {idx} exceeded 20 chars ({len(line)})")
             passed = False
 
-    if len(res3) <= 3:
-        print(f"   [PASS] Successfully wrapped to {len(res3)} lines (<= max_lines 3).")
+    # Content assertions: check that initial words are present in format_caption
+    if "Hello" in full_text_joined and "tries" in full_text_joined and "team" in full_text_joined:
+        print("   [PASS] Full caption list preserves all starting words ('Hello tries and team...').")
     else:
-        print(f"   [FAIL] Exceeded max_lines ({len(res3)} > 3).")
+        print("   [FAIL] Missing initial words in full caption format output!")
+        passed = False
+
+    # 3b: Verify get_display_lines truncates to max_lines and adds leading '...'
+    res3_display = formatter.get_display_lines(raw3, is_final=True, show_ellipsis=True)
+    print("   OLED Display Viewport (max_lines=3, show_ellipsis=True):")
+    for idx, line in enumerate(res3_display, 1):
+        print(f"     OLED Line {idx} ({len(line):02d} chars): | {line} |")
+        if len(line) > 20:
+            print(f"   [FAIL] OLED Line {idx} exceeded 20 chars ({len(line)})")
+            passed = False
+
+    if len(res3_display) <= 3:
+        print(f"   [PASS] Successfully restricted viewport to {len(res3_display)} lines (<= max_lines 3).")
+    else:
+        print(f"   [FAIL] Exceeded max_lines ({len(res3_display)} > 3).")
+        passed = False
+
+    if res3_display[0].startswith("..."):
+        print(f"   [PASS] Leading '...' ellipsis indicator correctly shown on truncated viewport top line: '{res3_display[0]}'")
+    else:
+        print(f"   [FAIL] Expected leading '...' on truncated top line, got: '{res3_display[0]}'")
         passed = False
 
     # Test 4: Empty / whitespace handling

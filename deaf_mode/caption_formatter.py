@@ -20,8 +20,9 @@ class CaptionFormatter:
 
     def format_caption(self, text: str, is_final: bool = False) -> list:
         """
-        Processes text into a list of display lines not exceeding max_chars_per_line.
-        Always retains up to the most recent max_lines for scrolling live captions.
+        Processes text into a full list of wrapped lines not exceeding max_chars_per_line.
+        Returns ALL wrapped lines without truncating, ensuring no words are silently lost.
+        The display layer can use this full list to scroll over time.
         """
         if not text or not text.strip():
             return []
@@ -53,15 +54,29 @@ class CaptionFormatter:
         if current_line:
             lines.append(current_line)
 
-        # If more lines than fit on screen, keep the latest max_lines (scrolling subtitle)
-        if len(lines) > self.max_lines:
-            lines = lines[-self.max_lines:]
-
         return lines
 
-    def get_display_string(self, text: str, is_final: bool = False) -> str:
+    def get_display_lines(self, text: str, is_final: bool = False, show_ellipsis: bool = True) -> list:
+        """
+        Returns up to max_lines formatted lines for immediate OLED rendering.
+        If the full caption exceeds max_lines, retains the latest max_lines and
+        adds a leading '...' to the top visible line to indicate preceding cut content.
+        """
+        lines = self.format_caption(text, is_final=is_final)
+        if len(lines) <= self.max_lines:
+            return lines
+
+        visible = lines[-self.max_lines:].copy()
+        if show_ellipsis:
+            top_line = "..." + visible[0].lstrip()
+            if len(top_line) > self.max_chars_per_line:
+                top_line = top_line[:self.max_chars_per_line]
+            visible[0] = top_line
+        return visible
+
+    def get_display_string(self, text: str, is_final: bool = False, show_ellipsis: bool = True) -> str:
         """
         Returns a newline-separated string ready for console or OLED rendering.
         """
-        lines = self.format_caption(text, is_final=is_final)
+        lines = self.get_display_lines(text, is_final=is_final, show_ellipsis=show_ellipsis)
         return "\n".join(lines)
