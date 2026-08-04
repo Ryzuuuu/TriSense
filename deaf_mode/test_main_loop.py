@@ -48,12 +48,12 @@ def run_test():
     display = OLEDDisplay(width=128, height=64, use_mock=True)
     renderer = CaptionRenderer(display=display, formatter=formatter, default_header="TriSense ASR [REC]")
 
-    print(f"   AudioStreamer WAV Path : {wav_path}")
+    print(f"   AudioStreamer Mode     : {audio_streamer.mode}")
     print(f"   ASREngine Mode         : {asr_engine.mode}")
     print(f"   OLEDDisplay Mode       : {display.mode}")
 
-    if asr_engine.mode != "VoskRecognizer":
-        print("   [FAIL] Real ASREngine failed to initialize VoskRecognizer.")
+    if asr_engine.mode != "VoskRecognizer" or audio_streamer.mode != "WAVFileStream":
+        print(f"   [FAIL] Real ASREngine ({asr_engine.mode}) or AudioStreamer ({audio_streamer.mode}) failed to initialize in real mode.")
         return False
 
     print("   [PASS] All real pipeline stages initialized successfully.\n")
