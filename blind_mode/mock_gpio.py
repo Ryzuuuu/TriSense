@@ -17,6 +17,7 @@ IN = "IN"
 LOW = 0
 HIGH = 1
 PUD_UP = "PUD_UP"
+PUD_DOWN = "PUD_DOWN"
 FALLING = "FALLING"
 
 _echo_states = {}
