@@ -13,12 +13,15 @@
   - `deaf_mode/asr_engine.py` implemented (`ASREngine` with Vosk KaldiRecognizer + `MockRecognizer` fallback).
   - Verified against real human-speech WAV using official `vosk-model-small-en-us` offline model (`ALL STEP 1.2 TESTS PASSED [PASS]`).
 - **Phase 1B: Deaf Mode (Step 1.3)** — Transcription Punctuation & Sentence-Break Processing complete.
-  - `deaf_mode/caption_formatter.py` implemented (`CaptionFormatter` for capitalization, trailing periods, smart word-wrapping, and OLED scrolling history).
+  - `deaf_mode/caption_formatter.py` implemented (`CaptionFormatter` for capitalization, trailing periods, smart word-wrapping, full history preservation, and OLED scrolling viewport ellipsis).
   - Standalone verification suite implemented (`deaf_mode/test_caption_formatter.py`).
+- **Phase 1B: Deaf Mode (Step 2.1)** — OLED Display Abstraction Layer complete.
+  - `deaf_mode/oled_display.py` implemented (`OLEDDisplay` with `HardwareOLEDDisplay` via luma.oled / PIL and `MockOLEDDisplay` with ASCII box rendering).
+  - Standalone verification suite implemented (`deaf_mode/test_oled_display.py`).
 
 ## In Progress
-- **Phase 1B: Deaf Mode (Step 2.1)** — OLED Display Abstraction Layer (`OLEDDisplay` wrapper with luma.oled / PIL and headless mock rendering).
+- **Phase 1B: Deaf Mode (Step 2.2)** — Audio-to-Visual Caption Rendering Integration (connecting ASREngine + CaptionFormatter + OLEDDisplay into a live captioning pipeline).
 
 ## Next
-- **Phase 1B: Deaf Mode Implementation** — Step-by-step execution of subtitle renderer, I2S mic integration, and Deaf Mode main loop.
+- **Phase 1B: Deaf Mode Implementation** — Step 3.1 (Deaf Mode Main Loop) & Step 3.2 (Deaf Mode System Verification).
 - **Hardware Deployment** — Physical wiring and validation of Blind Mode and Deaf Mode on Raspberry Pi 4.
