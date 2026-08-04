@@ -2,6 +2,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.so
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
 .Python
 env/
 venv/
@@ -10,3 +14,4 @@ venv/
 *.log
 models/
 vosk-model*/
+*.wav
