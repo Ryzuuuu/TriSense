@@ -28,5 +28,12 @@
   - `mute_mode/test_classifier_pipeline.py`: Verification suite confirming <100k parameter budget (62,604 params), 1-epoch structural training/validation on dummy tensors, warning banner enforcement, and checkpoint save/load round-trip (`ALL MUTE MODE STEP 3 TESTS PASSED [PASS]`).
 
 ## Next
-- **Phase 1C: Mute Mode — Step 4**
-  - End-to-end Mute Mode pipeline integration (connecting landmark extractor, sequence buffer, classifier inference, and mock trigger) or Phase 2 quantization/export planning.
+- **Phase 1C: Mute Mode — Step 4: Real Dataset Acquisition (WLASL)**
+  - `mute_mode/dataset_downloader.py`: Implemented robust bulk dataset downloader fetching direct `.mp4` video clips for the 12-word vocabulary from the WLASL dataset index.
+  - Implemented strict filtering of unsupported formats (`.swf`), excluded bottleneck YouTube links, and enforced a global 15-second socket timeout to prevent indefinite hangs on dead third-party host servers.
+  - Extracted 45 labeled real `(30, 126)` 3D landmark sequence tensors across the vocabulary (Note: `more` and `done` currently have 0 working direct MP4 samples and will need dataset augmentation or secondary sources).
+  - `mute_mode/test_dataset_downloader.py`: Verified instance prioritization logic, index vocabulary coverage, tensor invariants (no NaN/Inf), and `DATASET_SOURCE.md` documentation citation (`ALL MUTE MODE STEP 4 TESTS PASSED [PASS]`).
+
+## Next
+- **Phase 1C: Mute Mode — Step 5**
+  - Mute Mode End-to-End integration: Connect landmark extractor, sequence buffer, classifier inference, and mock trigger to process the extracted dataset.
