@@ -54,7 +54,7 @@ Unlike traditional assistive technologies that rely on cloud APIs or isolated si
 ### 3. Mute Mode — 3D Sign Language Recognition Pipeline
 * **Landmark Extractor:** Real-time 3D hand tracking via **MediaPipe Hands** (`HandLandmarker`), extracting 21 $(X, Y, Z)$ spatial keypoints per hand normalized relative to wrist origin and bounding scale.
 * **Temporal Smoothing & Buffer:** Exponential Moving Average (EMA, $\alpha=0.6$) coordinate jitter suppression combined with a 30-frame rolling FIFO sequence buffer (`GestureSequenceBuffer`) and hold-last-good-value occlusion imputation.
-* **Edge Neural Classifier:** Lightweight **1D-CNN + GRU** hybrid classifier (`SignLanguageClassifier`, **62,604 trainable parameters**) for 12-word sign vocabulary classification (`hello`, `thank you`, `help`, `yes`, `no`, `water`, `food`, `stop`, `please`, `sorry`, `more`, `done`).
+* **Edge Neural Classifier:** Lightweight **1D-CNN + GRU** hybrid classifier (`SignLanguageClassifier`, **62,604 trainable parameters**) for **100-word** American Sign Language (ASL) vocabulary classification (trained on the WLASL dataset).
 
 ### 4. Mode Manager — Resource Orchestration
 * **Software Core:** Thread-safe supervisor (`shared/mode_manager.py`) governing mutually exclusive access to shared peripheral resources (Camera, Audio I2S/Speaker, OLED I2C).
@@ -140,8 +140,9 @@ TriSense/
 │   ├── sequence_buffer.py     # EMA temporal smoother & 30-frame FIFO buffer
 │   ├── classifier.py          # 1D-CNN + GRU edge PyTorch classifier (~62.6k params)
 │   ├── train_classifier.py    # Training script structure & smoke-test loader
+│   ├── dataset_downloader.py  # WLASL video fetching & landmark dataset builder
 │   ├── video_stream.py        # Camera & video file input streamer
-│   └── test_*.py              # Modular test suites for extraction, buffer, & classifier
+│   └── test_*.py              # Modular test suites for extraction, buffer, classifier & downloader
 ├── shared/                    # Common System Resources
 │   └── mode_manager.py        # Thread-safe multi-mode resource orchestrator
 ├── assets/                    # Animated SVG architecture & banner graphics
@@ -155,7 +156,7 @@ TriSense/
 
 - [x] **Phase 1A**: Blind Mode Software Pipeline & Haptic Mapping
 - [x] **Phase 1B**: Deaf Mode Offline ASR Engine & OLED Subtitle Formatter
-- [x] **Phase 1C**: Mute Mode 3D Landmark Extraction, EMA Smoothing, & Edge Classifier
+- [x] **Phase 1C**: Mute Mode 3D Landmark Extraction, 100-word WLASL Dataset, & Edge Classifier
 - [x] **Phase 1D**: Mode Manager Resource Locking & Orchestration
 - [ ] **Phase 2**: Model Quantization (ONNX / TFLite INT8 Export) & Edge Latency Profiling
 - [ ] **Phase 3**: Physical Raspberry Pi 4 GPIO Deployment & Field Validation
