@@ -62,10 +62,18 @@ MAX_HOLD_FRAMES = 5           # Max consecutive frames to hold last good value d
 
 # ── Sign Language Vocabulary & Classifier Configuration (Step 3) ──────────────
 VOCABULARY = [
-    "hello", "thank you", "help", "yes", "no", "water",
-    "food", "stop", "please", "sorry", "more", "done"
+    "drink", "before", "cool", "computer", "go", "thin", "cousin", "help", "who", "short",
+    "bowling", "call", "candy", "change", "dark", "later", "thanksgiving", "accident", "basketball", "bed",
+    "corn", "inform", "last", "man", "pizza", "take", "tall", "trade", "what", "yes",
+    "bar", "cold", "deaf", "family", "give", "leave", "show", "soon", "tell", "walk",
+    "woman", "year", "apple", "brother", "catch", "champion", "check", "close", "convince", "cry",
+    "cut", "delay", "dog", "environment", "example", "far", "fine", "fish", "full", "graduate",
+    "hot", "how", "improve", "language", "letter", "many", "mother", "no", "order", "party",
+    "play", "room", "score", "secretary", "shirt", "sweet", "theory", "thursday", "wait", "why",
+    "write", "argue", "bad", "balance", "banana", "beard", "because", "big", "bird", "black",
+    "blanket", "blue", "careful", "cat", "cheat", "copy", "country", "cow", "crash", "daughter"
 ]
-NUM_CLASSES = len(VOCABULARY)  # 12 classes
+NUM_CLASSES = len(VOCABULARY)  # 100 classes
 SEQ_LENGTH = WINDOW_SIZE       # 30 frames
 FEATURE_DIM = 126              # 2 hands * 21 landmarks * 3 coords (x, y, z)
 

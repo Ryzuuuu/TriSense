@@ -205,20 +205,79 @@ class DeafModePipeline:
 class MuteModePipeline:
     """
     EXTENSION POINT: Mute Mode (Sign Language Recognition -> Speech).
-    Will use camera input and speaker output. Not implemented yet.
+    Uses camera input and speaker output.
     """
     REQUIRED_RESOURCES = {"CAMERA", "SPEAKER"}
 
     def __init__(self):
         self.is_running = False
+        self._thread = None
+        self.classifier = None
+        self.streamer = None
+        self.extractor = None
+        self.buffer = None
 
-    def start(self, **kwargs):
-        print("[MUTE_PIPELINE] [EXTENSION POINT] Mute Mode pipeline requested.")
-        raise NotImplementedError("Mute Mode pipeline is not yet implemented (extension point ready).")
+    def start(self, use_mock=False, **kwargs):
+        if self.is_running:
+            return
+        print("[MUTE_PIPELINE] Starting Mute Mode sign language pipeline...")
+        _ensure_headless_compat()
+
+        from mute_mode.train_classifier import load_checkpoint
+        from mute_mode.video_stream import VideoStreamer
+        from mute_mode.landmark_extractor import LandmarkExtractor
+        from mute_mode.sequence_buffer import GestureSequenceBuffer
+
+        checkpoint_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "mute_mode", "checkpoints", "final_model.pth"))
+        self.classifier = load_checkpoint(checkpoint_path)
+        self.streamer = VideoStreamer(use_mock=use_mock)
+        self.extractor = LandmarkExtractor()
+        self.buffer = GestureSequenceBuffer()
+        
+        self.is_running = True
+        self._thread = threading.Thread(target=self._run_loop_wrapper, daemon=True)
+        self._thread.start()
+
+    def _run_loop_wrapper(self):
+        from mute_mode.classifier import extract_sequence_tensor
+        from blind_mode.audio_alert import speak_alert
+        
+        while self.is_running:
+            time.sleep(0.01)
+            ret, frame = self.streamer.read()
+            if not ret or frame is None:
+                continue
+
+            extraction = self.extractor.extract(frame)
+            self.buffer.add_frame(extraction)
+            
+            seq = self.buffer.get_sequence()
+            if seq.get("buffer_full", False):
+                tensor = extract_sequence_tensor(seq)
+                pred = self.classifier.predict_step(tensor)
+                
+                if pred["confidence"] > 0.4:
+                    word = pred["label"]
+                    print(f"[MUTE_PIPELINE] Predicted: {word.upper()} (conf: {pred['confidence']:.2f})")
+                    speak_alert(word, cooldown=2.0)
+                    self.buffer.clear()
 
     def stop(self):
+        if not self.is_running:
+            return
+        print("[MUTE_PIPELINE] Stopping Mute Mode pipeline...")
         self.is_running = False
-        print("[MUTE_PIPELINE] [EXTENSION POINT] Mute Mode stopped.")
+        if self._thread and self._thread.is_alive():
+            self._thread.join(timeout=1.0)
+        
+        if self.streamer:
+            self.streamer.release()
+            self.streamer = None
+        if self.extractor:
+            self.extractor.close()
+            self.extractor = None
+        
+        print("[MUTE_PIPELINE] Mute Mode stopped.")
 
 
 class ModeManager:

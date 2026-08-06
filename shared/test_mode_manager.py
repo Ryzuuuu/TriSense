@@ -91,9 +91,9 @@ def test_mode_transitions():
     return True
 
 
-def test_key_trigger_and_extension_point():
+def test_key_trigger_and_mute_mode():
     print("-----------------------------------------------------------------------")
-    print("Test 3: Mock Key Trigger & Mute Mode Extension Point")
+    print("Test 3: Mock Key Trigger & Mute Mode Integration")
     print("-----------------------------------------------------------------------")
     manager = ModeManager()
 
@@ -107,11 +107,18 @@ def test_key_trigger_and_extension_point():
     assert mode == "IDLE"
     print("   [PASS] Key '0' triggered IDLE mode.")
 
-    # '3' -> MUTE (extension point should alert NotImplementedError and revert safely to IDLE)
-    print("--> Testing Key '3' (MUTE Mode extension point)...")
-    mode = manager.handle_key_input("3")
+    # '3' -> MUTE
+    print("--> Testing Key '3' (MUTE Mode integration)...")
+    mode = manager.handle_key_input("3", use_mock=True)
+    assert mode == "MUTE"
+    assert manager.resource_guard.get_owner("CAMERA") == "MUTE"
+    assert manager.resource_guard.get_owner("SPEAKER") == "MUTE"
+    print("   [PASS] Mute Mode launched successfully and acquired resources.")
+
+    # Return to IDLE
+    mode = manager.handle_key_input("0")
     assert mode == "IDLE"
-    print("   [PASS] Mute Mode extension point handled cleanly without crashing.\n")
+    print("   [PASS] All pipelines stopped and all resources released.\n")
     return True
 
 
@@ -122,7 +129,7 @@ def run_all_tests():
 
     t1 = test_resource_guard()
     t2 = test_mode_transitions()
-    t3 = test_key_trigger_and_extension_point()
+    t3 = test_key_trigger_and_mute_mode()
 
     all_passed = t1 and t2 and t3
     print("=======================================================================")

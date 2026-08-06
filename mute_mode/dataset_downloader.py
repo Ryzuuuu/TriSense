@@ -89,7 +89,7 @@ def prioritize_instances(instances: List[Dict[str, Any]]) -> List[Dict[str, Any]
             # Direct MP4 / non-YouTube sources
             priority1_mp4.append(inst)
 
-    return priority1_mp4
+    return priority1_mp4 + priority2_yt
 
 
 def download_video_clip(url: str, output_path: str) -> bool:
@@ -105,29 +105,45 @@ def download_video_clip(url: str, output_path: str) -> bool:
         if "youtube.com" in domain or "youtu.be" in domain:
             if not HAS_YTDLP:
                 return False
-            ydl_opts = {
-                "outtmpl": output_path,
-                "format": "mp4/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
-                "quiet": True,
-                "no_warnings": True,
-                "socket_timeout": 15,
-            }
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
+            import subprocess
+            cmd = [
+                sys.executable, "-m", "yt_dlp",
+                "--quiet", "--no-warnings", "--socket-timeout", "15",
+                "-f", "mp4/bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best",
+                "-o", output_path,
+                url
+            ]
+            try:
+                subprocess.run(cmd, timeout=45, check=True)
+            except subprocess.TimeoutExpired:
+                print(f"DOWNLOAD TIMEOUT for {url}: Exceeded 45 seconds.")
+                return False
+            except subprocess.CalledProcessError:
+                return False
         else:
             # Direct HTTP / MP4 stream
+            import time
             req = urllib.request.Request(
                 url,
                 headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
             )
+            start_time = time.time()
             with urllib.request.urlopen(req, timeout=15) as resp:
+                os.makedirs(os.path.dirname(output_path), exist_ok=True)
                 with open(output_path, "wb") as f_out:
-                    f_out.write(resp.read())
+                    while True:
+                        if time.time() - start_time > 45:
+                            raise TimeoutError("MP4 download exceeded 45s")
+                        chunk = resp.read(16384)
+                        if not chunk:
+                            break
+                        f_out.write(chunk)
 
         if os.path.exists(output_path) and os.path.getsize(output_path) > 1024:
             return True
         return False
     except Exception as e:
+        print(f"DOWNLOAD ERROR for {url}: {e}")
         if os.path.exists(output_path):
             try:
                 os.remove(output_path)
@@ -204,6 +220,12 @@ def run_bulk_download_pipeline(
     for word in vocabulary:
         word_dir = os.path.join(dataset_dir, word)
         os.makedirs(word_dir, exist_ok=True)
+        
+        saved_count = len([f for f in os.listdir(word_dir) if f.endswith('.npy')])
+        if saved_count >= max_clips:
+            print(f"   [{word:<10}] Already has {saved_count} samples. Skipping.")
+            results[word] = saved_count
+            continue
 
         w_lower = word.lower()
         if w_lower not in gloss_map:
@@ -214,8 +236,7 @@ def run_bulk_download_pipeline(
         instances = gloss_map[w_lower].get("instances", [])
         sorted_instances = prioritize_instances(instances)
 
-        saved_count = 0
-        print(f"   [{word:<10}] Found {len(sorted_instances)} eligible instances. Processing...")
+        print(f"   [{word:<10}] Found {len(sorted_instances)} eligible instances. Resuming from {saved_count}...")
 
         for idx, inst in enumerate(sorted_instances):
             if saved_count >= max_clips:
@@ -266,7 +287,15 @@ def run_bulk_download_pipeline(
 def main():
     import socket
     socket.setdefaulttimeout(15.0)
-    results = run_bulk_download_pipeline()
+    
+    WEAK_WORDS = [
+        "bed", "cut", "inform", "last", "close", "copy", "crash", "order", "tell",
+        "big", "careful", "cat", "cheat", "country", "cry", "delay", "improve", "show", "take", "theory", "thursday",
+        "balance", "banana", "bar", "beard", "because", "black", "blanket", "blue", "call", "catch", "convince", "corn", 
+        "daughter", "fine", "full", "help", "party", "score", "secretary", "soon", "sweet", "walk", "year"
+    ]
+    
+    results = run_bulk_download_pipeline(vocabulary=WEAK_WORDS)
     print("[INFO] Bulk dataset download and landmark extraction pipeline complete.")
 
 
