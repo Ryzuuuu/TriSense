@@ -13,11 +13,11 @@ This document cites the public sign language datasets utilized for training and 
 
 ---
 
-## 2. Secondary Fallback: ASL Citizen
+## 2. Evaluated (Not Used): ASL Citizen
 
 * **Paper:** *ASL Citizen: A Community-Sourced Dataset for American Sign Language Recognition*, A. Desai, T. J. W. Wang, M. S. W. Chen, et al., Advances in Neural Information Processing Systems (NeurIPS), 2023.
 * **Repository & Index:** [Microsoft / ASL Citizen](https://www.microsoft.com/en-us/research/project/asl-citizen/).
-* **Description:** A community-driven ASL dataset featuring vocabulary recordings from Deaf and hard-of-hearing signers, providing high-diversity fallback samples for vocabulary words absent or sparsely represented in WLASL.
+* **Description:** A community-driven ASL dataset featuring vocabulary recordings from Deaf and hard-of-hearing signers. Evaluated as a fallback source for words sparsely represented in WLASL, but **not used** — access requires a Kaggle account and data use agreement, which was not pursued for this project.
 
 ---
 
@@ -26,7 +26,7 @@ This document cites the public sign language datasets utilized for training and 
 Extracted gesture clips are stored locally as normalized 3D hand keypoint sequences:
 * **Directory Structure:** `mute_mode/dataset/<word>/sample_{NN:02d}.npy`
 * **Tensor Shape:** `(30, 126)` float32 array
-  * **Axis 0 (30):** Fixed 30-frame temporal window (at ~20 FPS, ~1.5 seconds per gesture).
+  * **Axis 0 (30):** Fixed 30-frame temporal sliding window. Duration varies with source video FPS (e.g. ~1.5s at 20 FPS, ~1.0s at 30 FPS) since the buffer is a fixed frame-count window, not a fixed time window.
   * **Axis 1 (126):** Two hands × 21 MediaPipe keypoints × 3 coordinates (`X, Y, Z`), normalized relative to wrist origin (`wrist = (0, 0, 0)`) and bounding box span (`scale_factor`).
 
 ---

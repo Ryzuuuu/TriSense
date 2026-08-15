@@ -62,8 +62,8 @@ Don't wait — shipping + soldering + debugging always takes longer than expecte
 | Sensor | TRIG | ECHO |
 |---|---|---|
 | Left | GPIO 5 | GPIO 6 |
-| Center | GPIO 13 | GPIO 19 |
-| Right | GPIO 26 | GPIO 21 |
+| Center | GPIO 13 | GPIO 16 |
+| Right | GPIO 26 | GPIO 17 |
 
 **Step 2: Basic distance reading (Week 2–3)**
 ```python

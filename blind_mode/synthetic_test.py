@@ -12,7 +12,8 @@ import csv
 from pathlib import Path
 
 # Inject mock GPIO path before importing any blind_mode modules
-sys.path.append(os.path.abspath("mock_lib"))
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "mock_lib")))
 
 # Mock pyttsx3 before anything tries to import audio_alert
 import unittest.mock
@@ -142,6 +143,6 @@ if len(errors) > 5:
     print(f"  ... and {len(errors)-5} more.")
 
 if len(errors) == 0 and haptic_fired_correctly and audio_fired:
-    print("\nOVERALL: ALL SYNTHETIC TESTS PASSED ✅")
+    print("\nOVERALL: ALL SYNTHETIC TESTS PASSED [PASS]")
 else:
-    print("\nOVERALL: SYNTHETIC TEST FAILED ❌")
+    print("\nOVERALL: SYNTHETIC TEST FAILED [FAIL]")

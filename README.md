@@ -54,7 +54,7 @@ Unlike traditional assistive technologies that rely on cloud APIs or isolated si
 ### 3. Mute Mode — 3D Sign Language Recognition Pipeline
 * **Landmark Extractor:** Real-time 3D hand tracking via **MediaPipe Hands** (`HandLandmarker`), extracting 21 $(X, Y, Z)$ spatial keypoints per hand normalized relative to wrist origin and bounding scale.
 * **Temporal Smoothing & Buffer:** Exponential Moving Average (EMA, $\alpha=0.6$) coordinate jitter suppression combined with a 30-frame rolling FIFO sequence buffer (`GestureSequenceBuffer`) and hold-last-good-value occlusion imputation.
-* **Edge Neural Classifier:** Lightweight **1D-CNN + GRU** hybrid classifier (`SignLanguageClassifier`, **62,604 trainable parameters**) for **100-word** American Sign Language (ASL) vocabulary classification (trained on the WLASL dataset).
+* **Edge Neural Classifier:** Lightweight **1D-CNN + GRU** hybrid classifier (`SignLanguageClassifier`, **68,324 trainable parameters**) for **100-word** American Sign Language (ASL) vocabulary classification (trained on the WLASL dataset).
 
 ### 4. Mode Manager — Resource Orchestration
 * **Software Core:** Thread-safe supervisor (`shared/mode_manager.py`) governing mutually exclusive access to shared peripheral resources (Camera, Audio I2S/Speaker, OLED I2C).
@@ -67,16 +67,15 @@ Unlike traditional assistive technologies that rely on cloud APIs or isolated si
 | Peripheral | Controller / Protocol | Raspberry Pi 4 GPIO Pin | Function / Description |
 | :--- | :--- | :--- | :--- |
 | **HC-SR04 Left** | GPIO TTL | `GPIO 5` (Trig), `GPIO 6` (Echo) | Left spatial distance sensor (~30° left of center) |
-| **HC-SR04 Center** | GPIO TTL | `GPIO 13` (Trig), `GPIO 19` (Echo) | Center spatial distance sensor (straight ahead) |
-| **HC-SR04 Right** | GPIO TTL | `GPIO 26` (Trig), `GPIO 21` (Echo) | Right spatial distance sensor (~30° right of center) |
+| **HC-SR04 Center** | GPIO TTL | `GPIO 13` (Trig), `GPIO 16` (Echo) | Center spatial distance sensor (straight ahead) |
+| **HC-SR04 Right** | GPIO TTL | `GPIO 26` (Trig), `GPIO 17` (Echo) | Right spatial distance sensor (~30° right of center) |
 | **Haptic Motor Left** | GPIO (NPN transistor) | `GPIO 23` | Left tactile vibration alert |
 | **Haptic Motor Center** | GPIO (NPN transistor) | `GPIO 24` | Center tactile vibration alert |
 | **Haptic Motor Right** | GPIO (NPN transistor) | `GPIO 25` | Right tactile vibration alert |
-| **INMP441 I2S Mic** | I2S Digital Audio | `GPIO 18` (CLK), `GPIO 19`\* (WS), `GPIO 20` (SD) | 16 kHz 16-bit Mono PCM digital input |
+| **INMP441 I2S Mic** | I2S Digital Audio | `GPIO 18` (CLK), `GPIO 19` (WS), `GPIO 20` (SD) | 16 kHz 16-bit Mono PCM digital input |
+| **MAX98357A I2S Amp** | I2S Digital Audio | `GPIO 18` (BCLK), `GPIO 19` (LRC), `GPIO 21` (DIN) | I2S speaker amplifier for TTS output |
 | **SSD1306 OLED** | I2C (`0x3C`) | `GPIO 2` (SDA), `GPIO 3` (SCL) | 128×64 subtitle & status display |
 | **Raspberry Pi Camera V2** | CSI / USB Video | `CAM / USB 2.0` | Real-time video stream for MediaPipe |
-
-> \* **GPIO 19 conflict:** The standard RPi4 I2S hardware overlay uses BCM 19 for I2S WS (LRCLK), which conflicts with `ECHO_CENTER = 19` in `blind_mode/config.py`. Blind Mode and Deaf Mode cannot operate simultaneously — this is enforced by `ModeManager`'s exclusive resource locking — but the pin conflict must be resolved in the final hardware wiring before deployment (e.g. re-routing the center echo to an unused GPIO and updating `config.py`).
 
 > For complete hardware wiring, I2S overlay configuration (`/boot/config.txt`), and acoustic calibration steps, see [`blind_mode/HARDWARE_TODO.md`](blind_mode/HARDWARE_TODO.md) and [`deaf_mode/HARDWARE_TODO.md`](deaf_mode/HARDWARE_TODO.md).
 

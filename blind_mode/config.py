@@ -15,10 +15,10 @@ TRIG_LEFT   = 5     # GPIO 5  — left sensor trigger  (~30° left of center)
 ECHO_LEFT   = 6     # GPIO 6  — left sensor echo
 
 TRIG_CENTER = 13    # GPIO 13 — center sensor trigger (straight ahead)
-ECHO_CENTER = 19    # GPIO 19 — center sensor echo
+ECHO_CENTER = 16    # GPIO 16 — center sensor echo
 
 TRIG_RIGHT  = 26    # GPIO 26 — right sensor trigger  (~30° right of center)
-ECHO_RIGHT  = 21    # GPIO 21 — right sensor echo
+ECHO_RIGHT  = 17    # GPIO 17 — right sensor echo
 
 # ── Haptic Vibration Motors ───────────────────────────────────────────────────
 # Each motor is driven via an NPN transistor (e.g. 2N2222 / BC547).
