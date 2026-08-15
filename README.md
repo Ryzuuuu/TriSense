@@ -159,7 +159,7 @@ TriSense/
 ├── mute_mode/                 # 3D Sign Language Recognition Pipeline
 │   ├── landmark_extractor.py  # MediaPipe Hands 21 (X, Y, Z) keypoint extractor
 │   ├── sequence_buffer.py     # EMA temporal smoother & 30-frame FIFO buffer
-│   ├── classifier.py          # 1D-CNN + GRU edge PyTorch classifier (~62.6k params)
+│   ├── classifier.py          # 1D-CNN + GRU edge PyTorch classifier (~68.3k params)
 │   ├── train_classifier.py    # Training script & load_checkpoint utility
 │   ├── dataset_downloader.py  # WLASL bulk video fetch & landmark dataset builder
 │   ├── video_stream.py        # Camera & video file input streamer
@@ -167,6 +167,8 @@ TriSense/
 │   ├── test_sequence_buffer.py     # Sequence buffer test suite
 │   ├── test_classifier_pipeline.py # Classifier architecture & smoke test suite
 │   └── test_dataset_downloader.py  # Dataset downloader test suite
+├── docs/                      # Academic deliverables (Phase-1 report, Review-1 PPT,
+│                              # evaluation criteria, and university templates)
 ├── shared/                    # Common System Resources
 │   ├── mode_manager.py        # Thread-safe multi-mode resource orchestrator
 │   └── test_mode_manager.py   # Mode manager & resource locking test suite
