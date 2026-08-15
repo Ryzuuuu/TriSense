@@ -42,8 +42,8 @@ Unlike traditional assistive technologies that rely on cloud APIs or isolated si
 ## Core Sensory Pipelines
 
 ### 1. Blind Mode — Spatial Collision & Haptics Engine
-* **Hardware Interface:** HC-SR04 Ultrasonic Distance Sensor array + PWM Haptic Vibration Drivers & Piezo Audio Alert.
-* **Algorithm:** High-frequency 20Hz polling loop mapping spatial distance into linear-mapped vibration pulse intensities and variable audible warning frequencies.
+* **Hardware Interface:** HC-SR04 Ultrasonic Distance Sensor array (3 sensors: left, center, right) + NPN-transistor-driven Haptic Vibration Motors & Piezo Audio Alert.
+* **Algorithm:** 10Hz polling loop (100ms interval) mapping spatial distance into linear-mapped vibration pulse intensities and variable audible warning frequencies.
 * **Dynamic Range Zones:** Implements multi-threshold collision detection (`SAFE`, `WARN`, `CRITICAL`) with pre-emptive jitter damping and zero-latency haptic feedback.
 
 ### 2. Deaf Mode — Offline Speech Subtitle Viewport
@@ -66,11 +66,17 @@ Unlike traditional assistive technologies that rely on cloud APIs or isolated si
 
 | Peripheral | Controller / Protocol | Raspberry Pi 4 GPIO Pin | Function / Description |
 | :--- | :--- | :--- | :--- |
-| **HC-SR04 Ultrasonic** | GPIO TTL | `GPIO 23` (Trig), `GPIO 24` (Echo) | 20Hz spatial distance polling array |
-| **Haptic Motor / Alert** | GPIO PWM | `GPIO 18` (PWM0) | Pulse-width modulated tactile alert |
-| **INMP441 I2S Mic** | I2S Digital Audio | `GPIO 18` (CLK), `GPIO 19` (WS), `GPIO 20` (SD) | 16 kHz 16-bit Mono PCM digital input |
+| **HC-SR04 Left** | GPIO TTL | `GPIO 5` (Trig), `GPIO 6` (Echo) | Left spatial distance sensor (~30° left of center) |
+| **HC-SR04 Center** | GPIO TTL | `GPIO 13` (Trig), `GPIO 19` (Echo) | Center spatial distance sensor (straight ahead) |
+| **HC-SR04 Right** | GPIO TTL | `GPIO 26` (Trig), `GPIO 21` (Echo) | Right spatial distance sensor (~30° right of center) |
+| **Haptic Motor Left** | GPIO (NPN transistor) | `GPIO 23` | Left tactile vibration alert |
+| **Haptic Motor Center** | GPIO (NPN transistor) | `GPIO 24` | Center tactile vibration alert |
+| **Haptic Motor Right** | GPIO (NPN transistor) | `GPIO 25` | Right tactile vibration alert |
+| **INMP441 I2S Mic** | I2S Digital Audio | `GPIO 18` (CLK), `GPIO 19`\* (WS), `GPIO 20` (SD) | 16 kHz 16-bit Mono PCM digital input |
 | **SSD1306 OLED** | I2C (`0x3C`) | `GPIO 2` (SDA), `GPIO 3` (SCL) | 128×64 subtitle & status display |
 | **Raspberry Pi Camera V2** | CSI / USB Video | `CAM / USB 2.0` | Real-time video stream for MediaPipe |
+
+> \* **GPIO 19 conflict:** The standard RPi4 I2S hardware overlay uses BCM 19 for I2S WS (LRCLK), which conflicts with `ECHO_CENTER = 19` in `blind_mode/config.py`. Blind Mode and Deaf Mode cannot operate simultaneously — this is enforced by `ModeManager`'s exclusive resource locking — but the pin conflict must be resolved in the final hardware wiring before deployment (e.g. re-routing the center echo to an unused GPIO and updating `config.py`).
 
 > For complete hardware wiring, I2S overlay configuration (`/boot/config.txt`), and acoustic calibration steps, see [`blind_mode/HARDWARE_TODO.md`](blind_mode/HARDWARE_TODO.md) and [`deaf_mode/HARDWARE_TODO.md`](deaf_mode/HARDWARE_TODO.md).
 
@@ -100,20 +106,25 @@ pip install -r requirements.txt
 Each sensory module includes an automated verification test suite that executes locally without requiring physical Raspberry Pi GPIO peripherals:
 
 ```bash
-# Verify Blind Mode (Ultrasonic Math & Haptic PWM Driver)
-python blind_mode/test_blind_mode.py
+# Verify Blind Mode (Ultrasonic Math, Closing Speed & Haptic Intensity)
+python blind_mode/synthetic_test.py
 
-# Verify Deaf Mode (16kHz PCM Stream, Vosk ASR, and OLED Subtitle Renderer)
-python deaf_mode/test_deaf_mode.py
-python deaf_mode/test_step3_1.py
+# Verify Deaf Mode (16kHz PCM Stream, Vosk ASR, Caption Formatter, OLED Renderer)
+python deaf_mode/test_audio_stream.py
+python deaf_mode/test_asr_engine.py
+python deaf_mode/test_caption_formatter.py
+python deaf_mode/test_caption_renderer.py
+python deaf_mode/test_oled_display.py
+python deaf_mode/test_main_loop.py
 
 # Verify Mute Mode (3D Landmark Extraction, EMA Jitter Filter, & 1D-CNN+GRU Classifier)
 python mute_mode/test_landmark_extractor.py
 python mute_mode/test_sequence_buffer.py
 python mute_mode/test_classifier_pipeline.py
+python mute_mode/test_dataset_downloader.py
 
 # Verify Mode Manager (Resource Locking & State Transitions)
-python shared/mode_manager.py
+python shared/test_mode_manager.py
 ```
 
 ---
@@ -123,28 +134,43 @@ python shared/mode_manager.py
 ```
 TriSense/
 ├── blind_mode/                # Spatial Collision & Haptic Feedback Pipeline
-│   ├── sensor_loop.py         # 20Hz Ultrasonic sensor & PWM alert loop
-│   ├── haptic_driver.py       # PWM intensity & frequency mapping
-│   ├── HARDWARE_TODO.md       # Hardware wiring & GPIO deployment checklist
-│   └── test_blind_mode.py     # Blind mode automated test suite
+│   ├── sensor_loop.py         # 10Hz ultrasonic sensor polling & alert loop
+│   ├── haptic.py              # Haptic pulse intensity mapping
+│   ├── collision.py           # Closing speed & time-to-collision computation
+│   ├── distance.py            # HC-SR04 raw sensor read with echo timeout
+│   ├── audio_alert.py         # Non-blocking pyttsx3 TTS alert worker
+│   ├── gpio_setup.py          # BCM pin initialisation & cleanup
+│   ├── synthetic_test.py      # Synthetic sensor value automated test suite
+│   ├── test_logger.py         # Live sensor read & CSV logging utility
+│   └── HARDWARE_TODO.md       # Hardware wiring & GPIO deployment checklist
 ├── deaf_mode/                 # Offline Speech-to-Text OLED Subtitle Pipeline
 │   ├── audio_stream.py        # 16kHz I2S / WAV PCM block streamer
 │   ├── asr_engine.py          # Vosk offline Kaldi speech recognition
 │   ├── caption_formatter.py   # Punctuation, capitalization, and line-wrapping
+│   ├── caption_renderer.py    # OLED subtitle rendering coordinator
 │   ├── oled_display.py        # SSD1306 I2C OLED viewport driver
 │   ├── main_loop.py           # End-to-end Deaf mode main event loop
-│   ├── HARDWARE_TODO.md       # I2S INMP441 & I2C SSD1306 setup guide
-│   └── test_deaf_mode.py      # Deaf mode automated test suite
+│   ├── test_asr_engine.py     # ASR engine automated test suite
+│   ├── test_audio_stream.py   # Audio stream automated test suite
+│   ├── test_caption_formatter.py  # Caption formatter automated test suite
+│   ├── test_caption_renderer.py   # Caption renderer automated test suite
+│   ├── test_main_loop.py      # End-to-end Deaf mode automated test suite
+│   ├── test_oled_display.py   # OLED display automated test suite
+│   └── HARDWARE_TODO.md       # I2S INMP441 & I2C SSD1306 setup guide
 ├── mute_mode/                 # 3D Sign Language Recognition Pipeline
 │   ├── landmark_extractor.py  # MediaPipe Hands 21 (X, Y, Z) keypoint extractor
 │   ├── sequence_buffer.py     # EMA temporal smoother & 30-frame FIFO buffer
 │   ├── classifier.py          # 1D-CNN + GRU edge PyTorch classifier (~62.6k params)
-│   ├── train_classifier.py    # Training script structure & smoke-test loader
-│   ├── dataset_downloader.py  # WLASL video fetching & landmark dataset builder
+│   ├── train_classifier.py    # Training script & load_checkpoint utility
+│   ├── dataset_downloader.py  # WLASL bulk video fetch & landmark dataset builder
 │   ├── video_stream.py        # Camera & video file input streamer
-│   └── test_*.py              # Modular test suites for extraction, buffer, classifier & downloader
+│   ├── test_landmark_extractor.py  # Landmark extraction test suite
+│   ├── test_sequence_buffer.py     # Sequence buffer test suite
+│   ├── test_classifier_pipeline.py # Classifier architecture & smoke test suite
+│   └── test_dataset_downloader.py  # Dataset downloader test suite
 ├── shared/                    # Common System Resources
-│   └── mode_manager.py        # Thread-safe multi-mode resource orchestrator
+│   ├── mode_manager.py        # Thread-safe multi-mode resource orchestrator
+│   └── test_mode_manager.py   # Mode manager & resource locking test suite
 ├── assets/                    # Animated SVG architecture & banner graphics
 ├── PROGRESS.md                # Living development roadmap & verification tracker
 └── README.md                  # Project engineering documentation
@@ -156,7 +182,7 @@ TriSense/
 
 - [x] **Phase 1A**: Blind Mode Software Pipeline & Haptic Mapping
 - [x] **Phase 1B**: Deaf Mode Offline ASR Engine & OLED Subtitle Formatter
-- [x] **Phase 1C**: Mute Mode 3D Landmark Extraction, 100-word WLASL Dataset, & Edge Classifier
+- [x] **Phase 1C**: Mute Mode — 100-word ASL Vocabulary (WLASL), 734 real training samples, 33.33% validation accuracy, fully integrated under ModeManager
 - [x] **Phase 1D**: Mode Manager Resource Locking & Orchestration
 - [ ] **Phase 2**: Model Quantization (ONNX / TFLite INT8 Export) & Edge Latency Profiling
 - [ ] **Phase 3**: Physical Raspberry Pi 4 GPIO Deployment & Field Validation
