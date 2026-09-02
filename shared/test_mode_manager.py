@@ -115,6 +115,24 @@ def test_key_trigger_and_mute_mode():
     assert manager.resource_guard.get_owner("SPEAKER") == "MUTE"
     print("   [PASS] Mute Mode launched successfully and acquired resources.")
 
+    # Force a prediction so the speak() call is exercised
+    pipeline = manager.get_pipeline("MUTE")
+    import unittest.mock
+    pipeline.classifier.predict_step = unittest.mock.MagicMock(
+        return_value={"label": "mock_word", "confidence": 0.99}
+    )
+    # Mock the buffer so it instantly claims to be full with dummy data
+    pipeline.buffer.get_sequence = unittest.mock.MagicMock(
+        return_value={"buffer_full": True, "frames": [{"landmarks": [[0,0,0]] * 21}] * 30}
+    )
+    # Mock the tensor extraction so we don't crash on dummy data
+    import mute_mode.classifier
+    mute_mode.classifier.extract_sequence_tensor = unittest.mock.MagicMock(
+        return_value="dummy_tensor"
+    )
+    print("   [MUTE] Waiting 0.5s for prediction loop to trigger...")
+    time.sleep(0.5)
+
     # Return to IDLE
     mode = manager.handle_key_input("0")
     assert mode == "IDLE"
