@@ -240,7 +240,7 @@ class MuteModePipeline:
 
     def _run_loop_wrapper(self):
         from mute_mode.classifier import extract_sequence_tensor
-        from blind_mode.audio_alert import speak_alert
+        from shared.tts_output import speak
         
         while self.is_running:
             time.sleep(0.01)
@@ -259,7 +259,7 @@ class MuteModePipeline:
                 if pred["confidence"] > 0.4:
                     word = pred["label"]
                     print(f"[MUTE_PIPELINE] Predicted: {word.upper()} (conf: {pred['confidence']:.2f})")
-                    speak_alert(word, cooldown=2.0)
+                    speak(word, cooldown=2.0)
                     self.buffer.clear()
 
     def stop(self):
