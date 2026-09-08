@@ -14,6 +14,8 @@ import threading
 import time
 from typing import Dict, Set, Optional
 
+from shared.tts_output import start_tts_worker, stop_tts_worker
+
 
 def _ensure_headless_compat():
     """Inject mock GPIO and mock TTS if running on a PC/headless environment without physical RPi.GPIO."""
@@ -145,9 +147,7 @@ class BlindModePipeline:
         self.is_running = False
         if self._thread and self._thread.is_alive():
             self._thread.join(timeout=0.5)
-        from blind_mode.audio_alert import shutdown_audio
         from blind_mode.gpio_setup import cleanup
-        shutdown_audio()
         cleanup()
         print("[BLIND_PIPELINE] Blind Mode stopped and GPIO released.")
 
@@ -293,6 +293,12 @@ class ModeManager:
             "DEAF": DeafModePipeline(),
             "MUTE": MuteModePipeline()  # Extension point
         }
+        start_tts_worker()
+
+    def shutdown(self):
+        """Stops the active pipeline and shuts down the shared TTS engine worker thread."""
+        self.stop_current_mode()
+        stop_tts_worker()
 
     def switch_mode(self, new_mode: str, **kwargs) -> bool:
         """
