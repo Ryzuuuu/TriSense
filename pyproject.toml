@@ -1,0 +1,23 @@
+[tool.pytest.ini_options]
+# Fast, hardware-free unit tests. The hardware/model-backed verification
+# scripts (blind_mode/synthetic_test.py, deaf_mode/test_*.py, ...) are run
+# directly with `python <path>`; see the README.
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+extend-exclude = ["mute_mode/dataset", "mute_mode/checkpoints"]
+
+[tool.ruff.lint]
+# Correctness checks only (syntax errors, undefined names, unused imports/variables).
+select = ["E4", "E7", "E9", "F"]
+
+[tool.ruff.lint.per-file-ignores]
+# Scripts adjust sys.path before importing project modules, and the GPIO mock
+# intentionally re-exports everything from mock_gpio.
+"blind_mode/**" = ["E402"]
+"deaf_mode/**" = ["E402"]
+"mute_mode/**" = ["E402"]
+"shared/**" = ["E402"]
+"tests/**" = ["E402"]
+"blind_mode/mock_lib/RPi/GPIO.py" = ["F403", "F401"]
