@@ -105,6 +105,7 @@ class BlindModePipeline:
     def start(self, **kwargs):
         if self.is_running:
             return
+        self.on_telemetry = kwargs.get("on_telemetry")
         print("[BLIND_PIPELINE] Starting Blind Mode ultrasonic/haptic pipeline...")
         _ensure_headless_compat()
         from blind_mode.gpio_setup import setup
@@ -138,6 +139,11 @@ class BlindModePipeline:
                     pulse_motor(pin, duration)
                 if label == "center" and ttc is not None and ttc < TTC_AUDIO_THRESHOLD_S:
                     speak_alert("Obstacle ahead")
+                
+                # EMULATOR HOOK: Pass telemetry up to ModeManager caller without altering internal modules
+                if hasattr(self, 'on_telemetry') and self.on_telemetry:
+                    self.on_telemetry(label, d_b, ttc, duration)
+                    
             prev_readings = curr_readings
 
     def stop(self):
@@ -220,6 +226,7 @@ class MuteModePipeline:
     def start(self, use_mock=False, **kwargs):
         if self.is_running:
             return
+        self.on_prediction = kwargs.get("on_prediction")
         print("[MUTE_PIPELINE] Starting Mute Mode sign language pipeline...")
         _ensure_headless_compat()
 
@@ -260,6 +267,11 @@ class MuteModePipeline:
                     word = pred["label"]
                     print(f"[MUTE_PIPELINE] Predicted: {word.upper()} (conf: {pred['confidence']:.2f})")
                     speak(word, cooldown=2.0)
+                    
+                    # EMULATOR HOOK: Pass prediction up to ModeManager caller without altering internal modules
+                    if hasattr(self, 'on_prediction') and self.on_prediction:
+                        self.on_prediction(word, float(pred['confidence']))
+                        
                     self.buffer.clear()
 
     def stop(self):
