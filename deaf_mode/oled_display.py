@@ -6,8 +6,6 @@
 # for headless testing and desktop verification.
 # -----------------------------------------------------------------------------
 
-import os
-import sys
 
 try:
     from PIL import Image, ImageDraw, ImageFont

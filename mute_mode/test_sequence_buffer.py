@@ -23,7 +23,7 @@ from mute_mode.config import (
 )
 from mute_mode.video_stream import VideoStreamer
 from mute_mode.landmark_extractor import LandmarkExtractor
-from mute_mode.sequence_buffer import LandmarkSmoother, GestureSequenceBuffer, _create_zero_hand
+from mute_mode.sequence_buffer import LandmarkSmoother, GestureSequenceBuffer
 
 
 def test_1_temporal_smoothing_and_jitter_reduction(video_path: str):
@@ -134,7 +134,6 @@ def test_2_sliding_window_buffer_and_fifo_rolling(video_path: str):
     extractor = LandmarkExtractor()
 
     frames_processed = 0
-    first_full_seq = None
 
     while True:
         ret, frame = stream.read()
@@ -153,7 +152,6 @@ def test_2_sliding_window_buffer_and_fifo_rolling(video_path: str):
             assert seq_info["num_frames"] == frames_processed, "num_frames should match accumulated frames"
         elif frames_processed == WINDOW_SIZE:
             assert seq_info["buffer_full"], f"buffer_full should transition to True at frame {WINDOW_SIZE}"
-            first_full_seq = seq_info["frames"][:]
         else:
             assert seq_info["buffer_full"], "buffer_full should remain True once 30 frames are reached"
             assert seq_info["num_frames"] == WINDOW_SIZE, "num_frames should cap at 30"

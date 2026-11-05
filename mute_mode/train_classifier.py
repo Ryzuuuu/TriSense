@@ -19,7 +19,7 @@ import random
 import numpy as np
 import torch
 import torch.nn as nn
-from torch.utils.data import Dataset, DataLoader, random_split
+from torch.utils.data import Dataset, DataLoader
 from typing import Dict, Any, Tuple, List
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -238,14 +238,14 @@ def run_real_training():
     train_samples = samples[:split_idx]
     val_samples = samples[split_idx:]
     
-    print(f"=====================================================================")
+    print("=====================================================================")
     print(f" [REAL DATA] Training on {NUM_CLASSES}-word vocabulary.")
     print(f" Small-data regime detected! Total samples: {len(samples)}")
     print(f" Training samples  : {len(train_samples)}")
     print(f" Validation samples: {len(val_samples)}")
-    print(f" * Note: Validation sets may have just 1 sample per class (or 0).")
-    print(f" * Treat validation accuracy with appropriate skepticism.")
-    print(f"=====================================================================")
+    print(" * Note: Validation sets may have just 1 sample per class (or 0).")
+    print(" * Treat validation accuracy with appropriate skepticism.")
+    print("=====================================================================")
     
     train_dataset = SignLanguageDataset(train_samples, is_train=True, is_synthetic=False)
     val_dataset = SignLanguageDataset(val_samples, is_train=False, is_synthetic=False)

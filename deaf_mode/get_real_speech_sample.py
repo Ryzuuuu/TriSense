@@ -48,7 +48,7 @@ def get_real_speech_wav(target_path=OUTPUT_WAV):
         print("[ERROR] Downloaded temporary file missing.")
         return None
 
-    print(f"[SPEECH_DL] Converting downloaded audio to 16 kHz 16-bit mono PCM...")
+    print("[SPEECH_DL] Converting downloaded audio to 16 kHz 16-bit mono PCM...")
     try:
         with wave.open(TEMP_RAW, "rb") as wf_in:
             n_channels = wf_in.getnchannels()

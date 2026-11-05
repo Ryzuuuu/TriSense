@@ -10,7 +10,7 @@
 #      [126 features = Left hand (63 coords) + Right hand (63 coords)]
 #   2. 1D spatial-temporal convolutions (Conv1d 126->64, Conv1d 64->64)
 #   3. Recurrent temporal sequence modeling (1-layer GRU, hidden_size=64)
-#   4. Output classification head: Linear(64, 12 vocabulary classes)
+#   4. Output classification head: Linear(64, NUM_CLASSES vocabulary classes)
 #
 # Parameter budget: ~62.6k trainable parameters (well under edge limit).
 # -----------------------------------------------------------------------------
@@ -18,7 +18,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Dict, Any, List
+from typing import Dict, Any
 from mute_mode.config import (
     VOCABULARY,
     NUM_CLASSES,
@@ -62,7 +62,7 @@ def extract_sequence_tensor(sequence_result: Dict[str, Any]) -> torch.Tensor:
 
 class SignLanguageClassifier(nn.Module):
     """
-    Lightweight 1D-CNN + GRU hybrid sequence classifier for 12-word sign vocabulary.
+    Lightweight 1D-CNN + GRU hybrid sequence classifier for the sign vocabulary.
     """
     def __init__(
         self,
@@ -101,7 +101,7 @@ class SignLanguageClassifier(nn.Module):
         Args:
             x (torch.Tensor): Tensor of shape (batch_size, SEQ_LENGTH=30, FEATURE_DIM=126)
         Returns:
-            logits (torch.Tensor): Unnormalized logit predictions of shape (batch_size, NUM_CLASSES=12)
+            logits (torch.Tensor): Unnormalized logit predictions of shape (batch_size, NUM_CLASSES)
         """
         if x.dim() == 2:
             x = x.unsqueeze(0)  # Convert (30, 126) -> (1, 30, 126)

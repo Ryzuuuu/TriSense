@@ -12,7 +12,6 @@ import csv
 from pathlib import Path
 
 # Inject mock GPIO path before importing any blind_mode modules
-import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "mock_lib")))
 
 # Mock pyttsx3 before anything tries to import audio_alert
@@ -21,7 +20,7 @@ sys.modules['pyttsx3'] = unittest.mock.MagicMock()
 
 import test_logger
 import audio_alert
-from sensor_loop import POLL_INTERVAL_S, TTC_THRESHOLD_S
+from sensor_loop import TTC_THRESHOLD_S
 from audio_alert import TTC_AUDIO_THRESHOLD_S
 
 # ── Mock setup ───────────────────────────────────────────────────────────────

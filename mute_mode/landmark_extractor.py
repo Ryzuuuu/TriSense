@@ -10,13 +10,12 @@
 # -----------------------------------------------------------------------------
 
 import math
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List
 from mute_mode.config import (
     MAX_NUM_HANDS,
     MIN_DETECTION_CONFIDENCE,
     MIN_TRACKING_CONFIDENCE,
     CONFIDENCE_FLAG_THRESHOLD,
-    NUM_LANDMARKS,
     LANDMARK_NAMES,
     WRIST
 )

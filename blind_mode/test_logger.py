@@ -22,7 +22,6 @@
 # -----------------------------------------------------------------------------
 
 import csv
-import sys
 import time
 import argparse
 from datetime import datetime
@@ -31,7 +30,7 @@ from pathlib import Path
 from gpio_setup import setup, cleanup
 from distance import read_all_sensors
 from collision import compute_closing_speed, time_to_collision
-from haptic import get_alert_intensity, pulse_motor
+from haptic import get_alert_intensity
 from audio_alert import speak_alert, shutdown_audio, TTC_AUDIO_THRESHOLD_S
 from sensor_loop import fire_motor_async, POLL_INTERVAL_S, TTC_THRESHOLD_S
 from config import SENSORS

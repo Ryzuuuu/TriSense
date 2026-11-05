@@ -5,7 +5,6 @@
 # -> real OLEDDisplay / CaptionRenderer into an end-to-end real-time subtitle pipeline.
 # -----------------------------------------------------------------------------
 
-import time
 from deaf_mode.audio_stream import AudioStreamer
 from deaf_mode.asr_engine import ASREngine
 from deaf_mode.caption_renderer import CaptionRenderer

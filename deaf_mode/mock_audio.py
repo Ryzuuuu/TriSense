@@ -11,7 +11,7 @@ import struct
 import math
 import time
 import os
-from .config import SAMPLE_RATE, CHANNELS, BLOCK_SIZE
+from .config import SAMPLE_RATE, BLOCK_SIZE
 
 
 def create_sample_wav(filename, duration_s=3.0, frequency=440.0, sample_rate=SAMPLE_RATE):
@@ -75,7 +75,6 @@ class MockAudioStream:
                 print(f"[WARN] WAV format ({framerate}Hz, width={samp_width}) differs from expected ({self.sample_rate}Hz, 16-bit).")
                 
             bytes_per_frame = samp_width * n_channels
-            chunk_bytes = self.block_size * bytes_per_frame
             
             while self._running:
                 raw_data = wf.readframes(self.block_size)

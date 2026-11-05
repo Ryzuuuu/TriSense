@@ -15,7 +15,7 @@ import time
 # Ensure parent directory is in path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
-from deaf_mode.config import SAMPLE_RATE, BLOCK_SIZE, DEFAULT_SAMPLE_WAV
+from deaf_mode.config import SAMPLE_RATE, BLOCK_SIZE
 from deaf_mode.mock_audio import create_sample_wav, MockAudioStream
 from deaf_mode.asr_engine import ASREngine
 

@@ -54,7 +54,7 @@ def create_real_speech_wav(filename="deaf_mode/real_speech.wav",
         print("[ERROR] Failed to save speech audio to temporary file.")
         return None
 
-    print(f"[SPEECH_GEN] Reading temporary speech audio and converting to 16 kHz 16-bit mono PCM...")
+    print("[SPEECH_GEN] Reading temporary speech audio and converting to 16 kHz 16-bit mono PCM...")
     with wave.open(temp_wav, "rb") as wf_in:
         n_channels = wf_in.getnchannels()
         sampwidth = wf_in.getsampwidth()

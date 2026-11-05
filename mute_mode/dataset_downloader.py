@@ -13,7 +13,7 @@ import json
 import shutil
 import urllib.request
 import numpy as np
-from typing import Dict, Any, List, Tuple
+from typing import Dict, Any, List
 from urllib.parse import urlparse
 
 # Ensure project root is in sys.path
@@ -26,7 +26,7 @@ from mute_mode.classifier import extract_sequence_tensor
 from mute_mode.video_stream import VideoStreamer
 
 try:
-    import yt_dlp
+    import yt_dlp  # noqa: F401  (availability check; invoked via `python -m yt_dlp`)
     HAS_YTDLP = True
 except ImportError:
     HAS_YTDLP = False
@@ -47,7 +47,7 @@ def fetch_wlasl_index(cache_path: str = DEFAULT_CACHE_PATH) -> List[Dict[str, An
         with open(cache_path, "r", encoding="utf-8") as f:
             return json.load(f)
 
-    print(f"[WLASL_AUDIT] Downloading WLASL_v0.3.json from official repository...")
+    print("[WLASL_AUDIT] Downloading WLASL_v0.3.json from official repository...")
     req = urllib.request.Request(
         WLASL_INDEX_URL,
         headers={"User-Agent": "TriSense-Research-Bot/1.0 (Academic Assistive Research)"}
@@ -202,7 +202,7 @@ def run_bulk_download_pipeline(
     tmp_dir: str = DEFAULT_TMP_DIR,
 ) -> Dict[str, int]:
     """
-    Executes bulk downloading and landmark extraction across the 12-word vocabulary.
+    Executes bulk downloading and landmark extraction across the configured vocabulary.
     Returns dictionary mapping each word to the number of valid (30, 126) tensors saved.
     """
     wlasl_data = fetch_wlasl_index()
@@ -295,7 +295,7 @@ def main():
         "daughter", "fine", "full", "help", "party", "score", "secretary", "soon", "sweet", "walk", "year"
     ]
     
-    results = run_bulk_download_pipeline(vocabulary=WEAK_WORDS)
+    run_bulk_download_pipeline(vocabulary=WEAK_WORDS)
     print("[INFO] Bulk dataset download and landmark extraction pipeline complete.")
 
 

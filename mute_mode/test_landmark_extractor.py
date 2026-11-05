@@ -13,7 +13,6 @@
 
 import os
 import sys
-import time
 
 # Ensure UTF-8 output encoding for console symbols on Windows/cp1252
 if sys.platform.startswith("win"):
@@ -111,7 +110,7 @@ def test_landmark_extraction_and_normalization():
     assert scale > 0.0, f"Invalid bounding scale factor: {scale}"
 
     print(f"   [PASS] Extracted {len(landmarks)} 3D keypoints for detected {hand['handedness']} hand.")
-    print(f"   [PASS] Wrist precisely normalized to origin (0.0, 0.0, 0.0).")
+    print("   [PASS] Wrist precisely normalized to origin (0.0, 0.0, 0.0).")
     print(f"   [PASS] Scale normalization factor applied: {scale:.4f}\n")
     return True
 

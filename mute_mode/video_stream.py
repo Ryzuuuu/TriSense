@@ -6,7 +6,6 @@
 # ("HardwareCamera").
 # -----------------------------------------------------------------------------
 
-import os
 from typing import Optional, Tuple
 from mute_mode.mock_video import MockVideoStream
 from mute_mode.config import DEFAULT_VIDEO_PATH

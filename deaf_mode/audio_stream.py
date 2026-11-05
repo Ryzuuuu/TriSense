@@ -6,7 +6,6 @@
 # software validation.
 # -----------------------------------------------------------------------------
 
-import time
 from .config import SAMPLE_RATE, CHANNELS, BLOCK_SIZE, DTYPE, MOCK_AUDIO
 from .mock_audio import MockAudioStream
 
