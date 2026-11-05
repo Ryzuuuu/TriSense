@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TriSense Emulator</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 20px; }
+        h1 { margin-top: 0; color: #00F0FF; }
+        .grid-container { display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
+        
+        /* Panels */
+        .panel { background-color: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 15px; }
+        .panel h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 1px solid #333; padding-bottom: 10px; }
+        
+        /* Status */
+        .status-connected { color: #00F0FF; font-weight: bold; }
+        .status-disconnected { color: #ff4c4c; font-weight: bold; }
+        
+        /* Controls */
+        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        button { background-color: #333; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; font-size: 1rem; transition: background 0.2s; }
+        button:hover { background-color: #444; }
+        button.active { background-color: #00F0FF; color: black; font-weight: bold; }
+        
+        /* Resource Table */
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #333; }
+        th { color: #888; font-size: 0.9rem; }
+        .resource-idle { color: #666; }
+        .resource-active { color: #00F0FF; font-weight: bold; }
+
+        /* Mode Views */
+        .mode-view { display: none; min-height: 400px; }
+        .mode-view.active { display: block; }
+        
+        /* Deaf Mode OLED */
+        .oled-display {
+            background-color: #000;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            border-radius: 4px;
+            border: 2px solid #333;
+            width: 100%;
+            max-width: 400px;
+            height: 120px;
+            font-size: 1.2rem;
+            white-space: pre-wrap;
+            box-shadow: 0 0 10px rgba(0,255,0,0.1);
+        }
+
+        /* Blind Mode Haptics */
+        .haptic-container { display: flex; justify-content: center; gap: 40px; margin-top: 50px; }
+        .haptic-zone { text-align: center; }
+        .pulse-circle {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            background-color: #ff4c4c;
+            opacity: 0.1;
+            transition: opacity 0.1s ease-out, transform 0.1s ease-out;
+            margin: 0 auto 10px auto;
+        }
+        .ttc-label { font-family: monospace; color: #aaa; }
+
+        /* Mute Mode */
+        .prediction-box {
+            text-align: center; margin-top: 40px;
+            background: #222; padding: 40px; border-radius: 8px; border: 1px solid #444;
+        }
+        .pred-word { font-size: 4rem; font-weight: bold; color: #00F0FF; text-transform: uppercase; margin: 0; }
+        .pred-conf { font-size: 1.2rem; color: #888; margin-top: 10px; }
+        .experimental-warning {
+            display: inline-block; background-color: #ffe600; color: #000;
+            padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>TriSense Device Emulator</h1>
+    <div style="margin-bottom: 20px;">
+        Backend Connection: <span id="conn-status" class="status-disconnected">Not Connected</span>
+    </div>
+
+    <div class="grid-container">
+        <!-- Sidebar: Controls & Resources -->
+        <div>
+            <div class="panel">
+                <h2>Mode Switch</h2>
+                <div class="btn-group">
+                    <button id="btn-IDLE" onclick="switchMode('IDLE')">IDLE (Stop All)</button>
+                    <button id="btn-BLIND" onclick="switchMode('BLIND')">1. BLIND MODE</button>
+                    <button id="btn-DEAF" onclick="switchMode('DEAF')">2. DEAF MODE</button>
+                    <button id="btn-MUTE" onclick="switchMode('MUTE')">3. MUTE MODE</button>
+                </div>
+            </div>
+
+            <div class="panel" style="margin-top: 20px;">
+                <h2>ResourceGuard Owners</h2>
+                <table>
+                    <thead>
+                        <tr><th>Resource</th><th>Current Owner</th></tr>
+                    </thead>
+                    <tbody id="resource-table">
+                        <tr><td>SPEAKER</td><td id="res-SPEAKER" class="resource-idle">IDLE</td></tr>
+                        <tr><td>CAMERA</td><td id="res-CAMERA" class="resource-idle">IDLE</td></tr>
+                        <tr><td>MICROPHONE</td><td id="res-MICROPHONE" class="resource-idle">IDLE</td></tr>
+                        <tr><td>DISPLAY</td><td id="res-DISPLAY" class="resource-idle">IDLE</td></tr>
+                        <tr><td>GPIO_SENSORS</td><td id="res-GPIO_SENSORS" class="resource-idle">IDLE</td></tr>
+                        <tr><td>GPIO_MOTORS</td><td id="res-GPIO_MOTORS" class="resource-idle">IDLE</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Main Viewport -->
+        <div class="panel">
+            <h2>Live Interface View</h2>
+
+            <!-- IDLE View -->
+            <div id="view-IDLE" class="mode-view active">
+                <p style="color: #666; text-align: center; margin-top: 100px;">System Idle. Select a mode to begin.</p>
+            </div>
+
+            <!-- BLIND View -->
+            <div id="view-BLIND" class="mode-view">
+                <p><strong>Spatial Haptic Pulse Visualizer</strong></p>
+                <div class="haptic-container">
+                    <div class="haptic-zone">
+                        <div id="pulse-left" class="pulse-circle"></div>
+                        <div>LEFT</div>
+                        <div id="ttc-left" class="ttc-label">-- s</div>
+                    </div>
+                    <div class="haptic-zone">
+                        <div id="pulse-center" class="pulse-circle"></div>
+                        <div>CENTER</div>
+                        <div id="ttc-center" class="ttc-label">-- s</div>
+                    </div>
+                    <div class="haptic-zone">
+                        <div id="pulse-right" class="pulse-circle"></div>
+                        <div>RIGHT</div>
+                        <div id="ttc-right" class="ttc-label">-- s</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DEAF View -->
+            <div id="view-DEAF" class="mode-view">
+                <p><strong>OLED Caption Viewport (128x64)</strong></p>
+                <div id="oled-screen" class="oled-display">TriSense ASR [REC]<br>Waiting for speech...</div>
+            </div>
+
+            <!-- MUTE View -->
+            <div id="view-MUTE" class="mode-view">
+                <div class="prediction-box">
+                    <div class="experimental-warning">⚠️ LOW-ACCURACY / EXPERIMENTAL</div>
+                    <p style="margin:0; color:#aaa;">Predicted Sign:</p>
+                    <div id="mute-word" class="pred-word">...</div>
+                    <div id="mute-conf" class="pred-conf">Confidence: --%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <script>
+        const socket = io();
+        const connStatus = document.getElementById('conn-status');
+        
+        socket.on('connect', () => {
+            connStatus.textContent = 'Connected (Real ModeManager Active)';
+            connStatus.className = 'status-connected';
+        });
+
+        socket.on('disconnect', () => {
+            connStatus.textContent = 'Not Connected';
+            connStatus.className = 'status-disconnected';
+            resetUI();
+        });
+
+        // 1. Mode Switching & Resource State
+        function switchMode(mode) {
+            socket.emit('request_mode_switch', { mode: mode });
+        }
+
+        socket.on('system_state', (state) => {
+            // Update Active Buttons
+            document.querySelectorAll('.btn-group button').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + state.mode).classList.add('active');
+
+            // Update Views
+            document.querySelectorAll('.mode-view').forEach(view => view.classList.remove('active'));
+            document.getElementById('view-' + state.mode).classList.add('active');
+
+            // Update Resource Table
+            for (const [res, owner] of Object.entries(state.resources)) {
+                const td = document.getElementById('res-' + res);
+                td.textContent = owner;
+                td.className = owner === 'IDLE' ? 'resource-idle' : 'resource-active';
+            }
+        });
+
+        // 2. Deaf Mode Captions
+        socket.on('deaf_caption', (data) => {
+            document.getElementById('oled-screen').textContent = data.text;
+        });
+
+        // 3. Blind Mode Haptics
+        socket.on('blind_telemetry', (data) => {
+            // data contains: label (left/center/right), distance, ttc, duration
+            const pulseEl = document.getElementById('pulse-' + data.label);
+            const ttcEl = document.getElementById('ttc-' + data.label);
+            
+            if (data.ttc !== null) {
+                ttcEl.textContent = data.ttc.toFixed(2) + ' s';
+                // Higher duration = higher opacity/scale
+                if (data.duration > 0) {
+                    const intensity = Math.min(data.duration / 500, 1.0); // max 500ms
+                    pulseEl.style.opacity = intensity;
+                    pulseEl.style.transform = `scale(${1 + intensity * 0.3})`;
+                } else {
+                    pulseEl.style.opacity = 0.1;
+                    pulseEl.style.transform = 'scale(1)';
+                }
+            } else {
+                ttcEl.textContent = 'Clear';
+                pulseEl.style.opacity = 0.1;
+                pulseEl.style.transform = 'scale(1)';
+            }
+        });
+
+        // 4. Mute Mode Prediction
+        socket.on('mute_prediction', (data) => {
+            document.getElementById('mute-word').textContent = data.word;
+            document.getElementById('mute-conf').textContent = 'Confidence: ' + (data.confidence * 100).toFixed(1) + '%';
+        });
+
+        function resetUI() {
+            document.querySelectorAll('.btn-group button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.resource-active').forEach(td => {
+                td.textContent = 'IDLE';
+                td.className = 'resource-idle';
+            });
+        }
+    </script>
+</body>
+</html>
