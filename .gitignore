@@ -1,20 +1,37 @@
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Virtual environments / secrets
 env/
 venv/
+.venv/
 .env
+
+# OS / editor
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs and generated test output
 *.log
+*.csv
+
+# Downloaded models (fetched on demand - see README "Models & data")
 models/
 vosk-model*/
+*.task
+
+# Generated or downloaded media samples
 *.wav
 *.mp4
-*.task
-*.csv
+
+# Scratch output created by the dataset downloader
+mute_mode/tmp_videos/

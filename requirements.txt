@@ -1,0 +1,18 @@
+# TriSense - Python dependencies for desktop development, the test suites and the web emulator.
+# Developed on Python 3.12; verified on Python 3.11.
+
+numpy>=1.26
+torch>=2.2              # Mute Mode 1D-CNN + GRU classifier
+opencv-python>=4.8      # video capture / colour conversion
+mediapipe>=0.10         # HandLandmarker (21 3D hand keypoints)
+vosk>=0.3.45            # offline Kaldi speech recognition (Deaf Mode)
+sounddevice>=0.4        # microphone capture (falls back to a WAV mock when absent)
+pyttsx3>=2.90           # offline text-to-speech (logs to console when unavailable)
+Pillow>=10.0            # OLED frame rendering
+flask>=3.0              # web emulator
+flask-socketio>=5.3     # web emulator (WebSocket events)
+yt-dlp>=2024.1.1        # optional: dataset downloader YouTube fallback
+
+# Raspberry Pi 4 only (install on the device, not on a PC):
+#   pip install RPi.GPIO luma.oled
+# On a PC the bundled blind_mode/mock_lib/RPi/GPIO.py mock is used automatically.

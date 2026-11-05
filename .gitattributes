@@ -1,0 +1,11 @@
+* text=auto
+
+*.pth binary
+*.npy binary
+*.docx binary
+*.doc binary
+*.pptx binary
+*.pdf binary
+*.wav binary
+*.mp4 binary
+*.task binary
