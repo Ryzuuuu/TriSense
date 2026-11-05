@@ -12,24 +12,19 @@ import os
 import sys
 import threading
 import time
-from typing import Dict, Set, Optional
+from typing import Callable, Dict, Optional, Set
 
 from shared.tts_output import start_tts_worker, stop_tts_worker
 
 
 def _ensure_headless_compat():
-    """Inject mock GPIO and mock TTS if running on a PC/headless environment without physical RPi.GPIO."""
+    """Fall back to the bundled mock RPi.GPIO when running on a PC without physical GPIO."""
     try:
-        import RPi.GPIO
+        import RPi.GPIO  # noqa: F401
     except ImportError:
         mock_lib_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "blind_mode", "mock_lib"))
         if mock_lib_path not in sys.path:
             sys.path.insert(0, mock_lib_path)
-    try:
-        import pyttsx3
-    except (ImportError, OSError):
-        import unittest.mock
-        sys.modules['pyttsx3'] = unittest.mock.MagicMock()
 
 
 class ResourceLockError(RuntimeError):
@@ -85,6 +80,11 @@ class ResourceGuard:
         with self._lock:
             return {res for res, curr in self._owners.items() if curr == owner}
 
+    def snapshot(self) -> Dict[str, str]:
+        """Returns a copy of the current resource -> owner map."""
+        with self._lock:
+            return dict(self._owners)
+
     def clear(self):
         with self._lock:
             self._owners.clear()
@@ -101,10 +101,12 @@ class BlindModePipeline:
     def __init__(self):
         self.is_running = False
         self._thread: Optional[threading.Thread] = None
+        self.on_telemetry: Optional[Callable] = None
 
     def start(self, **kwargs):
         if self.is_running:
             return
+        # Optional callback(label, distance_m, ttc_s, pulse_s) used by the web emulator
         self.on_telemetry = kwargs.get("on_telemetry")
         print("[BLIND_PIPELINE] Starting Blind Mode ultrasonic/haptic pipeline...")
         _ensure_headless_compat()
@@ -139,11 +141,10 @@ class BlindModePipeline:
                     pulse_motor(pin, duration)
                 if label == "center" and ttc is not None and ttc < TTC_AUDIO_THRESHOLD_S:
                     speak_alert("Obstacle ahead")
-                
-                # EMULATOR HOOK: Pass telemetry up to ModeManager caller without altering internal modules
-                if hasattr(self, 'on_telemetry') and self.on_telemetry:
+
+                if self.on_telemetry:
                     self.on_telemetry(label, d_b, ttc, duration)
-                    
+
             prev_readings = curr_readings
 
     def stop(self):
@@ -222,10 +223,12 @@ class MuteModePipeline:
         self.streamer = None
         self.extractor = None
         self.buffer = None
+        self.on_prediction: Optional[Callable] = None
 
     def start(self, use_mock=False, **kwargs):
         if self.is_running:
             return
+        # Optional callback(word, confidence) used by the web emulator
         self.on_prediction = kwargs.get("on_prediction")
         print("[MUTE_PIPELINE] Starting Mute Mode sign language pipeline...")
         _ensure_headless_compat()
@@ -267,11 +270,10 @@ class MuteModePipeline:
                     word = pred["label"]
                     print(f"[MUTE_PIPELINE] Predicted: {word.upper()} (conf: {pred['confidence']:.2f})")
                     speak(word, cooldown=2.0)
-                    
-                    # EMULATOR HOOK: Pass prediction up to ModeManager caller without altering internal modules
-                    if hasattr(self, 'on_prediction') and self.on_prediction:
-                        self.on_prediction(word, float(pred['confidence']))
-                        
+
+                    if self.on_prediction:
+                        self.on_prediction(word, float(pred["confidence"]))
+
                     self.buffer.clear()
 
     def stop(self):

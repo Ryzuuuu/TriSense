@@ -7,7 +7,11 @@
 import threading
 import queue
 import time
-import pyttsx3
+
+try:
+    import pyttsx3
+except (ImportError, OSError):  # headless box or missing speech backend
+    pyttsx3 = None
 
 # ── Internal state ────────────────────────────────────────────────────────────
 _speech_queue = queue.Queue()
@@ -17,11 +21,24 @@ _shutdown_flag = threading.Event()
 _worker_thread = None
 
 
+def _init_engine():
+    """Returns a configured pyttsx3 engine, or None if speech output is unavailable."""
+    if pyttsx3 is None:
+        print("[TTS] pyttsx3 not available - speech will be logged to the console only.")
+        return None
+    try:
+        engine = pyttsx3.init()
+        engine.setProperty("rate", 160)
+        engine.setProperty("volume", 1.0)
+        return engine
+    except Exception as e:  # driver missing (e.g. no espeak on Linux)
+        print(f"[TTS] Could not initialise speech engine ({e}) - logging to console only.")
+        return None
+
+
 def _worker():
     global _last_spoken_time
-    engine = pyttsx3.init()
-    engine.setProperty("rate", 160)
-    engine.setProperty("volume", 1.0)
+    engine = _init_engine()
 
     while not _shutdown_flag.is_set():
         try:
@@ -29,8 +46,11 @@ def _worker():
         except queue.Empty:
             continue
 
-        engine.say(text)
-        engine.runAndWait()
+        if engine is not None:
+            engine.say(text)
+            engine.runAndWait()
+        else:
+            print(f"[TTS] {text}")
 
         with _lock:
             _last_spoken_time = time.time()
