@@ -10,7 +10,7 @@ import time
 import RPi.GPIO as GPIO
 
 from gpio_setup import setup, cleanup
-from config import TRIG_CENTER, ECHO_CENTER, SENSORS, ECHO_TIMEOUT_S
+from config import SENSORS, ECHO_TIMEOUT_S
 
 
 def get_distance(trig, echo, timeout=ECHO_TIMEOUT_S):
@@ -35,11 +35,10 @@ def get_distance(trig, echo, timeout=ECHO_TIMEOUT_S):
     GPIO.output(trig, GPIO.LOW)
 
     # Wait for ECHO to go HIGH — bail out if it takes too long
-    start = time.time()
+    deadline = time.time() + timeout
     while GPIO.input(echo) == 0:
-        start = time.time()
-        if (start - time.time() + timeout) < 0:   # re-evaluated each iteration
-            return None
+        if time.time() > deadline:
+            return None           # echo never rose — sensor disconnected or faulty
 
     # Capture the moment ECHO went HIGH, then wait for it to go LOW
     pulse_start = time.time()
