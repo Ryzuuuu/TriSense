@@ -23,7 +23,7 @@ class TestDatasetDownloader(unittest.TestCase):
     def test_01_instance_prioritization_and_swf_filtering(self):
         """
         Verifies that .swf links are skipped entirely, direct MP4 links come first,
-        and YouTube links come last.
+        and YouTube links are kept only as a last-resort fallback.
         """
         dummy_instances = [
             {"url": "http://www.aslpro.com/main/t/thankyou.swf", "video_id": "01"},
@@ -36,18 +36,18 @@ class TestDatasetDownloader(unittest.TestCase):
         sorted_inst = prioritize_instances(dummy_instances)
         urls = [inst["url"] for inst in sorted_inst]
 
-        # Ensure no .swf or youtube in sorted_inst
+        # Flash (.swf) links must be dropped entirely
         self.assertFalse(any(".swf" in u.lower() for u in urls), "SWF links were not filtered out!")
-        self.assertFalse(any("youtube.com" in u.lower() or "youtu.be" in u.lower() for u in urls), "YouTube links were not filtered out!")
-        # Ensure direct MP4 links are returned
+        # Direct MP4 links come first, YouTube is the last-resort fallback
         self.assertEqual(urls[0], "https://s3-us-west-1.amazonaws.com/media.asldeafined.com/water.mp4")
         self.assertEqual(urls[1], "https://media.spreadthesign.com/video/mp4/13/123.mp4")
-        self.assertEqual(len(urls), 2)
-        print("   [PASS] Instance prioritization correctly kept only direct MP4 links and dropped SWF/YouTube.")
+        self.assertEqual(urls[2], "https://www.youtube.com/watch?v=12345")
+        self.assertEqual(len(urls), 3)
+        print("   [PASS] Instance prioritization dropped SWF and ordered direct MP4 before YouTube.")
 
     def test_02_index_coverage_audit(self):
         """
-        Verifies that WLASL index parses cleanly and covers the 12 vocabulary words.
+        Verifies that WLASL index parses cleanly and covers every vocabulary word.
         """
         wlasl_data = fetch_wlasl_index()
         gloss_map = {entry.get("gloss", "").lower(): entry for entry in wlasl_data}
