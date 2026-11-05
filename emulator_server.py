@@ -1,30 +1,41 @@
+# emulator_server.py
+# -----------------------------------------------------------------------------
+# Browser-based emulator for TriSense. Drives the real ModeManager (Blind / Deaf /
+# Mute pipelines running on mock hardware) and streams caption, telemetry,
+# prediction and resource-ownership events to a web UI over Socket.IO.
+#
+# Run:  python emulator_server.py   ->   http://127.0.0.1:5000
+# -----------------------------------------------------------------------------
+
+import atexit
 import os
 import sys
 import threading
 import time
+
 from flask import Flask, render_template
 from flask_socketio import SocketIO
 
 # Ensure the root directory is in the Python path
 sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 
-from shared.mode_manager import ModeManager
+from shared.mode_manager import ModeManager  # noqa: E402
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'trisense_secret'
-socketio = SocketIO(app, async_mode='threading')
+# Local-only dev server: override with TRISENSE_SECRET_KEY if you expose it.
+app.config["SECRET_KEY"] = os.getenv("TRISENSE_SECRET_KEY") or os.urandom(16).hex()
+socketio = SocketIO(app, async_mode="threading")
 
 print("[EMULATOR] Instantiating the REAL ModeManager...")
 manager = ModeManager()
+atexit.register(manager.shutdown)
 
 # --- Emulator WebSocket Callbacks ---
-def on_caption_update(text_lines):
-    # Depending on how the formatter passes data (array of lines or string)
-    if isinstance(text_lines, list):
-        text = "\n".join(text_lines)
-    else:
-        text = str(text_lines)
-    socketio.emit('deaf_caption', {'text': text})
+def on_caption_update(text, is_final=True):
+    # DeafModeApp calls back with (caption_text, is_final_utterance)
+    if isinstance(text, list):
+        text = "\n".join(text)
+    socketio.emit('deaf_caption', {'text': str(text), 'final': bool(is_final)})
 
 def on_telemetry(label, distance, ttc, duration):
     socketio.emit('blind_telemetry', {'label': label, 'distance': distance, 'ttc': ttc, 'duration': duration})
@@ -49,10 +60,10 @@ def handle_disconnect():
 
 @socketio.on('request_mode_switch')
 def handle_mode_switch(data):
-    new_mode = data.get('mode', 'IDLE')
+    new_mode = str((data or {}).get('mode', 'IDLE')).upper()
     print(f"[EMULATOR] UI Requested Mode Switch to: {new_mode}")
     try:
-        # Pass callbacks into the kwargs. The modified adapters will catch them.
+        # Callbacks travel through switch_mode(**kwargs) to the pipeline adapters.
         if new_mode == "DEAF":
             wav_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "deaf_mode", "real_speech.wav"))
             manager.switch_mode(new_mode, wav_path=wav_path, use_mock=True, on_caption_update=on_caption_update)
@@ -76,7 +87,7 @@ def background_poller():
         broadcast_state()
 
 def broadcast_state():
-    owners = manager.resource_guard._owners.copy()
+    owners = manager.resource_guard.snapshot()
     state = {
         'mode': manager.current_mode,
         'resources': {
