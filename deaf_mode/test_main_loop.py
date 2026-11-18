@@ -25,8 +25,11 @@ from deaf_mode.main_loop import DeafModeApp
 def ensure_wav_file(wav_path: str):
     if not os.path.exists(wav_path):
         print(f"[{wav_path} not found. Generating real speech test WAV...]")
-        from deaf_mode.generate_real_speech_wav import generate_test_wav
-        generate_test_wav(wav_path)
+        # Try the public speech sample first; generate one offline with the TTS engine if that host is down.
+        from deaf_mode.get_real_speech_sample import get_real_speech_wav
+        if not get_real_speech_wav(wav_path) or not os.path.exists(wav_path):
+            from deaf_mode.generate_real_speech_wav import create_real_speech_wav
+            create_real_speech_wav(wav_path)
 
 
 def run_test():

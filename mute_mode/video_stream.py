@@ -74,3 +74,37 @@ class VideoStreamer:
         if hasattr(self._stream, "is_opened"):
             return self._stream.is_opened()
         return bool(self._stream.isOpened())
+
+
+class PushVideoStream:
+    """
+    Frame source fed from outside, e.g. the web emulator sending webcam or
+    test video frames from the browser. read() returns the newest frame and
+    drops older ones, so recognition never lags behind the camera.
+    """
+    def __init__(self):
+        import threading
+        self._cond = threading.Condition()
+        self._frame = None
+        self._open = True
+        self.mode = "PushVideoStream"
+
+    def push(self, bgr_frame):
+        with self._cond:
+            self._frame = bgr_frame
+            self._cond.notify()
+
+    def read(self, timeout: float = 0.2):
+        with self._cond:
+            if self._frame is None and self._open:
+                self._cond.wait(timeout)
+            frame, self._frame = self._frame, None
+        return (frame is not None), frame
+
+    def release(self):
+        with self._cond:
+            self._open = False
+            self._cond.notify_all()
+
+    def is_opened(self) -> bool:
+        return self._open

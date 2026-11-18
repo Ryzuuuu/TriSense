@@ -95,3 +95,32 @@ class AudioStreamer:
 
     def is_active(self):
         return self._is_active
+
+
+class PushAudioStreamer:
+    """
+    Audio source fed from outside, e.g. the web emulator streaming the
+    browser microphone as 16 kHz 16 bit mono PCM. It looks like a live
+    microphone to DeafModeApp (use_mock is False), so the app runs its
+    threaded recogniser and keeps listening until stopped.
+    """
+    def __init__(self, callback=None, sample_rate=SAMPLE_RATE):
+        self.callback = callback
+        self.sample_rate = sample_rate
+        self.use_mock = False
+        self.mode = "PushAudioStream"
+        self._is_active = False
+
+    def start(self, real_time=False):
+        self._is_active = True
+        print("[AUDIO_STREAM] Waiting for pushed audio (browser microphone)...")
+
+    def push(self, pcm_bytes: bytes):
+        if self._is_active and self.callback and pcm_bytes:
+            self.callback(pcm_bytes, len(pcm_bytes) // 2, None, None)
+
+    def stop(self):
+        self._is_active = False
+
+    def is_active(self):
+        return self._is_active

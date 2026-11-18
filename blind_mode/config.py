@@ -56,3 +56,15 @@ MOTORS = {
 # 0.03 s gives a small margin; anything beyond that is a bad reading or a
 # disconnected sensor — return None instead of hanging forever.
 ECHO_TIMEOUT_S = 0.03
+
+# ── Decision engine tuning (used by engine.py) ───────────────────────────────
+POLL_INTERVAL_S     = 0.1    # target loop period; the engine uses measured time
+MIN_VALID_CM        = 2.0    # HC-SR04 blind zone
+MAX_VALID_CM        = 400.0  # HC-SR04 rated range; longer echoes are noise
+SPEED_DEADBAND_CM_S = 15.0   # ignore closing speeds below this (sensor jitter)
+SPEED_EMA_ALPHA     = 0.5    # smoothing for the closing speed
+TTC_ALERT_S         = 1.5    # haptic alert when time to collision is below this
+TTC_SPEAK_S         = 1.0    # spoken alert (center sensor) below this
+PROXIMITY_WARN_CM   = 60.0   # short pulse for a close but static obstacle
+PROXIMITY_DANGER_CM = 30.0   # longer pulse + speech for a very close obstacle
+STALE_AFTER_S       = 0.6    # forget a sensor's history after this long without a valid echo

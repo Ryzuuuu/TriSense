@@ -32,9 +32,9 @@
     <text x="42" y="32" class="mode-title" fill="#34d399">BLIND MODE</text>
     <text x="25" y="55" class="mode-sub">SPATIAL COLLISION &amp; HAPTICS</text>
     <line x1="25" y1="68" x2="225" y2="68" stroke="#21262d" stroke-width="1"/>
-    <text x="25" y="90" class="spec-line">• HC-SR04 20Hz Polling</text>
-    <text x="25" y="110" class="spec-line">• Multi-Zone Range Matrix</text>
-    <text x="25" y="130" class="spec-line">• PWM Haptic &amp; Audio Driver</text>
+    <text x="25" y="90" class="spec-line">• HC-SR04 10Hz Polling</text>
+    <text x="25" y="110" class="spec-line">• TTC + Proximity Alerts</text>
+    <text x="25" y="130" class="spec-line">• Async Haptic &amp; Audio Driver</text>
   </g>
 
   <!-- Card 2: Deaf Mode -->
@@ -56,8 +56,8 @@
     <text x="42" y="32" class="mode-title" fill="#c084fc">MUTE MODE</text>
     <text x="25" y="55" class="mode-sub">3D SIGN LANGUAGE RECOGNITION</text>
     <line x1="25" y1="68" x2="225" y2="68" stroke="#21262d" stroke-width="1"/>
-    <text x="25" y="90" class="spec-line">• MediaPipe Hands (3D XYZ)</text>
-    <text x="25" y="110" class="spec-line">• EMA α=0.6 Jitter Filtering</text>
-    <text x="25" y="130" class="spec-line">• 1D-CNN+GRU Classifier</text>
+    <text x="25" y="90" class="spec-line">• MediaPipe Hands + Pose</text>
+    <text x="25" y="110" class="spec-line">• Auto Sign Segmentation</text>
+    <text x="25" y="130" class="spec-line">• CNN+BiGRU · 64.5% Test</text>
   </g>
 </svg>

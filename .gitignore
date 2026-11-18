@@ -35,3 +35,6 @@ vosk-model*/
 
 # Scratch output created by the dataset downloader
 mute_mode/tmp_videos/
+
+# Mute Mode v2: downloaded WLASL videos (re-fetch with mute_mode/wlasl_fetch.py)
+mute_mode/raw_videos/

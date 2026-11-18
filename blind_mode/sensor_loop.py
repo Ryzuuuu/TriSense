@@ -16,14 +16,13 @@ import threading
 
 from gpio_setup import setup, cleanup
 from distance import read_all_sensors
-from collision import compute_closing_speed, time_to_collision
-from haptic import pulse_motor, get_alert_intensity
-from audio_alert import speak_alert, shutdown_audio, TTC_AUDIO_THRESHOLD_S
-from config import SENSORS, MOTORS
+from haptic import HapticDriver, pulse_motor
+from audio_alert import speak_alert, shutdown_audio
+from engine import BlindEngine, PROXIMITY_WARN_CM
+from config import SENSORS, MOTORS, POLL_INTERVAL_S, TTC_ALERT_S
 
 # ── Tunable constants ─────────────────────────────────────────────────────────
-POLL_INTERVAL_S  = 0.1   # seconds between each pair of samples (100 ms)
-TTC_THRESHOLD_S  = 1.5   # seconds — alert if TTC is below this value
+TTC_THRESHOLD_S  = TTC_ALERT_S  # seconds — alert if TTC is below this value
 ALERT_SYMBOL     = "⚠️ " # appended to a sensor's output when TTC < threshold
 
 
@@ -66,58 +65,36 @@ def run_loop():
     """
     Main polling loop.
 
-    On every iteration:
-      1. Take sample A from all three sensors.
-      2. Wait POLL_INTERVAL_S.
-      3. Take sample B from all three sensors.
-      4. For each sensor: compute closing speed (A→B over POLL_INTERVAL_S),
-         then TTC from sample B's distance and that closing speed.
-      5. Print a single status line with all three sensors.
+    Every POLL_INTERVAL_S the three sensors are read and passed, with the real
+    timestamp, to BlindEngine, which filters the readings, estimates closing
+    speed and time to collision, and decides on haptic pulses and speech.
+    Motors are driven by the non blocking HapticDriver, so the loop never
+    stalls while a motor buzzes.
 
     Runs indefinitely until Ctrl+C.
     """
     print("Sensor loop running. Press Ctrl+C to stop.\n")
-    print(f"Alert threshold: TTC < {TTC_THRESHOLD_S} s\n")
+    print(f"Alert threshold: TTC < {TTC_THRESHOLD_S} s, proximity < {PROXIMITY_WARN_CM:.0f} cm\n")
 
-    # Column headers
-    header = "  |  ".join(f"{s[0].upper():6s}  dist     TTC    alert" for s in SENSORS)
-    print("  " + header)
-    print("  " + "-" * len(header))
-
-    while True:
-        # ── Sample A ─────────────────────────────────────────────────────────
-        readings_a = read_all_sensors()
-
-        # ── Wait one poll interval ────────────────────────────────────────────
-        time.sleep(POLL_INTERVAL_S)
-
-        # ── Sample B ─────────────────────────────────────────────────────────
-        readings_b = read_all_sensors()
-
-        # ── Compute closing speed + TTC per sensor ────────────────────────────
-        parts = []
-        for label, _trig, _echo in SENSORS:
-            d_a = readings_a[label]
-            d_b = readings_b[label]
-
-            speed = compute_closing_speed(d_a, d_b, POLL_INTERVAL_S)
-            ttc   = time_to_collision(d_b, speed)
-
-            # ── Fire haptic motor if TTC is within alert range ─────────────────
-            duration_ms = get_alert_intensity(ttc, threshold=TTC_THRESHOLD_S)
-            if duration_ms is not None:
-                fire_motor_async(label, duration_ms)
-
-            # ── Speak audio alert for CENTER sensor only ───────────────────────
-            if label == "center" and ttc is not None and ttc < TTC_AUDIO_THRESHOLD_S:
-                speak_alert("Obstacle ahead")
-
-            parts.append(_format_sensor(label, d_b, ttc))
-
-        # ── Print one status line (overwrite in place) ────────────────────────
-        status_line = "  |  ".join(parts)
-        # \r returns to start of line; end="" keeps cursor on same line
-        print(f"\r  {status_line}", end="", flush=True)
+    engine = BlindEngine([s[0] for s in SENSORS])
+    driver = HapticDriver()
+    try:
+        next_t = time.monotonic()
+        while True:
+            readings = read_all_sensors()
+            states = engine.step(readings, time.monotonic())
+            for st in states:
+                if st.pulse_ms:
+                    driver.pulse(st.label, st.pulse_ms)
+            phrase = BlindEngine.speech_for(states)
+            if phrase:
+                speak_alert(phrase)
+            status_line = "  |  ".join(_format_sensor(st.label, st.distance, st.ttc) for st in states)
+            print(f"\r  {status_line}", end="", flush=True)
+            next_t += POLL_INTERVAL_S
+            time.sleep(max(0.0, next_t - time.monotonic()))
+    finally:
+        driver.stop()
 
 
 # ── Entry point ───────────────────────────────────────────────────────────────

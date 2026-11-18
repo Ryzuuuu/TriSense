@@ -118,20 +118,29 @@ def test_key_trigger_and_mute_mode():
     # Force a prediction so the speak() call is exercised
     pipeline = manager.get_pipeline("MUTE")
     import unittest.mock
-    pipeline.classifier.predict_step = unittest.mock.MagicMock(
-        return_value={"label": "mock_word", "confidence": 0.99}
-    )
-    # Mock the buffer so it instantly claims to be full with dummy data
-    pipeline.buffer.get_sequence = unittest.mock.MagicMock(
-        return_value={"buffer_full": True, "frames": [{"landmarks": [[0,0,0]] * 21}] * 30}
-    )
-    # Mock the tensor extraction so we don't crash on dummy data
-    import mute_mode.classifier
-    mute_mode.classifier.extract_sequence_tensor = unittest.mock.MagicMock(
-        return_value="dummy_tensor"
-    )
+    from shared import tts_output
+    tts_output.reset_cooldowns()
+    if pipeline.version == "v2":
+        pipeline.recognizer.process_frame = unittest.mock.MagicMock(
+            return_value={"label": "mock_word", "confidence": 0.99, "accepted": True, "top_k": [], "frames": 30}
+        )
+    else:
+        pipeline.classifier.predict_step = unittest.mock.MagicMock(
+            return_value={"label": "mock_word", "confidence": 0.99}
+        )
+        # Mock the buffer so it instantly claims to be full with dummy data
+        pipeline.buffer.get_sequence = unittest.mock.MagicMock(
+            return_value={"buffer_full": True, "frames": [{"landmarks": [[0,0,0]] * 21}] * 30}
+        )
+        # Mock the tensor extraction so we don't crash on dummy data
+        import mute_mode.classifier
+        mute_mode.classifier.extract_sequence_tensor = unittest.mock.MagicMock(
+            return_value="dummy_tensor"
+        )
     print("   [MUTE] Waiting 0.5s for prediction loop to trigger...")
     time.sleep(0.5)
+    assert "mock_word" in tts_output.spoken_log or not tts_output._speech_queue.empty() or         tts_output.speak("mock_word", cooldown=2.0) is False, "prediction never reached the speech queue"
+    print(f"   [PASS] Recogniser {pipeline.version} prediction was sent to the shared TTS worker.")
 
     # Return to IDLE
     mode = manager.handle_key_input("0")

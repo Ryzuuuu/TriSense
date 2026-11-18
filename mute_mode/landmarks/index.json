@@ -1,0 +1,7023 @@
+[
+ {
+  "gloss": "accident",
+  "video_id": "00618",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "accident",
+  "video_id": "00623",
+  "split": "train",
+  "signer_id": 26,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "accident",
+  "video_id": "00624",
+  "split": "train",
+  "signer_id": 29,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "accident",
+  "video_id": "00625",
+  "split": "test",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "accident",
+  "video_id": "00626",
+  "split": "val",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "accident",
+  "video_id": "00627",
+  "split": "val",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "accident",
+  "video_id": "00628",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "accident",
+  "video_id": "00629",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "accident",
+  "video_id": "00635",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "accident",
+  "video_id": "65009",
+  "split": "train",
+  "signer_id": 89,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "02997",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "02999",
+  "split": "val",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "03000",
+  "split": "train",
+  "signer_id": 28,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "03001",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "03002",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "03003",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "03006",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "65084",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "65085",
+  "split": "train",
+  "signer_id": 89,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "65086",
+  "split": "val",
+  "signer_id": 89,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "68003",
+  "split": "train",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "69213",
+  "split": "val",
+  "signer_id": 117,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "apple",
+  "video_id": "70309",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "argue",
+  "video_id": "03266",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "argue",
+  "video_id": "03267",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "argue",
+  "video_id": "03268",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "argue",
+  "video_id": "03270",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "argue",
+  "video_id": "03272",
+  "split": "val",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "argue",
+  "video_id": "03273",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "argue",
+  "video_id": "03274",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "argue",
+  "video_id": "03280",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "argue",
+  "video_id": "65092",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "04694",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "04708",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "04709",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "04712",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "04713",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "04715",
+  "split": "val",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "04720",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "04721",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "65125",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "bad",
+  "video_id": "69219",
+  "split": "test",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "balance",
+  "video_id": "04790",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "balance",
+  "video_id": "04795",
+  "split": "train",
+  "signer_id": 19,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "balance",
+  "video_id": "04796",
+  "split": "test",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "balance",
+  "video_id": "04797",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "balance",
+  "video_id": "04798",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "balance",
+  "video_id": "04799",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "balance",
+  "video_id": "04804",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "balance",
+  "video_id": "65129",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "banana",
+  "video_id": "04895",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "banana",
+  "video_id": "04896",
+  "split": "test",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "banana",
+  "video_id": "04897",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "banana",
+  "video_id": "04898",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "banana",
+  "video_id": "04899",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "banana",
+  "video_id": "04900",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "banana",
+  "video_id": "04904",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "banana",
+  "video_id": "65134",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "banana",
+  "video_id": "65135",
+  "split": "train",
+  "signer_id": 91,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "bar",
+  "video_id": "05086",
+  "split": "val",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "bar",
+  "video_id": "05087",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bar",
+  "video_id": "05088",
+  "split": "test",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "bar",
+  "video_id": "05089",
+  "split": "test",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "bar",
+  "video_id": "05090",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "bar",
+  "video_id": "05099",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bar",
+  "video_id": "65137",
+  "split": "test",
+  "signer_id": 91,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "05227",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "05229",
+  "split": "train",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "05230",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "05231",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "05232",
+  "split": "val",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "05233",
+  "split": "train",
+  "signer_id": 60,
+  "source": "signschool"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "05234",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "05241",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "65144",
+  "split": "train",
+  "signer_id": 91,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "65145",
+  "split": "train",
+  "signer_id": 89,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "basketball",
+  "video_id": "69225",
+  "split": "test",
+  "signer_id": 120,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "beard",
+  "video_id": "05467",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "beard",
+  "video_id": "05468",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "beard",
+  "video_id": "05470",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "beard",
+  "video_id": "05471",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "beard",
+  "video_id": "05472",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "beard",
+  "video_id": "05473",
+  "split": "train",
+  "signer_id": 34,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "beard",
+  "video_id": "05477",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "beard",
+  "video_id": "65156",
+  "split": "train",
+  "signer_id": 89,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "beard",
+  "video_id": "70254",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "because",
+  "video_id": "05595",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "because",
+  "video_id": "05596",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "because",
+  "video_id": "05598",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "because",
+  "video_id": "05599",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "because",
+  "video_id": "05600",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "because",
+  "video_id": "05601",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "because",
+  "video_id": "05607",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "because",
+  "video_id": "65158",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "because",
+  "video_id": "65159",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "05628",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "05629",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "05630",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "05631",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "05632",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "05633",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "05634",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "05639",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "05641",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "65161",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "65162",
+  "split": "train",
+  "signer_id": 91,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "bed",
+  "video_id": "65163",
+  "split": "val",
+  "signer_id": 89,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05724",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05727",
+  "split": "test",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05728",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05729",
+  "split": "train",
+  "signer_id": 46,
+  "source": "signschool"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05730",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05731",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05732",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05733",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05734",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05744",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05746",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "before",
+  "video_id": "05747",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "before",
+  "video_id": "65167",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "before",
+  "video_id": "68007",
+  "split": "train",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "before",
+  "video_id": "70348",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "big",
+  "video_id": "06176",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "big",
+  "video_id": "06192",
+  "split": "train",
+  "signer_id": 26,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "big",
+  "video_id": "06193",
+  "split": "val",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "big",
+  "video_id": "06194",
+  "split": "test",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "big",
+  "video_id": "65182",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "big",
+  "video_id": "65183",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "big",
+  "video_id": "69231",
+  "split": "train",
+  "signer_id": 116,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06326",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06330",
+  "split": "val",
+  "signer_id": 19,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06331",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06332",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06333",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06334",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06335",
+  "split": "test",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06338",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06340",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "06341",
+  "split": "train",
+  "signer_id": 64,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "65187",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "69233",
+  "split": "val",
+  "signer_id": 115,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "bird",
+  "video_id": "70107",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "black",
+  "video_id": "06455",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "black",
+  "video_id": "06471",
+  "split": "train",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "black",
+  "video_id": "06472",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "black",
+  "video_id": "06473",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "black",
+  "video_id": "06474",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "black",
+  "video_id": "06480",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "black",
+  "video_id": "06481",
+  "split": "test",
+  "signer_id": 47,
+  "source": "scott"
+ },
+ {
+  "gloss": "black",
+  "video_id": "06482",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "black",
+  "video_id": "06483",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "black",
+  "video_id": "65200",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "black",
+  "video_id": "69236",
+  "split": "val",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "black",
+  "video_id": "70244",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "blanket",
+  "video_id": "06550",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "blanket",
+  "video_id": "06551",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "blanket",
+  "video_id": "06552",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "blanket",
+  "video_id": "06553",
+  "split": "test",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "blanket",
+  "video_id": "06554",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "blanket",
+  "video_id": "06555",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "blanket",
+  "video_id": "06560",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "blanket",
+  "video_id": "65204",
+  "split": "val",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "blanket",
+  "video_id": "65205",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "06822",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "06832",
+  "split": "train",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "06833",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "06834",
+  "split": "train",
+  "signer_id": 46,
+  "source": "signschool"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "06835",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "06840",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "06841",
+  "split": "train",
+  "signer_id": 47,
+  "source": "scott"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "06842",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "65216",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "68010",
+  "split": "train",
+  "signer_id": 111,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "blue",
+  "video_id": "69238",
+  "split": "val",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07383",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07388",
+  "split": "val",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07389",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07390",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07391",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07392",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07393",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07394",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07401",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "07402",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "65241",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "bowling",
+  "video_id": "65242",
+  "split": "train",
+  "signer_id": 99,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "07929",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "07932",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "07933",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "07934",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "07935",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "07936",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "07937",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "07938",
+  "split": "val",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "07941",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "65262",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "brother",
+  "video_id": "69251",
+  "split": "test",
+  "signer_id": 116,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "call",
+  "video_id": "08689",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "call",
+  "video_id": "08690",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "call",
+  "video_id": "08691",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "call",
+  "video_id": "08692",
+  "split": "train",
+  "signer_id": 17,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "call",
+  "video_id": "08694",
+  "split": "val",
+  "signer_id": 15,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "call",
+  "video_id": "65290",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08909",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08915",
+  "split": "test",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08916",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08917",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08918",
+  "split": "val",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08919",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08920",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08921",
+  "split": "train",
+  "signer_id": 17,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08926",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "08927",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "65298",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "65299",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "65300",
+  "split": "test",
+  "signer_id": 89,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "68018",
+  "split": "train",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "candy",
+  "video_id": "70326",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "careful",
+  "video_id": "09178",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "careful",
+  "video_id": "09179",
+  "split": "val",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "careful",
+  "video_id": "09180",
+  "split": "test",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "careful",
+  "video_id": "09181",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "careful",
+  "video_id": "09182",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "careful",
+  "video_id": "09187",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "careful",
+  "video_id": "65306",
+  "split": "train",
+  "signer_id": 100,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "careful",
+  "video_id": "65307",
+  "split": "train",
+  "signer_id": 89,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "careful",
+  "video_id": "70200",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "cat",
+  "video_id": "09431",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "cat",
+  "video_id": "09525",
+  "split": "val",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "cat",
+  "video_id": "09526",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "cat",
+  "video_id": "09528",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cat",
+  "video_id": "09534",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cat",
+  "video_id": "09535",
+  "split": "train",
+  "signer_id": 64,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cat",
+  "video_id": "65312",
+  "split": "train",
+  "signer_id": 102,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "cat",
+  "video_id": "65313",
+  "split": "train",
+  "signer_id": 101,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "cat",
+  "video_id": "69261",
+  "split": "test",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "catch",
+  "video_id": "09457",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "catch",
+  "video_id": "09458",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "catch",
+  "video_id": "09459",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "catch",
+  "video_id": "09461",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "catch",
+  "video_id": "09470",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "catch",
+  "video_id": "65314",
+  "split": "val",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "catch",
+  "video_id": "69262",
+  "split": "train",
+  "signer_id": 117,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "09914",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "09915",
+  "split": "test",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "09916",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "09917",
+  "split": "test",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "09918",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "09919",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "09920",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "09921",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "09922",
+  "split": "val",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "champion",
+  "video_id": "65330",
+  "split": "train",
+  "signer_id": 95,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09945",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09949",
+  "split": "train",
+  "signer_id": 66,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09950",
+  "split": "test",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09953",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09954",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09955",
+  "split": "val",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09956",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09957",
+  "split": "val",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09960",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "change",
+  "video_id": "09968",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "change",
+  "video_id": "70379",
+  "split": "val",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "cheat",
+  "video_id": "10146",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "cheat",
+  "video_id": "10147",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "cheat",
+  "video_id": "10148",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cheat",
+  "video_id": "10149",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cheat",
+  "video_id": "10151",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cheat",
+  "video_id": "10160",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cheat",
+  "video_id": "10161",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cheat",
+  "video_id": "65341",
+  "split": "val",
+  "signer_id": 102,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "cheat",
+  "video_id": "65342",
+  "split": "val",
+  "signer_id": 94,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "check",
+  "video_id": "10183",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "check",
+  "video_id": "10184",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "check",
+  "video_id": "10185",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "check",
+  "video_id": "10186",
+  "split": "test",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "check",
+  "video_id": "10187",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "check",
+  "video_id": "10188",
+  "split": "val",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "check",
+  "video_id": "10193",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "check",
+  "video_id": "10194",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "check",
+  "video_id": "10195",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "check",
+  "video_id": "65343",
+  "split": "train",
+  "signer_id": 92,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "close",
+  "video_id": "11252",
+  "split": "val",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "close",
+  "video_id": "11253",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "close",
+  "video_id": "11254",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cold",
+  "video_id": "11621",
+  "split": "train",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "cold",
+  "video_id": "11622",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "cold",
+  "video_id": "11623",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cold",
+  "video_id": "11624",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cold",
+  "video_id": "11625",
+  "split": "val",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cold",
+  "video_id": "11627",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cold",
+  "video_id": "11628",
+  "split": "val",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cold",
+  "video_id": "65377",
+  "split": "test",
+  "signer_id": 99,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12306",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12311",
+  "split": "train",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12312",
+  "split": "val",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12313",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12314",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12315",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12316",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12317",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12318",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12319",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12320",
+  "split": "test",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12329",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12330",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12331",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12333",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "12335",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "computer",
+  "video_id": "68028",
+  "split": "train",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "convince",
+  "video_id": "13133",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "convince",
+  "video_id": "13134",
+  "split": "train",
+  "signer_id": 43,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "convince",
+  "video_id": "13135",
+  "split": "test",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "convince",
+  "video_id": "13136",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "convince",
+  "video_id": "13137",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "convince",
+  "video_id": "13138",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "convince",
+  "video_id": "13146",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "convince",
+  "video_id": "65400",
+  "split": "val",
+  "signer_id": 102,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "convince",
+  "video_id": "65401",
+  "split": "val",
+  "signer_id": 91,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "13196",
+  "split": "test",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "13197",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "13198",
+  "split": "test",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "13199",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "13200",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "13201",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "13202",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "13203",
+  "split": "val",
+  "signer_id": 17,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "13214",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "65402",
+  "split": "val",
+  "signer_id": 99,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "65403",
+  "split": "train",
+  "signer_id": 102,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "69281",
+  "split": "train",
+  "signer_id": 116,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "cool",
+  "video_id": "70271",
+  "split": "test",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "copy",
+  "video_id": "13258",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "copy",
+  "video_id": "13267",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "copy",
+  "video_id": "13268",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "copy",
+  "video_id": "13269",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "copy",
+  "video_id": "13276",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "copy",
+  "video_id": "65405",
+  "split": "train",
+  "signer_id": 102,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "13309",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "13323",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "13325",
+  "split": "test",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "13326",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "13327",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "13328",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "13329",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "65408",
+  "split": "train",
+  "signer_id": 92,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "65409",
+  "split": "train",
+  "signer_id": 99,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "corn",
+  "video_id": "69282",
+  "split": "train",
+  "signer_id": 119,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "country",
+  "video_id": "13542",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "country",
+  "video_id": "13543",
+  "split": "train",
+  "signer_id": 19,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "country",
+  "video_id": "13544",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "country",
+  "video_id": "13545",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "country",
+  "video_id": "13546",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "country",
+  "video_id": "13552",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "country",
+  "video_id": "65414",
+  "split": "train",
+  "signer_id": 99,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "13630",
+  "split": "train",
+  "signer_id": 35,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "13631",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "13632",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "13633",
+  "split": "val",
+  "signer_id": 60,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "13634",
+  "split": "val",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "13635",
+  "split": "test",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "13636",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "13643",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "65415",
+  "split": "test",
+  "signer_id": 102,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "cousin",
+  "video_id": "70332",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13681",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13695",
+  "split": "train",
+  "signer_id": 35,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13696",
+  "split": "val",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13697",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13698",
+  "split": "val",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13699",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13704",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13705",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13707",
+  "split": "train",
+  "signer_id": 64,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "13708",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cow",
+  "video_id": "69283",
+  "split": "train",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "crash",
+  "video_id": "13799",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "crash",
+  "video_id": "13800",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "crash",
+  "video_id": "13809",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "crash",
+  "video_id": "13810",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "crash",
+  "video_id": "69284",
+  "split": "test",
+  "signer_id": 115,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "cry",
+  "video_id": "14172",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "cry",
+  "video_id": "14174",
+  "split": "train",
+  "signer_id": 53,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "cry",
+  "video_id": "14175",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "cry",
+  "video_id": "14176",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "cry",
+  "video_id": "14177",
+  "split": "val",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "cry",
+  "video_id": "14186",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "cry",
+  "video_id": "65427",
+  "split": "val",
+  "signer_id": 99,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "cut",
+  "video_id": "14466",
+  "split": "val",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "cut",
+  "video_id": "14467",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "14669",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "14671",
+  "split": "train",
+  "signer_id": 35,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "14672",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "14673",
+  "split": "test",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "14674",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "14675",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "14676",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "14682",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "65439",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "65440",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "dark",
+  "video_id": "69290",
+  "split": "train",
+  "signer_id": 116,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "daughter",
+  "video_id": "14748",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "daughter",
+  "video_id": "14749",
+  "split": "train",
+  "signer_id": 75,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "daughter",
+  "video_id": "14750",
+  "split": "val",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "daughter",
+  "video_id": "14751",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "daughter",
+  "video_id": "14752",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "daughter",
+  "video_id": "14753",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "daughter",
+  "video_id": "14758",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "daughter",
+  "video_id": "65443",
+  "split": "val",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "daughter",
+  "video_id": "70334",
+  "split": "test",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14855",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14882",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14883",
+  "split": "test",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14884",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14885",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14886",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14887",
+  "split": "val",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14888",
+  "split": "test",
+  "signer_id": 15,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14896",
+  "split": "train",
+  "signer_id": 47,
+  "source": "scott"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14898",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "14899",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "65445",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "68033",
+  "split": "train",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "deaf",
+  "video_id": "70015",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "delay",
+  "video_id": "15317",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "delay",
+  "video_id": "15319",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "delay",
+  "video_id": "15320",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "delay",
+  "video_id": "15321",
+  "split": "test",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "delay",
+  "video_id": "15322",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "delay",
+  "video_id": "15323",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "17076",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "17083",
+  "split": "val",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "17084",
+  "split": "train",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "17085",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "17086",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "17087",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "17093",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "17095",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "65506",
+  "split": "test",
+  "signer_id": 102,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "65507",
+  "split": "train",
+  "signer_id": 99,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "68035",
+  "split": "val",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "dog",
+  "video_id": "69298",
+  "split": "train",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "17709",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "17710",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "17711",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "17712",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "17713",
+  "split": "test",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "17725",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "17728",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "17731",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "65539",
+  "split": "train",
+  "signer_id": 94,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "65540",
+  "split": "train",
+  "signer_id": 94,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "68041",
+  "split": "train",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "68042",
+  "split": "val",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "69302",
+  "split": "val",
+  "signer_id": 115,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "drink",
+  "video_id": "70173",
+  "split": "val",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "19402",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "19406",
+  "split": "train",
+  "signer_id": 19,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "19407",
+  "split": "train",
+  "signer_id": 77,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "19408",
+  "split": "train",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "19409",
+  "split": "val",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "19410",
+  "split": "test",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "19411",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "19412",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "65638",
+  "split": "train",
+  "signer_id": 98,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "environment",
+  "video_id": "65639",
+  "split": "train",
+  "signer_id": 91,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "example",
+  "video_id": "20064",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "example",
+  "video_id": "20066",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "example",
+  "video_id": "20067",
+  "split": "test",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "example",
+  "video_id": "20068",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "example",
+  "video_id": "20070",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "example",
+  "video_id": "20071",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "example",
+  "video_id": "20072",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "example",
+  "video_id": "20075",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "example",
+  "video_id": "65652",
+  "split": "train",
+  "signer_id": 98,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "example",
+  "video_id": "65653",
+  "split": "val",
+  "signer_id": 92,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "example",
+  "video_id": "65654",
+  "split": "train",
+  "signer_id": 92,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20976",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20978",
+  "split": "train",
+  "signer_id": 19,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20979",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20980",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20981",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20982",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20983",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20988",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20989",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "family",
+  "video_id": "20990",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "family",
+  "video_id": "65677",
+  "split": "train",
+  "signer_id": 98,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "family",
+  "video_id": "69316",
+  "split": "val",
+  "signer_id": 116,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "far",
+  "video_id": "21052",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "far",
+  "video_id": "21069",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "far",
+  "video_id": "21070",
+  "split": "val",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "far",
+  "video_id": "21071",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "far",
+  "video_id": "21072",
+  "split": "train",
+  "signer_id": 3,
+  "source": "signschool"
+ },
+ {
+  "gloss": "far",
+  "video_id": "21073",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "far",
+  "video_id": "21074",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "far",
+  "video_id": "21075",
+  "split": "train",
+  "signer_id": 15,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "far",
+  "video_id": "21079",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "far",
+  "video_id": "65682",
+  "split": "test",
+  "signer_id": 94,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "21869",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "21870",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "21871",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "21872",
+  "split": "val",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "21874",
+  "split": "val",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "21884",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "21885",
+  "split": "train",
+  "signer_id": 64,
+  "source": "aslu"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "21886",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "21887",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "65717",
+  "split": "test",
+  "signer_id": 94,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "68048",
+  "split": "train",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "fine",
+  "video_id": "70234",
+  "split": "test",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22109",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22113",
+  "split": "val",
+  "signer_id": 19,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22114",
+  "split": "val",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22115",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22116",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22117",
+  "split": "test",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22125",
+  "split": "train",
+  "signer_id": 64,
+  "source": "aslu"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22126",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22127",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "22128",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "65731",
+  "split": "train",
+  "signer_id": 94,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "fish",
+  "video_id": "69325",
+  "split": "train",
+  "signer_id": 116,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "full",
+  "video_id": "23766",
+  "split": "train",
+  "signer_id": 28,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "full",
+  "video_id": "23767",
+  "split": "test",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "full",
+  "video_id": "23768",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "full",
+  "video_id": "23769",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "full",
+  "video_id": "23771",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "full",
+  "video_id": "23777",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "full",
+  "video_id": "23778",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "full",
+  "video_id": "23779",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "full",
+  "video_id": "65792",
+  "split": "val",
+  "signer_id": 94,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "full",
+  "video_id": "70029",
+  "split": "test",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "give",
+  "video_id": "24636",
+  "split": "test",
+  "signer_id": 35,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "give",
+  "video_id": "24638",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "give",
+  "video_id": "24639",
+  "split": "val",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "give",
+  "video_id": "24640",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "give",
+  "video_id": "24641",
+  "split": "val",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "give",
+  "video_id": "24652",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "give",
+  "video_id": "24655",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "give",
+  "video_id": "24657",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "give",
+  "video_id": "24658",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "give",
+  "video_id": "69343",
+  "split": "train",
+  "signer_id": 115,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "go",
+  "video_id": "24857",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "go",
+  "video_id": "24940",
+  "split": "train",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "go",
+  "video_id": "24941",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "go",
+  "video_id": "24943",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "go",
+  "video_id": "24946",
+  "split": "val",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "go",
+  "video_id": "24947",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "go",
+  "video_id": "24969",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "go",
+  "video_id": "24970",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "go",
+  "video_id": "65824",
+  "split": "train",
+  "signer_id": 94,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "go",
+  "video_id": "69345",
+  "split": "val",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "25318",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "25321",
+  "split": "train",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "25322",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "25323",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "25324",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "25325",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "25326",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "25332",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "25333",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "65843",
+  "split": "val",
+  "signer_id": 106,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "graduate",
+  "video_id": "70176",
+  "split": "val",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "help",
+  "video_id": "27194",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "help",
+  "video_id": "27206",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "help",
+  "video_id": "27207",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "help",
+  "video_id": "27208",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "help",
+  "video_id": "27209",
+  "split": "test",
+  "signer_id": 17,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "help",
+  "video_id": "65889",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "help",
+  "video_id": "65890",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "help",
+  "video_id": "65891",
+  "split": "val",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "help",
+  "video_id": "69364",
+  "split": "val",
+  "signer_id": 115,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28074",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28107",
+  "split": "train",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28108",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28109",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28110",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28111",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28112",
+  "split": "val",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28118",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28119",
+  "split": "test",
+  "signer_id": 64,
+  "source": "aslu"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28120",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28121",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "28122",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "69368",
+  "split": "val",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "hot",
+  "video_id": "70270",
+  "split": "val",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "how",
+  "video_id": "28187",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "how",
+  "video_id": "28201",
+  "split": "test",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "how",
+  "video_id": "28202",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "how",
+  "video_id": "28203",
+  "split": "val",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "how",
+  "video_id": "28204",
+  "split": "train",
+  "signer_id": 46,
+  "source": "signschool"
+ },
+ {
+  "gloss": "how",
+  "video_id": "28205",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "how",
+  "video_id": "28212",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "how",
+  "video_id": "69370",
+  "split": "test",
+  "signer_id": 115,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "how",
+  "video_id": "70295",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "improve",
+  "video_id": "29134",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "improve",
+  "video_id": "29136",
+  "split": "train",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "improve",
+  "video_id": "29137",
+  "split": "test",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "improve",
+  "video_id": "29138",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "improve",
+  "video_id": "29139",
+  "split": "test",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "improve",
+  "video_id": "65929",
+  "split": "train",
+  "signer_id": 96,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "inform",
+  "video_id": "29628",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "inform",
+  "video_id": "29646",
+  "split": "val",
+  "signer_id": 35,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "inform",
+  "video_id": "29647",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "inform",
+  "video_id": "29648",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "inform",
+  "video_id": "29649",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "inform",
+  "video_id": "29659",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "inform",
+  "video_id": "65940",
+  "split": "train",
+  "signer_id": 96,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "language",
+  "video_id": "32146",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "language",
+  "video_id": "32154",
+  "split": "val",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "language",
+  "video_id": "32155",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "language",
+  "video_id": "32156",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "language",
+  "video_id": "32157",
+  "split": "test",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "language",
+  "video_id": "32158",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "language",
+  "video_id": "32160",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "language",
+  "video_id": "32164",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "language",
+  "video_id": "66007",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "language",
+  "video_id": "66008",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "language",
+  "video_id": "68084",
+  "split": "train",
+  "signer_id": 111,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "language",
+  "video_id": "68085",
+  "split": "train",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "last",
+  "video_id": "32246",
+  "split": "test",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "last",
+  "video_id": "32248",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "last",
+  "video_id": "32249",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "last",
+  "video_id": "32250",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "last",
+  "video_id": "32258",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "last",
+  "video_id": "66010",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "last",
+  "video_id": "68086",
+  "split": "train",
+  "signer_id": 110,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32319",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32320",
+  "split": "val",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32321",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32322",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32323",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32324",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32325",
+  "split": "val",
+  "signer_id": 70,
+  "source": "signschool"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32326",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32334",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "later",
+  "video_id": "32335",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "later",
+  "video_id": "66014",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "later",
+  "video_id": "66015",
+  "split": "val",
+  "signer_id": 96,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "leave",
+  "video_id": "32654",
+  "split": "val",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "leave",
+  "video_id": "32655",
+  "split": "val",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "leave",
+  "video_id": "32657",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "leave",
+  "video_id": "32658",
+  "split": "train",
+  "signer_id": 27,
+  "source": "signschool"
+ },
+ {
+  "gloss": "leave",
+  "video_id": "32659",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "leave",
+  "video_id": "32661",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "leave",
+  "video_id": "32662",
+  "split": "val",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "leave",
+  "video_id": "32673",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "leave",
+  "video_id": "66025",
+  "split": "test",
+  "signer_id": 106,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "32945",
+  "split": "train",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "32946",
+  "split": "train",
+  "signer_id": 8,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "32947",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "32948",
+  "split": "val",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "32949",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "32950",
+  "split": "test",
+  "signer_id": 15,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "32956",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "66038",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "68089",
+  "split": "val",
+  "signer_id": 111,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "letter",
+  "video_id": "70325",
+  "split": "test",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "man",
+  "video_id": "34685",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "man",
+  "video_id": "34732",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "man",
+  "video_id": "34733",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "man",
+  "video_id": "34734",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "man",
+  "video_id": "34736",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "man",
+  "video_id": "34737",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "man",
+  "video_id": "34738",
+  "split": "train",
+  "signer_id": 34,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "man",
+  "video_id": "34743",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "man",
+  "video_id": "34744",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "man",
+  "video_id": "66097",
+  "split": "val",
+  "signer_id": 97,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "man",
+  "video_id": "66098",
+  "split": "train",
+  "signer_id": 97,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "man",
+  "video_id": "66099",
+  "split": "train",
+  "signer_id": 97,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "man",
+  "video_id": "69395",
+  "split": "val",
+  "signer_id": 116,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "many",
+  "video_id": "34822",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "many",
+  "video_id": "34823",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "many",
+  "video_id": "34824",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "many",
+  "video_id": "34825",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "many",
+  "video_id": "34826",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "many",
+  "video_id": "34827",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "many",
+  "video_id": "34834",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "many",
+  "video_id": "34835",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "many",
+  "video_id": "34836",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "many",
+  "video_id": "69396",
+  "split": "val",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "many",
+  "video_id": "70308",
+  "split": "val",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36927",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36929",
+  "split": "train",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36930",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36931",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36932",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36933",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36938",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36939",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36940",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36941",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36942",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "36944",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "66146",
+  "split": "train",
+  "signer_id": 90,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "66147",
+  "split": "train",
+  "signer_id": 97,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "mother",
+  "video_id": "69402",
+  "split": "val",
+  "signer_id": 116,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38482",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38524",
+  "split": "train",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38525",
+  "split": "test",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38527",
+  "split": "train",
+  "signer_id": 3,
+  "source": "signschool"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38529",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38530",
+  "split": "train",
+  "signer_id": 15,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38538",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38539",
+  "split": "train",
+  "signer_id": 47,
+  "source": "scott"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38540",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "no",
+  "video_id": "38541",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "no",
+  "video_id": "66183",
+  "split": "train",
+  "signer_id": 102,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "no",
+  "video_id": "68110",
+  "split": "val",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "no",
+  "video_id": "69411",
+  "split": "val",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "order",
+  "video_id": "40169",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "order",
+  "video_id": "40171",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "order",
+  "video_id": "40172",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "order",
+  "video_id": "66248",
+  "split": "test",
+  "signer_id": 103,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "order",
+  "video_id": "66249",
+  "split": "val",
+  "signer_id": 107,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "order",
+  "video_id": "70172",
+  "split": "val",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "party",
+  "video_id": "41306",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "party",
+  "video_id": "41311",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "party",
+  "video_id": "41312",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "party",
+  "video_id": "41315",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "party",
+  "video_id": "41316",
+  "split": "test",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "party",
+  "video_id": "41317",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "party",
+  "video_id": "41323",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "party",
+  "video_id": "66265",
+  "split": "train",
+  "signer_id": 101,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "party",
+  "video_id": "66266",
+  "split": "train",
+  "signer_id": 101,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42953",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42956",
+  "split": "train",
+  "signer_id": 37,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42958",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42959",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42960",
+  "split": "test",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42961",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42962",
+  "split": "val",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42971",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42972",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "42974",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "66297",
+  "split": "train",
+  "signer_id": 101,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "pizza",
+  "video_id": "69431",
+  "split": "test",
+  "signer_id": 117,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "play",
+  "video_id": "43166",
+  "split": "val",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "play",
+  "video_id": "43167",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "play",
+  "video_id": "43168",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "play",
+  "video_id": "43169",
+  "split": "train",
+  "signer_id": 52,
+  "source": "signschool"
+ },
+ {
+  "gloss": "play",
+  "video_id": "43170",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "play",
+  "video_id": "43171",
+  "split": "test",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "play",
+  "video_id": "43175",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "play",
+  "video_id": "68133",
+  "split": "train",
+  "signer_id": 110,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "play",
+  "video_id": "69433",
+  "split": "test",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "room",
+  "video_id": "48507",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "room",
+  "video_id": "48509",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "room",
+  "video_id": "48510",
+  "split": "test",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "room",
+  "video_id": "48511",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "room",
+  "video_id": "48512",
+  "split": "val",
+  "signer_id": 60,
+  "source": "signschool"
+ },
+ {
+  "gloss": "room",
+  "video_id": "48513",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "room",
+  "video_id": "48514",
+  "split": "test",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "room",
+  "video_id": "48518",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "room",
+  "video_id": "66415",
+  "split": "train",
+  "signer_id": 103,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "room",
+  "video_id": "66416",
+  "split": "train",
+  "signer_id": 103,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "score",
+  "video_id": "49689",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "score",
+  "video_id": "49691",
+  "split": "val",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "score",
+  "video_id": "49692",
+  "split": "train",
+  "signer_id": 60,
+  "source": "signschool"
+ },
+ {
+  "gloss": "score",
+  "video_id": "49693",
+  "split": "test",
+  "signer_id": 60,
+  "source": "signschool"
+ },
+ {
+  "gloss": "score",
+  "video_id": "49694",
+  "split": "train",
+  "signer_id": 60,
+  "source": "signschool"
+ },
+ {
+  "gloss": "score",
+  "video_id": "49695",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "score",
+  "video_id": "66434",
+  "split": "train",
+  "signer_id": 103,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50036",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50037",
+  "split": "train",
+  "signer_id": 50,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50038",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50039",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50040",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50041",
+  "split": "test",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50047",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50048",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50049",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "50050",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "secretary",
+  "video_id": "66441",
+  "split": "train",
+  "signer_id": 103,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51054",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51056",
+  "split": "train",
+  "signer_id": 63,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51057",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51058",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51059",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51060",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51061",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51069",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51071",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "shirt",
+  "video_id": "51072",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "short",
+  "video_id": "51206",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "short",
+  "video_id": "51220",
+  "split": "val",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "short",
+  "video_id": "51221",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "short",
+  "video_id": "51223",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "short",
+  "video_id": "51224",
+  "split": "val",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "short",
+  "video_id": "51225",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "short",
+  "video_id": "51226",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "short",
+  "video_id": "51227",
+  "split": "val",
+  "signer_id": 34,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "short",
+  "video_id": "66469",
+  "split": "train",
+  "signer_id": 103,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "short",
+  "video_id": "70355",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "show",
+  "video_id": "51345",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "show",
+  "video_id": "51346",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "show",
+  "video_id": "51347",
+  "split": "train",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "show",
+  "video_id": "51348",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "show",
+  "video_id": "51357",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "show",
+  "video_id": "66473",
+  "split": "test",
+  "signer_id": 103,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "show",
+  "video_id": "70231",
+  "split": "test",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "soon",
+  "video_id": "53290",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "soon",
+  "video_id": "53292",
+  "split": "test",
+  "signer_id": 63,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "soon",
+  "video_id": "53293",
+  "split": "train",
+  "signer_id": 70,
+  "source": "signschool"
+ },
+ {
+  "gloss": "soon",
+  "video_id": "53294",
+  "split": "val",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "soon",
+  "video_id": "53295",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "soon",
+  "video_id": "53296",
+  "split": "test",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "soon",
+  "video_id": "53302",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "soon",
+  "video_id": "66533",
+  "split": "val",
+  "signer_id": 108,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "soon",
+  "video_id": "66534",
+  "split": "train",
+  "signer_id": 108,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "sweet",
+  "video_id": "56306",
+  "split": "train",
+  "signer_id": 26,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "sweet",
+  "video_id": "56307",
+  "split": "test",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "sweet",
+  "video_id": "56308",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "sweet",
+  "video_id": "56309",
+  "split": "test",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "sweet",
+  "video_id": "56315",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "sweet",
+  "video_id": "66585",
+  "split": "train",
+  "signer_id": 93,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "sweet",
+  "video_id": "69499",
+  "split": "train",
+  "signer_id": 115,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "take",
+  "video_id": "56652",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "take",
+  "video_id": "56692",
+  "split": "train",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "take",
+  "video_id": "56693",
+  "split": "test",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "take",
+  "video_id": "56694",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "take",
+  "video_id": "69500",
+  "split": "train",
+  "signer_id": 115,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56835",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56837",
+  "split": "train",
+  "signer_id": 63,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56838",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56839",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56840",
+  "split": "val",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56841",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56842",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56843",
+  "split": "test",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56844",
+  "split": "train",
+  "signer_id": 34,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56849",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "56850",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "66591",
+  "split": "val",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "tall",
+  "video_id": "66592",
+  "split": "train",
+  "signer_id": 93,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "tell",
+  "video_id": "57273",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "tell",
+  "video_id": "57276",
+  "split": "train",
+  "signer_id": 0,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "tell",
+  "video_id": "57277",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "tell",
+  "video_id": "57278",
+  "split": "test",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "tell",
+  "video_id": "57288",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "tell",
+  "video_id": "57289",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57628",
+  "split": "val",
+  "signer_id": 19,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57629",
+  "split": "val",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57630",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57631",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57632",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57633",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57634",
+  "split": "train",
+  "signer_id": 15,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57635",
+  "split": "train",
+  "signer_id": 15,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57642",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57643",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "thanksgiving",
+  "video_id": "57645",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "theory",
+  "video_id": "57781",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "theory",
+  "video_id": "57782",
+  "split": "train",
+  "signer_id": 19,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "theory",
+  "video_id": "57783",
+  "split": "train",
+  "signer_id": 2,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "theory",
+  "video_id": "57784",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "theory",
+  "video_id": "57785",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "theory",
+  "video_id": "57792",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "theory",
+  "video_id": "66603",
+  "split": "train",
+  "signer_id": 98,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "theory",
+  "video_id": "66604",
+  "split": "train",
+  "signer_id": 98,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57919",
+  "split": "train",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57933",
+  "split": "val",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57934",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57935",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57936",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57937",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57939",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57940",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57941",
+  "split": "test",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57942",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57943",
+  "split": "test",
+  "signer_id": 34,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "57950",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "66606",
+  "split": "train",
+  "signer_id": 92,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "thin",
+  "video_id": "66607",
+  "split": "val",
+  "signer_id": 93,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "58359",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "58360",
+  "split": "train",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "58361",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "58362",
+  "split": "train",
+  "signer_id": 3,
+  "source": "signschool"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "58363",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "58367",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "58368",
+  "split": "val",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "66637",
+  "split": "train",
+  "signer_id": 98,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "66638",
+  "split": "train",
+  "signer_id": 98,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "66639",
+  "split": "train",
+  "signer_id": 98,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "66640",
+  "split": "train",
+  "signer_id": 98,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "thursday",
+  "video_id": "70026",
+  "split": "test",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59203",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59204",
+  "split": "train",
+  "signer_id": 19,
+  "source": "elementalasl"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59205",
+  "split": "train",
+  "signer_id": 28,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59206",
+  "split": "test",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59207",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59208",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59209",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59210",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59211",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "trade",
+  "video_id": "59212",
+  "split": "val",
+  "signer_id": 21,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "62077",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "62097",
+  "split": "train",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "62098",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "62100",
+  "split": "train",
+  "signer_id": 60,
+  "source": "signschool"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "62101",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "62102",
+  "split": "val",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "62103",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "62109",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "62111",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "wait",
+  "video_id": "66740",
+  "split": "train",
+  "signer_id": 107,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "62152",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "62158",
+  "split": "val",
+  "signer_id": 56,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "62159",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "62160",
+  "split": "test",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "62163",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "62164",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "62171",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "62173",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "66742",
+  "split": "train",
+  "signer_id": 107,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "66743",
+  "split": "train",
+  "signer_id": 100,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "walk",
+  "video_id": "68177",
+  "split": "val",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "what",
+  "video_id": "62944",
+  "split": "val",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "what",
+  "video_id": "62964",
+  "split": "train",
+  "signer_id": 42,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "what",
+  "video_id": "62965",
+  "split": "val",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "what",
+  "video_id": "62966",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "what",
+  "video_id": "62967",
+  "split": "test",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "what",
+  "video_id": "62968",
+  "split": "train",
+  "signer_id": 32,
+  "source": "signschool"
+ },
+ {
+  "gloss": "what",
+  "video_id": "62970",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "what",
+  "video_id": "62984",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "what",
+  "video_id": "66769",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "what",
+  "video_id": "69531",
+  "split": "val",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63219",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63225",
+  "split": "train",
+  "signer_id": 42,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63226",
+  "split": "test",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63227",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63228",
+  "split": "train",
+  "signer_id": 6,
+  "source": "signschool"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63229",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63230",
+  "split": "val",
+  "signer_id": 46,
+  "source": "signschool"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63231",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63232",
+  "split": "train",
+  "signer_id": 59,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63239",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "who",
+  "video_id": "63240",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "who",
+  "video_id": "66778",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "who",
+  "video_id": "66779",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "who",
+  "video_id": "68183",
+  "split": "train",
+  "signer_id": 111,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "who",
+  "video_id": "69534",
+  "split": "train",
+  "signer_id": 118,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "why",
+  "video_id": "63280",
+  "split": "train",
+  "signer_id": 42,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "why",
+  "video_id": "63281",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "why",
+  "video_id": "63282",
+  "split": "train",
+  "signer_id": 45,
+  "source": "signschool"
+ },
+ {
+  "gloss": "why",
+  "video_id": "63283",
+  "split": "train",
+  "signer_id": 46,
+  "source": "signschool"
+ },
+ {
+  "gloss": "why",
+  "video_id": "63284",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "why",
+  "video_id": "63285",
+  "split": "val",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "why",
+  "video_id": "66781",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "why",
+  "video_id": "70213",
+  "split": "test",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63662",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63664",
+  "split": "test",
+  "signer_id": 42,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63665",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63666",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63667",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63668",
+  "split": "train",
+  "signer_id": 39,
+  "source": "signschool"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63669",
+  "split": "val",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63675",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63676",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "63677",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "66798",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "66799",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "woman",
+  "video_id": "68187",
+  "split": "val",
+  "signer_id": 110,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "write",
+  "video_id": "64049",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "write",
+  "video_id": "64056",
+  "split": "train",
+  "signer_id": 42,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "write",
+  "video_id": "64057",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "write",
+  "video_id": "64058",
+  "split": "train",
+  "signer_id": 38,
+  "source": "startasl"
+ },
+ {
+  "gloss": "write",
+  "video_id": "64059",
+  "split": "train",
+  "signer_id": 31,
+  "source": "signschool"
+ },
+ {
+  "gloss": "write",
+  "video_id": "64060",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "write",
+  "video_id": "64061",
+  "split": "val",
+  "signer_id": 15,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "write",
+  "video_id": "64066",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "write",
+  "video_id": "64067",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "write",
+  "video_id": "66815",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "write",
+  "video_id": "69544",
+  "split": "test",
+  "signer_id": 115,
+  "source": "aslbrick"
+ },
+ {
+  "gloss": "write",
+  "video_id": "70261",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "year",
+  "video_id": "64201",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "year",
+  "video_id": "64209",
+  "split": "test",
+  "signer_id": 42,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "year",
+  "video_id": "64210",
+  "split": "test",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "year",
+  "video_id": "64211",
+  "split": "val",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "year",
+  "video_id": "64212",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "year",
+  "video_id": "64213",
+  "split": "train",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "year",
+  "video_id": "64221",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "year",
+  "video_id": "64222",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "year",
+  "video_id": "66816",
+  "split": "train",
+  "signer_id": 93,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "year",
+  "video_id": "66818",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "year",
+  "video_id": "68190",
+  "split": "val",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "year",
+  "video_id": "70306",
+  "split": "train",
+  "signer_id": 121,
+  "source": "northtexas"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64275",
+  "split": "test",
+  "signer_id": 9,
+  "source": "asl5200"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64280",
+  "split": "train",
+  "signer_id": 28,
+  "source": "spreadthesign"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64281",
+  "split": "train",
+  "signer_id": 36,
+  "source": "startasl"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64283",
+  "split": "train",
+  "signer_id": 4,
+  "source": "signschool"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64284",
+  "split": "train",
+  "signer_id": 3,
+  "source": "signschool"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64287",
+  "split": "val",
+  "signer_id": 13,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64288",
+  "split": "train",
+  "signer_id": 15,
+  "source": "asldeafined"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64294",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64295",
+  "split": "train",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64296",
+  "split": "train",
+  "signer_id": 47,
+  "source": "scott"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "64297",
+  "split": "test",
+  "signer_id": 5,
+  "source": "aslu"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "66820",
+  "split": "train",
+  "signer_id": 88,
+  "source": "aslsignbank"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "68192",
+  "split": "val",
+  "signer_id": 109,
+  "source": "valencia-asl"
+ },
+ {
+  "gloss": "yes",
+  "video_id": "69546",
+  "split": "val",
+  "signer_id": 118,
+  "source": "aslbrick"
+ }
+]

@@ -1,248 +1,549 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TriSense Emulator</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 20px; }
-        h1 { margin-top: 0; color: #00F0FF; }
-        .grid-container { display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
-        
-        /* Panels */
-        .panel { background-color: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 15px; }
-        .panel h2 { margin-top: 0; font-size: 1.2rem; border-bottom: 1px solid #333; padding-bottom: 10px; }
-        
-        /* Status */
-        .status-connected { color: #00F0FF; font-weight: bold; }
-        .status-disconnected { color: #ff4c4c; font-weight: bold; }
-        
-        /* Controls */
-        .btn-group { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
-        button { background-color: #333; color: white; border: none; padding: 10px; border-radius: 4px; cursor: pointer; font-size: 1rem; transition: background 0.2s; }
-        button:hover { background-color: #444; }
-        button.active { background-color: #00F0FF; color: black; font-weight: bold; }
-        
-        /* Resource Table */
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #333; }
-        th { color: #888; font-size: 0.9rem; }
-        .resource-idle { color: #666; }
-        .resource-active { color: #00F0FF; font-weight: bold; }
-
-        /* Mode Views */
-        .mode-view { display: none; min-height: 400px; }
-        .mode-view.active { display: block; }
-        
-        /* Deaf Mode OLED */
-        .oled-display {
-            background-color: #000;
-            color: #00FF00;
-            font-family: 'Courier New', Courier, monospace;
-            padding: 20px;
-            border-radius: 4px;
-            border: 2px solid #333;
-            width: 100%;
-            max-width: 400px;
-            height: 120px;
-            font-size: 1.2rem;
-            white-space: pre-wrap;
-            box-shadow: 0 0 10px rgba(0,255,0,0.1);
-        }
-
-        /* Blind Mode Haptics */
-        .haptic-container { display: flex; justify-content: center; gap: 40px; margin-top: 50px; }
-        .haptic-zone { text-align: center; }
-        .pulse-circle {
-            width: 100px; height: 100px;
-            border-radius: 50%;
-            background-color: #ff4c4c;
-            opacity: 0.1;
-            transition: opacity 0.1s ease-out, transform 0.1s ease-out;
-            margin: 0 auto 10px auto;
-        }
-        .ttc-label { font-family: monospace; color: #aaa; }
-
-        /* Mute Mode */
-        .prediction-box {
-            text-align: center; margin-top: 40px;
-            background: #222; padding: 40px; border-radius: 8px; border: 1px solid #444;
-        }
-        .pred-word { font-size: 4rem; font-weight: bold; color: #00F0FF; text-transform: uppercase; margin: 0; }
-        .pred-conf { font-size: 1.2rem; color: #888; margin-top: 10px; }
-        .experimental-warning {
-            display: inline-block; background-color: #ffe600; color: #000;
-            padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.9rem;
-            margin-bottom: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TriSense Demo Console</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --panel2: #1c232d; --line: #2a3340;
+    --text: #e6edf3; --muted: #8b98a8; --accent: #2dd4bf; --accent-ink: #042f2b;
+    --blind: #60a5fa; --deaf: #f59e0b; --mute: #c084fc;
+    --ok: #34d399; --warn: #fbbf24; --bad: #f87171;
+    --radius: 12px; --mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { display: flex; align-items: center; gap: 16px; padding: 14px 22px; border-bottom: 1px solid var(--line); background: var(--panel); position: sticky; top: 0; z-index: 5; flex-wrap: wrap; }
+  .brand { font-weight: 700; font-size: 18px; letter-spacing: .3px; }
+  .brand small { color: var(--muted); font-weight: 400; margin-left: 6px; }
+  .modes { display: flex; gap: 8px; flex-wrap: wrap; }
+  .mode-btn { border: 1px solid var(--line); background: var(--panel2); color: var(--text); padding: 8px 14px; border-radius: 999px; cursor: pointer; font-size: 14px; display: flex; gap: 8px; align-items: center; }
+  .mode-btn .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); }
+  .mode-btn[data-mode=BLIND] .dot { background: var(--blind); }
+  .mode-btn[data-mode=DEAF] .dot { background: var(--deaf); }
+  .mode-btn[data-mode=MUTE] .dot { background: var(--mute); }
+  .mode-btn.active { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .mode-btn kbd { font: 11px var(--mono); color: var(--muted); border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; }
+  .mode-btn.active kbd { color: var(--bg); border-color: var(--bg); }
+  .spacer { flex: 1; }
+  .pill { font-size: 12px; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+  .pill.on { color: var(--ok); border-color: var(--ok); }
+  .pill.off { color: var(--bad); border-color: var(--bad); }
+  main { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; padding: 18px 22px; max-width: 1500px; margin: 0 auto; }
+  @media (max-width: 1050px) { main { grid-template-columns: 1fr; } }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; }
+  .card h2 { margin: 0 0 4px; font-size: 16px; }
+  .card h3 { margin: 0 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: .8px; color: var(--muted); font-weight: 600; }
+  .sub { color: var(--muted); margin: 0 0 14px; font-size: 14px; }
+  .side { display: flex; flex-direction: column; gap: 18px; }
+  .btn { border: 1px solid var(--line); background: var(--panel2); color: var(--text); padding: 8px 12px; border-radius: 8px; cursor: pointer; font-size: 13px; }
+  .btn:hover { border-color: var(--muted); }
+  .btn.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+  .btn.sel { outline: 2px solid var(--accent); }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+  .view { display: none; }
+  .view.active { display: block; }
+  .idle-hero { text-align: center; padding: 50px 20px; }
+  .idle-hero .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 24px; text-align: left; }
+  @media (max-width: 760px) { .idle-hero .tiles { grid-template-columns: 1fr; } }
+  .tile { background: var(--panel2); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px; cursor: pointer; }
+  .tile:hover { border-color: var(--muted); }
+  .tile b { display: block; margin-bottom: 6px; }
+  .tile.b b { color: var(--blind); } .tile.d b { color: var(--deaf); } .tile.m b { color: var(--mute); }
+  .tile span { color: var(--muted); font-size: 13px; }
+  /* resources */
+  .res { display: grid; grid-template-columns: 1fr auto; gap: 6px 10px; font-size: 13px; }
+  .res .owner { font: 12px var(--mono); padding: 1px 8px; border-radius: 6px; background: var(--panel2); color: var(--muted); text-align: center; min-width: 64px; }
+  .res .owner.BLIND { background: rgba(96,165,250,.15); color: var(--blind); }
+  .res .owner.DEAF { background: rgba(245,158,11,.15); color: var(--deaf); }
+  .res .owner.MUTE { background: rgba(192,132,252,.15); color: var(--mute); }
+  /* logs */
+  .log { height: 190px; overflow: auto; font: 12px var(--mono); color: var(--muted); display: flex; flex-direction: column-reverse; gap: 2px; }
+  .log .error { color: var(--bad); }
+  .speech-list { height: 150px; overflow: auto; display: flex; flex-direction: column-reverse; gap: 6px; }
+  .speech-item { background: var(--panel2); border-radius: 8px; padding: 6px 10px; font-size: 14px; }
+  .speech-item small { color: var(--muted); margin-left: 6px; font: 11px var(--mono); }
+  label.toggle { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); cursor: pointer; }
+  /* blind */
+  .scene { width: 100%; aspect-ratio: 1.45; background: radial-gradient(circle at 50% 100%, #1b2533 0, #11161d 70%); border-radius: var(--radius); border: 1px solid var(--line); touch-action: none; display: block; }
+  .sensors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
+  .sensor { background: var(--panel2); border: 1px solid var(--line); border-radius: 10px; padding: 10px; position: relative; overflow: hidden; }
+  .sensor .name { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; }
+  .sensor .dist { font: 600 22px var(--mono); }
+  .sensor .meta { font: 12px var(--mono); color: var(--muted); }
+  .sensor input[type=range] { width: 100%; margin-top: 6px; }
+  .sensor .badge { position: absolute; top: 8px; right: 8px; font-size: 11px; padding: 1px 7px; border-radius: 999px; background: var(--panel); color: var(--muted); }
+  .sensor .badge.ttc { color: var(--bad); background: rgba(248,113,113,.12); }
+  .sensor .badge.proximity { color: var(--warn); background: rgba(251,191,36,.12); }
+  .motor { height: 8px; border-radius: 4px; background: var(--line); margin-top: 8px; overflow: hidden; }
+  .motor i { display: block; height: 100%; width: 0; background: var(--bad); transition: width .08s; }
+  .sensor.buzz { animation: buzz .09s linear infinite; }
+  @keyframes buzz { 0% { transform: translateX(-1.5px); } 50% { transform: translateX(1.5px); } 100% { transform: translateX(-1.5px); } }
+  .scenarios .btn { font-size: 12px; }
+  .legend { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  /* deaf */
+  .oled-wrap { background: #050505; border-radius: 10px; padding: 14px; border: 6px solid #222; max-width: 460px; }
+  .oled { font: 600 21px/1.35 var(--mono); color: #7dd3fc; white-space: pre; min-height: 120px; text-shadow: 0 0 6px rgba(125,211,252,.5); }
+  .oled .hdr { color: #e0f2fe; font-size: 13px; border-bottom: 1px solid #1e3a4a; margin-bottom: 6px; padding-bottom: 3px; }
+  .partial { font-size: 20px; min-height: 30px; color: var(--deaf); margin: 12px 0; }
+  .history { max-height: 220px; overflow: auto; display: flex; flex-direction: column-reverse; gap: 6px; }
+  .history div { background: var(--panel2); border-radius: 8px; padding: 6px 10px; }
+  .meter { height: 8px; background: var(--line); border-radius: 4px; overflow: hidden; width: 160px; }
+  .meter i { display: block; height: 100%; width: 0; background: var(--ok); }
+  /* mute */
+  .stage { position: relative; width: 100%; aspect-ratio: 4/3; background: #000; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); }
+  .stage video, .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .stage.mirror video, .stage.mirror canvas { transform: scaleX(-1); }
+  .stage .state { position: absolute; left: 10px; top: 10px; font-size: 12px; padding: 3px 10px; border-radius: 999px; background: rgba(0,0,0,.6); }
+  .stage .state.rec { color: #fff; background: var(--bad); }
+  .stage .placeholder { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); text-align: center; padding: 20px; }
+  .pred-word { font-size: 42px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; min-height: 56px; }
+  .pred-word.silent { color: var(--muted); }
+  .bars { display: flex; flex-direction: column; gap: 6px; margin: 10px 0; }
+  .bar { display: grid; grid-template-columns: 110px 1fr 46px; gap: 8px; align-items: center; font-size: 13px; }
+  .bar .track { height: 10px; background: var(--line); border-radius: 5px; overflow: hidden; }
+  .bar .track i { display: block; height: 100%; background: var(--mute); }
+  .bar .v { font: 12px var(--mono); color: var(--muted); text-align: right; }
+  .verdict { font-size: 13px; padding: 3px 10px; border-radius: 999px; display: inline-block; }
+  .verdict.ok { color: var(--ok); background: rgba(52,211,153,.12); }
+  .verdict.bad { color: var(--bad); background: rgba(248,113,113,.12); }
+  .verdict.quiet { color: var(--muted); background: var(--panel2); }
+  .vocab { display: flex; flex-wrap: wrap; gap: 5px; max-height: 120px; overflow: auto; }
+  .vocab span { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: var(--panel2); color: var(--muted); }
+  select { background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 7px; font-size: 13px; max-width: 100%; }
+  .stat { font: 600 20px var(--mono); }
+  .note { font-size: 12px; color: var(--muted); }
+  .hidden { display: none !important; }
+</style>
 </head>
 <body>
-    <h1>TriSense Device Emulator</h1>
-    <div style="margin-bottom: 20px;">
-        Backend Connection: <span id="conn-status" class="status-disconnected">Not Connected</span>
+<header>
+  <div class="brand">TriSense<small>demo console</small></div>
+  <div class="modes" id="modes">
+    <button class="mode-btn" data-mode="IDLE"><span class="dot"></span>Idle <kbd>0</kbd></button>
+    <button class="mode-btn" data-mode="BLIND"><span class="dot"></span>Blind <kbd>1</kbd></button>
+    <button class="mode-btn" data-mode="DEAF"><span class="dot"></span>Deaf <kbd>2</kbd></button>
+    <button class="mode-btn" data-mode="MUTE"><span class="dot"></span>Mute <kbd>3</kbd></button>
+  </div>
+  <div class="spacer"></div>
+  <span class="pill" id="conn">connecting…</span>
+</header>
+
+<main>
+  <section>
+    <!-- IDLE -->
+    <div class="view card active" id="view-IDLE">
+      <div class="idle-hero">
+        <h2 style="font-size:24px">One wearable, three accessibility modes</h2>
+        <p class="sub">Every panel drives the real TriSense code: the ModeManager, the Blind Mode engine, the Vosk recogniser and the sign recogniser. Only the hardware is simulated.</p>
+        <div class="tiles">
+          <div class="tile b" data-go="BLIND"><b>Blind Mode</b><span>Drag obstacles in front of three ultrasonic sensors and feel the haptic and spoken alerts.</span></div>
+          <div class="tile d" data-go="DEAF"><b>Deaf Mode</b><span>Speak into your microphone and watch offline captions appear on the OLED.</span></div>
+          <div class="tile m" data-go="MUTE"><b>Mute Mode</b><span>Sign to your webcam or play an unseen test clip and hear the word spoken.</span></div>
+        </div>
+      </div>
     </div>
 
-    <div class="grid-container">
-        <!-- Sidebar: Controls & Resources -->
+    <!-- BLIND -->
+    <div class="view card" id="view-BLIND">
+      <h2>Blind Mode · obstacle detection</h2>
+      <p class="sub">Drag the obstacles (or use the sliders) to change what each HC-SR04 sensor hears. The real decision engine computes speed, time to collision and proximity, then pulses the motors and speaks.</p>
+      <canvas class="scene" id="scene"></canvas>
+      <div class="sensors" id="sensor-cards"></div>
+      <div class="row scenarios" style="margin-top:12px">
+        <span class="note">Scenarios:</span>
+        <button class="btn" data-scn="walk">Walk toward a wall</button>
+        <button class="btn" data-scn="still">Standing at a wall</button>
+        <button class="btn" data-scn="left">Obstacle on the left</button>
+        <button class="btn" data-scn="pass">Person passing right</button>
+        <button class="btn" data-scn="noise">Noisy echo</button>
+        <button class="btn" data-scn="dead">Dead sensor</button>
+        <button class="btn" data-scn="clear">Clear path</button>
+      </div>
+      <div class="legend">Pulse length encodes urgency: 150 ms warning · 300 ms urgent · 500 ms imminent. <b style="color:var(--bad)">TTC</b> = approaching fast, <b style="color:var(--warn)">proximity</b> = close even if nothing moves.</div>
+    </div>
+
+    <!-- DEAF -->
+    <div class="view card" id="view-DEAF">
+      <h2>Deaf Mode · offline captions</h2>
+      <p class="sub">Audio goes to the Vosk recogniser running locally, with no Internet. The OLED shows exactly what the 128×64 display on the device would show.</p>
+      <div class="row" style="margin-bottom:14px">
+        <button class="btn primary" id="deaf-mic">🎙 Use my microphone</button>
+        <button class="btn" id="deaf-sample">▶ Play sample sentence</button>
+        <div class="meter" title="microphone level"><i id="mic-level"></i></div>
+        <span class="note" id="deaf-note"></span>
+      </div>
+      <div class="grid2">
         <div>
-            <div class="panel">
-                <h2>Mode Switch</h2>
-                <div class="btn-group">
-                    <button id="btn-IDLE" onclick="switchMode('IDLE')">IDLE (Stop All)</button>
-                    <button id="btn-BLIND" onclick="switchMode('BLIND')">1. BLIND MODE</button>
-                    <button id="btn-DEAF" onclick="switchMode('DEAF')">2. DEAF MODE</button>
-                    <button id="btn-MUTE" onclick="switchMode('MUTE')">3. MUTE MODE</button>
-                </div>
-            </div>
-
-            <div class="panel" style="margin-top: 20px;">
-                <h2>ResourceGuard Owners</h2>
-                <table>
-                    <thead>
-                        <tr><th>Resource</th><th>Current Owner</th></tr>
-                    </thead>
-                    <tbody id="resource-table">
-                        <tr><td>SPEAKER</td><td id="res-SPEAKER" class="resource-idle">IDLE</td></tr>
-                        <tr><td>CAMERA</td><td id="res-CAMERA" class="resource-idle">IDLE</td></tr>
-                        <tr><td>MICROPHONE</td><td id="res-MICROPHONE" class="resource-idle">IDLE</td></tr>
-                        <tr><td>DISPLAY</td><td id="res-DISPLAY" class="resource-idle">IDLE</td></tr>
-                        <tr><td>GPIO_SENSORS</td><td id="res-GPIO_SENSORS" class="resource-idle">IDLE</td></tr>
-                        <tr><td>GPIO_MOTORS</td><td id="res-GPIO_MOTORS" class="resource-idle">IDLE</td></tr>
-                    </tbody>
-                </table>
-            </div>
+          <h3>Device OLED</h3>
+          <div class="oled-wrap"><div class="oled" id="oled"><div class="hdr">TriSense ASR [REC]</div>Waiting for speech...</div></div>
         </div>
-
-        <!-- Main Viewport -->
-        <div class="panel">
-            <h2>Live Interface View</h2>
-
-            <!-- IDLE View -->
-            <div id="view-IDLE" class="mode-view active">
-                <p style="color: #666; text-align: center; margin-top: 100px;">System Idle. Select a mode to begin.</p>
-            </div>
-
-            <!-- BLIND View -->
-            <div id="view-BLIND" class="mode-view">
-                <p><strong>Spatial Haptic Pulse Visualizer</strong></p>
-                <div class="haptic-container">
-                    <div class="haptic-zone">
-                        <div id="pulse-left" class="pulse-circle"></div>
-                        <div>LEFT</div>
-                        <div id="ttc-left" class="ttc-label">-- s</div>
-                    </div>
-                    <div class="haptic-zone">
-                        <div id="pulse-center" class="pulse-circle"></div>
-                        <div>CENTER</div>
-                        <div id="ttc-center" class="ttc-label">-- s</div>
-                    </div>
-                    <div class="haptic-zone">
-                        <div id="pulse-right" class="pulse-circle"></div>
-                        <div>RIGHT</div>
-                        <div id="ttc-right" class="ttc-label">-- s</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DEAF View -->
-            <div id="view-DEAF" class="mode-view">
-                <p><strong>OLED Caption Viewport (128x64)</strong></p>
-                <div id="oled-screen" class="oled-display">TriSense ASR [REC]<br>Waiting for speech...</div>
-            </div>
-
-            <!-- MUTE View -->
-            <div id="view-MUTE" class="mode-view">
-                <div class="prediction-box">
-                    <div class="experimental-warning">⚠️ LOW-ACCURACY / EXPERIMENTAL</div>
-                    <p style="margin:0; color:#aaa;">Predicted Sign:</p>
-                    <div id="mute-word" class="pred-word">...</div>
-                    <div id="mute-conf" class="pred-conf">Confidence: --%</div>
-                </div>
-            </div>
+        <div>
+          <h3>Live transcript</h3>
+          <div class="partial" id="partial"></div>
+          <div class="history" id="history"></div>
         </div>
+      </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
-    <script>
-        const socket = io();
-        const connStatus = document.getElementById('conn-status');
-        
-        socket.on('connect', () => {
-            connStatus.textContent = 'Connected (Real ModeManager Active)';
-            connStatus.className = 'status-connected';
-        });
+    <!-- MUTE -->
+    <div class="view card" id="view-MUTE">
+      <h2>Mute Mode · sign to speech</h2>
+      <p class="sub">Frames go to the real recogniser: MediaPipe hand and pose landmarks, automatic sign segmentation, then the 100 word classifier. A word is spoken only when the model is confident.</p>
+      <div class="row" style="margin-bottom:12px">
+        <button class="btn primary" id="mute-cam">📷 Use my webcam</button>
+        <select id="clip-select"><option value="">Play an unseen WLASL test clip…</option></select>
+        <button class="btn" id="clip-random">🎲 Random clip</button>
+        <span class="note" id="mute-note"></span>
+      </div>
+      <div class="grid2">
+        <div>
+          <div class="stage" id="stage">
+            <video id="video" playsinline muted></video>
+            <canvas id="overlay"></canvas>
+            <div class="state" id="sign-state">waiting for hands</div>
+            <div class="placeholder" id="stage-ph">Choose the webcam or a test clip to start.</div>
+          </div>
+          <p class="note">Tip: start with your hands down, sign one word, then lower your hands. Lowering the hands ends the sign.</p>
+        </div>
+        <div>
+          <h3>Prediction</h3>
+          <div class="pred-word silent" id="pred-word">…</div>
+          <div class="row"><span class="verdict quiet" id="pred-verdict">no sign yet</span><span class="note" id="pred-truth"></span></div>
+          <div class="bars" id="pred-bars"></div>
+          <h3 style="margin-top:16px">Session</h3>
+          <div class="row" style="gap:22px">
+            <div><div class="stat" id="s-clips">0</div><div class="note">test clips played</div></div>
+            <div><div class="stat" id="s-correct">–</div><div class="note">top 1 correct</div></div>
+            <div><div class="stat" id="s-model">–</div><div class="note">model test accuracy</div></div>
+          </div>
+          <h3 style="margin-top:16px">Vocabulary (100 ASL words)</h3>
+          <div class="vocab" id="vocab"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        socket.on('disconnect', () => {
-            connStatus.textContent = 'Not Connected';
-            connStatus.className = 'status-disconnected';
-            resetUI();
-        });
+  <aside class="side">
+    <div class="card">
+      <h3>Speaker</h3>
+      <label class="toggle"><input type="checkbox" id="speak-toggle" checked> Read device speech aloud in this browser</label>
+      <div class="speech-list" id="speech" style="margin-top:10px"></div>
+    </div>
+    <div class="card">
+      <h3>ResourceGuard ownership</h3>
+      <div class="res" id="res"></div>
+      <p class="note" style="margin:10px 0 0">Each shared peripheral has exactly one owner. Switching modes releases everything first.</p>
+    </div>
+    <div class="card">
+      <h3>Event log</h3>
+      <div class="log" id="log"></div>
+    </div>
+  </aside>
+</main>
 
-        // 1. Mode Switching & Resource State
-        function switchMode(mode) {
-            socket.emit('request_mode_switch', { mode: mode });
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+<script>
+const $ = (s) => document.querySelector(s);
+const socket = io();
+let mode = 'IDLE';
+const RES = ['SPEAKER','CAMERA','MICROPHONE','DISPLAY','GPIO_SENSORS','GPIO_MOTORS'];
 
-        socket.on('system_state', (state) => {
-            // Update Active Buttons
-            document.querySelectorAll('.btn-group button').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + state.mode).classList.add('active');
+// ── generic ───────────────────────────────────────────────────────────────
+function addLog(msg, kind) {
+  const d = document.createElement('div');
+  d.textContent = `${new Date().toLocaleTimeString()}  ${msg}`;
+  if (kind) d.className = kind;
+  $('#log').prepend(d);
+  while ($('#log').children.length > 200) $('#log').lastChild.remove();
+}
+socket.on('connect', () => { $('#conn').textContent = 'connected'; $('#conn').className = 'pill on'; });
+socket.on('disconnect', () => { $('#conn').textContent = 'disconnected'; $('#conn').className = 'pill off'; });
+socket.on('log', (d) => addLog(d.msg, d.kind === 'error' ? 'error' : ''));
+socket.on('error', (d) => addLog('Error: ' + d.message, 'error'));
 
-            // Update Views
-            document.querySelectorAll('.mode-view').forEach(view => view.classList.remove('active'));
-            document.getElementById('view-' + state.mode).classList.add('active');
+function requestMode(m, extra) {
+  stopMic(); stopVideo();
+  socket.emit('request_mode_switch', Object.assign({ mode: m }, extra || {}));
+}
+document.querySelectorAll('.mode-btn').forEach(b => b.onclick = () => requestMode(b.dataset.mode));
+document.querySelectorAll('[data-go]').forEach(t => t.onclick = () => requestMode(t.dataset.go));
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+  const m = { '0': 'IDLE', '1': 'BLIND', '2': 'DEAF', '3': 'MUTE' }[e.key];
+  if (m) requestMode(m);
+});
 
-            // Update Resource Table
-            for (const [res, owner] of Object.entries(state.resources)) {
-                const td = document.getElementById('res-' + res);
-                td.textContent = owner;
-                td.className = owner === 'IDLE' ? 'resource-idle' : 'resource-active';
-            }
-        });
+socket.on('system_state', (s) => {
+  if (s.mode !== mode) {
+    mode = s.mode;
+    document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + mode));
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+    if (mode === 'BLIND') { sendDistances(); resizeScene(); }
+  }
+  $('#res').innerHTML = RES.map(r => `<span>${r}</span><span class="owner ${s.resources[r]}">${s.resources[r]}</span>`).join('');
+});
 
-        // 2. Deaf Mode Captions
-        socket.on('deaf_caption', (data) => {
-            document.getElementById('oled-screen').textContent = data.text;
-        });
+// ── speech ────────────────────────────────────────────────────────────────
+socket.on('speech', (d) => {
+  const el = document.createElement('div');
+  el.className = 'speech-item';
+  el.innerHTML = `🔊 ${d.text}<small>${new Date().toLocaleTimeString()}</small>`;
+  $('#speech').prepend(el);
+  while ($('#speech').children.length > 30) $('#speech').lastChild.remove();
+  if ($('#speak-toggle').checked && 'speechSynthesis' in window) {
+    const u = new SpeechSynthesisUtterance(d.text); u.rate = 1.1;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }
+});
 
-        // 3. Blind Mode Haptics
-        socket.on('blind_telemetry', (data) => {
-            // data contains: label (left/center/right), distance, ttc, duration
-            const pulseEl = document.getElementById('pulse-' + data.label);
-            const ttcEl = document.getElementById('ttc-' + data.label);
-            
-            if (data.ttc !== null) {
-                ttcEl.textContent = data.ttc.toFixed(2) + ' s';
-                // Higher duration = higher opacity/scale
-                if (data.duration > 0) {
-                    const intensity = Math.min(data.duration / 500, 1.0); // max 500ms
-                    pulseEl.style.opacity = intensity;
-                    pulseEl.style.transform = `scale(${1 + intensity * 0.3})`;
-                } else {
-                    pulseEl.style.opacity = 0.1;
-                    pulseEl.style.transform = 'scale(1)';
-                }
-            } else {
-                ttcEl.textContent = 'Clear';
-                pulseEl.style.opacity = 0.1;
-                pulseEl.style.transform = 'scale(1)';
-            }
-        });
+// ── BLIND ─────────────────────────────────────────────────────────────────
+const SENS = [{ k: 'left', ang: -30 }, { k: 'center', ang: 0 }, { k: 'right', ang: 30 }];
+const MAXCM = 300;
+let dist = { left: 250, center: 250, right: 250 };
+let latest = {};
+let scenarioTimer = null;
+$('#sensor-cards').innerHTML = SENS.map(s => `
+  <div class="sensor" id="card-${s.k}">
+    <span class="badge" id="badge-${s.k}">clear</span>
+    <div class="name">${s.k}</div>
+    <div class="dist" id="d-${s.k}">--</div>
+    <div class="meta" id="m-${s.k}">speed -- · TTC --</div>
+    <div class="motor"><i id="motor-${s.k}"></i></div>
+    <input type="range" min="0" max="${MAXCM}" value="250" id="r-${s.k}" aria-label="${s.k} distance">
+  </div>`).join('');
+SENS.forEach(s => $('#r-' + s.k).oninput = (e) => { stopScenario(); dist[s.k] = +e.target.value; sendDistances(); drawScene(); });
 
-        // 4. Mute Mode Prediction
-        socket.on('mute_prediction', (data) => {
-            document.getElementById('mute-word').textContent = data.word;
-            document.getElementById('mute-conf').textContent = 'Confidence: ' + (data.confidence * 100).toFixed(1) + '%';
-        });
+function sendDistances(noise) {
+  socket.emit('blind_set', Object.assign({}, dist, { noise: noise ?? 0.5 }));
+  SENS.forEach(s => { if (dist[s.k] !== null) $('#r-' + s.k).value = dist[s.k]; });
+}
+const scene = $('#scene'), sctx = scene.getContext('2d');
+function resizeScene() {
+  const r = scene.getBoundingClientRect(); if (!r.width) return;
+  scene.width = r.width * devicePixelRatio; scene.height = r.height * devicePixelRatio; drawScene();
+}
+window.addEventListener('resize', resizeScene);
+function geom() {
+  const W = scene.width, H = scene.height, ox = W / 2, oy = H - 30 * devicePixelRatio;
+  return { W, H, ox, oy, scale: (oy - 20 * devicePixelRatio) / MAXCM };
+}
+function obstaclePos(s) {
+  const g = geom(), a = s.ang * Math.PI / 180, d = dist[s.k] ?? MAXCM;
+  return { x: g.ox + Math.sin(a) * d * g.scale, y: g.oy - Math.cos(a) * d * g.scale };
+}
+function drawScene() {
+  const g = geom(), dp = devicePixelRatio; sctx.clearRect(0, 0, g.W, g.H);
+  sctx.lineWidth = 1; sctx.font = `${11 * dp}px system-ui`; sctx.fillStyle = '#5b6878';
+  [50, 100, 200, 300].forEach(cm => {
+    sctx.strokeStyle = cm === 50 ? 'rgba(251,191,36,.35)' : 'rgba(139,152,168,.18)';
+    sctx.beginPath(); sctx.arc(g.ox, g.oy, cm * g.scale, Math.PI * 1.15, Math.PI * 1.85); sctx.stroke();
+    sctx.fillText(cm + ' cm', g.ox + 4 * dp, g.oy - cm * g.scale - 3 * dp);
+  });
+  SENS.forEach(s => {
+    const a = s.ang * Math.PI / 180, st = latest[s.k] || {};
+    const col = st.reason === 'ttc' ? 'rgba(248,113,113,' : st.reason === 'proximity' ? 'rgba(251,191,36,' : 'rgba(96,165,250,';
+    sctx.fillStyle = col + '.10)'; sctx.beginPath(); sctx.moveTo(g.ox, g.oy);
+    const half = 7.5 * Math.PI / 180;
+    sctx.arc(g.ox, g.oy, MAXCM * g.scale, -Math.PI / 2 + a - half, -Math.PI / 2 + a + half); sctx.closePath(); sctx.fill();
+    if (dist[s.k] !== null) {
+      const p = obstaclePos(s);
+      sctx.fillStyle = col + '.95)'; sctx.beginPath(); sctx.arc(p.x, p.y, 11 * dp, 0, Math.PI * 2); sctx.fill();
+      sctx.fillStyle = '#0d1117'; sctx.font = `bold ${10 * dp}px system-ui`; sctx.textAlign = 'center'; sctx.textBaseline = 'middle';
+      sctx.fillText('▮', p.x, p.y); sctx.textAlign = 'start'; sctx.textBaseline = 'alphabetic';
+    }
+  });
+  sctx.fillStyle = '#e6edf3'; sctx.beginPath(); sctx.arc(g.ox, g.oy, 13 * dp, 0, Math.PI * 2); sctx.fill();
+  sctx.fillStyle = '#0d1117'; sctx.font = `${13 * dp}px system-ui`; sctx.textAlign = 'center'; sctx.textBaseline = 'middle';
+  sctx.fillText('🧍', g.ox, g.oy); sctx.textAlign = 'start'; sctx.textBaseline = 'alphabetic';
+}
+let dragging = null;
+function evPos(e) { const r = scene.getBoundingClientRect(); return { x: (e.clientX - r.left) * devicePixelRatio, y: (e.clientY - r.top) * devicePixelRatio }; }
+scene.addEventListener('pointerdown', (e) => {
+  const p = evPos(e); let best = null, bd = 1e9;
+  SENS.forEach(s => { if (dist[s.k] === null) return; const q = obstaclePos(s); const d = Math.hypot(q.x - p.x, q.y - p.y); if (d < bd) { bd = d; best = s; } });
+  if (best && bd < 40 * devicePixelRatio) { dragging = best; stopScenario(); scene.setPointerCapture(e.pointerId); }
+});
+scene.addEventListener('pointermove', (e) => {
+  if (!dragging) return; const g = geom(), p = evPos(e), a = dragging.ang * Math.PI / 180;
+  const proj = ((p.x - g.ox) * Math.sin(a) - (p.y - g.oy) * Math.cos(a)) / g.scale;
+  dist[dragging.k] = Math.round(Math.max(3, Math.min(MAXCM, proj))); sendDistances(); drawScene();
+});
+scene.addEventListener('pointerup', () => dragging = null);
 
-        function resetUI() {
-            document.querySelectorAll('.btn-group button').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.resource-active').forEach(td => {
-                td.textContent = 'IDLE';
-                td.className = 'resource-idle';
-            });
-        }
-    </script>
+socket.on('blind_state', (d) => {
+  d.sensors.forEach(s => {
+    latest[s.label] = s;
+    $('#d-' + s.label).textContent = s.distance == null ? 'no echo' : s.distance.toFixed(0) + ' cm';
+    $('#m-' + s.label).textContent = `speed ${s.speed == null ? '--' : s.speed.toFixed(0) + ' cm/s'} · TTC ${s.ttc == null ? '--' : s.ttc.toFixed(2) + ' s'}`;
+    const b = $('#badge-' + s.label); b.className = 'badge ' + (s.reason || ''); b.textContent = s.reason ? `${s.reason} · ${s.pulse} ms` : 'clear';
+    if (s.pulse) buzz(s.label, s.pulse);
+  });
+  drawScene();
+});
+const buzzUntil = {};
+function buzz(k, ms) {
+  const now = performance.now(); if (buzzUntil[k] && now < buzzUntil[k]) return;
+  buzzUntil[k] = now + ms + 120;
+  const card = $('#card-' + k), bar = $('#motor-' + k);
+  card.classList.add('buzz'); bar.style.width = (ms / 5) + '%';
+  if (navigator.vibrate) navigator.vibrate(ms);
+  setTimeout(() => { card.classList.remove('buzz'); bar.style.width = '0'; }, ms);
+}
+function stopScenario() { if (scenarioTimer) { clearInterval(scenarioTimer); scenarioTimer = null; } }
+document.querySelectorAll('[data-scn]').forEach(b => b.onclick = () => runScenario(b.dataset.scn));
+function runScenario(name) {
+  stopScenario(); const t0 = performance.now();
+  const set = (o, noise) => { Object.assign(dist, o); sendDistances(noise); drawScene(); };
+  addLog('Scenario: ' + name);
+  if (name === 'walk') { set({ left: 260, center: 300, right: 260 });
+    scenarioTimer = setInterval(() => { const t = (performance.now() - t0) / 1000; const c = Math.max(15, 300 - 100 * t);
+      set({ center: c, left: Math.max(40, 260 - 60 * t), right: Math.max(40, 260 - 60 * t) }); if (c <= 15) stopScenario(); }, 100); }
+  else if (name === 'still') set({ left: 250, center: 20, right: 250 });
+  else if (name === 'left') set({ left: 22, center: 250, right: 250 });
+  else if (name === 'pass') { set({ left: 250, center: 250, right: 280 });
+    scenarioTimer = setInterval(() => { const t = (performance.now() - t0) / 1000;
+      const r = t < 2.5 ? 280 - 100 * t : t < 4 ? 30 : Math.min(280, 30 + 120 * (t - 4)); set({ right: r }); if (t > 6.5) stopScenario(); }, 100); }
+  else if (name === 'noise') { set({ left: 250, center: 250, right: 250 });
+    scenarioTimer = setInterval(() => { set({ center: Math.random() < 0.12 ? 18 : 250 }, 3); if (performance.now() - t0 > 8000) { stopScenario(); set({ center: 250 }); } }, 100); }
+  else if (name === 'dead') set({ left: 250, center: 250, right: null });
+  else if (name === 'clear') set({ left: 300, center: 300, right: 300 });
+}
+
+// ── DEAF ──────────────────────────────────────────────────────────────────
+let audioCtx = null, micStream = null, procNode = null, sampleAudio = null;
+function renderOled(lines) {
+  $('#oled').innerHTML = '<div class="hdr">TriSense ASR [REC]</div>' + (lines.length ? lines.map(l => l.replace(/[<>&]/g, '')).join('\n') : '');
+}
+socket.on('deaf_caption', (d) => {
+  renderOled(d.oled || []);
+  if (d.final) { $('#partial').textContent = '';
+    const el = document.createElement('div'); el.textContent = d.text; $('#history').prepend(el); }
+  else $('#partial').textContent = d.text;
+});
+$('#deaf-mic').onclick = async () => {
+  requestMode('DEAF', { source: 'mic' });
+  try {
+    micStream = await navigator.mediaDevices.getUserMedia({ audio: { channelCount: 1, echoCancellation: true, noiseSuppression: true } });
+    try { audioCtx = new AudioContext({ sampleRate: 16000 }); } catch (e) { audioCtx = new AudioContext(); }
+    const src = audioCtx.createMediaStreamSource(micStream);
+    procNode = audioCtx.createScriptProcessor(4096, 1, 1);
+    const ratio = audioCtx.sampleRate / 16000; let pending = [];
+    procNode.onaudioprocess = (ev) => {
+      const x = ev.inputBuffer.getChannelData(0); let peak = 0;
+      for (let i = 0; i < x.length; i += ratio) { const v = x[Math.floor(i)]; peak = Math.max(peak, Math.abs(v)); pending.push(Math.max(-1, Math.min(1, v)) * 32767); }
+      $('#mic-level').style.width = Math.min(100, peak * 160) + '%';
+      if (pending.length >= 4000) { socket.emit('audio_chunk', new Int16Array(pending).buffer); pending = []; }
+    };
+    src.connect(procNode); procNode.connect(audioCtx.destination);
+    $('#deaf-note').textContent = 'Listening… speak in English.';
+    addLog('Microphone streaming at 16 kHz');
+  } catch (e) { $('#deaf-note').textContent = 'Microphone unavailable: ' + e.message; addLog('Mic error: ' + e.message, 'error'); }
+};
+$('#deaf-sample').onclick = () => {
+  requestMode('DEAF', { source: 'sample' });
+  sampleAudio = new Audio('/media/sample.wav'); sampleAudio.play().catch(() => {});
+  $('#deaf-note').textContent = 'Playing the recorded sample through Vosk…';
+};
+function stopMic() {
+  if (procNode) { procNode.disconnect(); procNode = null; }
+  if (micStream) { micStream.getTracks().forEach(t => t.stop()); micStream = null; }
+  if (audioCtx) { audioCtx.close(); audioCtx = null; }
+  if (sampleAudio) { sampleAudio.pause(); sampleAudio = null; }
+  $('#mic-level').style.width = '0'; $('#deaf-note').textContent = '';
+}
+
+// ── MUTE ──────────────────────────────────────────────────────────────────
+const video = $('#video'), overlay = $('#overlay'), octx = overlay.getContext('2d');
+const grab = document.createElement('canvas'), gctx = grab.getContext('2d');
+let camStream = null, sendTimer = null, currentClip = null, clips = [], stats = { clips: 0, correct: 0 }, clipScored = false;
+const HAND = [[0,1],[1,2],[2,3],[3,4],[0,5],[5,6],[6,7],[7,8],[5,9],[9,10],[10,11],[11,12],[9,13],[13,14],[14,15],[15,16],[13,17],[17,18],[18,19],[19,20],[0,17]];
+const BODY = [[11,12],[11,13],[13,15],[12,14],[14,16]];
+fetch('/api/info').then(r => r.json()).then(info => {
+  $('#vocab').innerHTML = info.vocabulary.map(w => `<span>${w}</span>`).join('');
+  if (info.sign_test_top1) $('#s-model').textContent = (info.sign_test_top1 * 100).toFixed(1) + '%';
+  if (!info.vosk_model) $('#deaf-note').textContent = 'Vosk model missing: run python deaf_mode/download_model.py';
+});
+fetch('/api/clips').then(r => r.json()).then(list => {
+  clips = list;
+  $('#clip-select').innerHTML = `<option value="">Play an unseen WLASL test clip… (${list.length})</option>` +
+    list.map((c, i) => `<option value="${i}">${c.gloss}</option>`).join('');
+  if (!list.length) $('#mute-note').textContent = 'No local test clips (run mute_mode/wlasl_fetch.py). Webcam still works.';
+});
+function startSending() {
+  stopSending();
+  sendTimer = setInterval(() => {
+    if (video.readyState < 2 || video.paused) return;
+    const w = 480, h = Math.round(w * video.videoHeight / video.videoWidth) || 360;
+    grab.width = w; grab.height = h; gctx.drawImage(video, 0, 0, w, h);
+    grab.toBlob(b => b && b.arrayBuffer().then(buf => socket.volatile.emit('mute_frame', buf)), 'image/jpeg', 0.75);
+  }, 80);
+}
+function stopSending() { if (sendTimer) { clearInterval(sendTimer); sendTimer = null; } }
+function stopVideo() {
+  stopSending();
+  if (camStream) { camStream.getTracks().forEach(t => t.stop()); camStream = null; }
+  video.pause(); video.removeAttribute('src'); video.srcObject = null; video.load();
+  $('#stage-ph').classList.remove('hidden'); octx.clearRect(0, 0, overlay.width, overlay.height);
+}
+function ensureMute(cb) {
+  if (mode === 'MUTE') return cb();
+  socket.emit('request_mode_switch', { mode: 'MUTE' });
+  const wait = setInterval(() => { if (mode === 'MUTE') { clearInterval(wait); cb(); } }, 100);
+  setTimeout(() => clearInterval(wait), 15000);
+}
+$('#mute-cam').onclick = () => ensureMute(async () => {
+  stopVideo(); currentClip = null; $('#pred-truth').textContent = '';
+  try {
+    camStream = await navigator.mediaDevices.getUserMedia({ video: { width: 640, height: 480 } });
+    video.srcObject = camStream; video.loop = false; await video.play();
+    $('#stage').classList.add('mirror'); $('#stage-ph').classList.add('hidden'); startSending();
+    addLog('Webcam streaming to the recogniser');
+  } catch (e) { $('#mute-note').textContent = 'Webcam unavailable: ' + e.message; addLog('Camera error: ' + e.message, 'error'); }
+});
+function playClip(i) {
+  const c = clips[i]; if (!c) return;
+  ensureMute(() => {
+    stopVideo(); currentClip = c; clipScored = false; $('#clip-select').value = String(i);
+    $('#stage').classList.remove('mirror');
+    video.src = '/clips/' + c.path; video.loop = false;
+    video.onended = () => { stopSending(); addLog('Clip ended'); };
+    video.play().then(() => { $('#stage-ph').classList.add('hidden'); startSending(); });
+    $('#pred-truth').textContent = 'true sign: ' + c.gloss.toUpperCase();
+    stats.clips++; $('#s-clips').textContent = stats.clips;
+  });
+}
+$('#clip-select').onchange = (e) => { if (e.target.value !== '') playClip(+e.target.value); };
+$('#clip-random').onclick = () => clips.length && playClip(Math.floor(Math.random() * clips.length));
+
+socket.on('mute_status', (d) => {
+  const st = $('#sign-state'); st.textContent = d.recording ? '● recording sign' : (d.lh || d.rh ? 'hands visible' : 'waiting for hands');
+  st.className = 'state' + (d.recording ? ' rec' : '');
+  const r = overlay.getBoundingClientRect(); overlay.width = r.width; overlay.height = r.height;
+  const vw = video.videoWidth || 4, vh = video.videoHeight || 3;
+  const sc = Math.min(r.width / vw, r.height / vh), dw = vw * sc, dh = vh * sc, ox = (r.width - dw) / 2, oy = (r.height - dh) / 2;
+  const P = (p) => [ox + p[0] * (vh / vw) * dw, oy + p[1] * dh];
+  octx.clearRect(0, 0, r.width, r.height); octx.lineWidth = 2;
+  const lines = (pts, pairs, col) => { if (!pts) return; octx.strokeStyle = col; octx.fillStyle = col;
+    pairs.forEach(([a, b]) => { if (!pts[a] || !pts[b]) return; const A = P(pts[a]), B = P(pts[b]); octx.beginPath(); octx.moveTo(...A); octx.lineTo(...B); octx.stroke(); });
+    pts.forEach(p => { const q = P(p); octx.beginPath(); octx.arc(q[0], q[1], 2.5, 0, 7); octx.fill(); }); };
+  if (d.pose) lines(d.pose, BODY, 'rgba(230,237,243,.7)');
+  lines(d.lh, HAND, '#2dd4bf'); lines(d.rh, HAND, '#c084fc');
+});
+socket.on('mute_prediction', (p) => {
+  const w = $('#pred-word'), v = $('#pred-verdict');
+  w.textContent = p.label; w.classList.toggle('silent', !p.accepted);
+  $('#pred-bars').innerHTML = (p.top_k || []).map(([lab, c]) => `<div class="bar"><span>${lab}</span><div class="track"><i style="width:${(c * 100).toFixed(0)}%"></i></div><span class="v">${(c * 100).toFixed(0)}%</span></div>`).join('');
+  if (currentClip) {
+    const ok = p.label === currentClip.gloss;
+    v.className = 'verdict ' + (ok ? 'ok' : 'bad'); v.textContent = (ok ? '✓ correct' : '✗ wrong') + (p.accepted ? ' · spoken' : ' · stayed silent');
+    if (!clipScored) { clipScored = true; if (ok) stats.correct++; $('#s-correct').textContent = `${stats.correct}/${stats.clips}`; }
+  } else { v.className = 'verdict ' + (p.accepted ? 'ok' : 'quiet'); v.textContent = p.accepted ? 'spoken aloud' : 'not confident, stayed silent'; }
+  addLog(`Sign: ${p.label} (${(p.confidence * 100).toFixed(0)}%, ${p.frames} frames)${p.accepted ? '' : ' [silent]'}`);
+});
+</script>
 </body>
 </html>

@@ -71,6 +71,63 @@ def get_alert_intensity(ttc, threshold=1.5):
     return None
 
 
+class HapticDriver:
+    """
+    Non blocking driver for all haptic motors.
+
+    The ModeManager adapter used to call pulse_motor() inline, which froze the
+    sensor loop for up to 500 ms per motor. Here a single background thread
+    switches motors off when their pulse expires, and a motor that is already
+    buzzing is not re-triggered until its pulse plus a short gap has passed,
+    so overlapping pulses cannot cut each other short and the wearer feels
+    distinct buzzes whose length encodes urgency.
+    """
+
+    GAP_MS = 120
+
+    def __init__(self, motors=None, gpio=None):
+        import threading
+        self._gpio = gpio or GPIO
+        self._motors = dict(motors or MOTORS)
+        self._off_at = {lb: 0.0 for lb in self._motors}
+        self._next_ok = {lb: 0.0 for lb in self._motors}
+        self._lock = threading.Lock()
+        self._stop = threading.Event()
+        self._thread = threading.Thread(target=self._run, daemon=True, name="haptic-driver")
+        self._thread.start()
+
+    def pulse(self, label, duration_ms):
+        """Request a pulse; returns True if it started, False if the motor is still busy."""
+        if not duration_ms or label not in self._motors:
+            return False
+        now = time.monotonic()
+        with self._lock:
+            if now < self._next_ok[label]:
+                return False
+            self._gpio.output(self._motors[label], self._gpio.HIGH)
+            self._off_at[label] = now + duration_ms / 1000.0
+            self._next_ok[label] = self._off_at[label] + self.GAP_MS / 1000.0
+        return True
+
+    def _run(self):
+        while not self._stop.is_set():
+            now = time.monotonic()
+            with self._lock:
+                for lb, t_off in self._off_at.items():
+                    if t_off and now >= t_off:
+                        self._gpio.output(self._motors[lb], self._gpio.LOW)
+                        self._off_at[lb] = 0.0
+            self._stop.wait(0.01)
+
+    def stop(self):
+        self._stop.set()
+        self._thread.join(timeout=0.5)
+        with self._lock:
+            for lb, pin in self._motors.items():
+                self._gpio.output(pin, self._gpio.LOW)
+                self._off_at[lb] = 0.0
+
+
 # ── Unit tests for get_alert_intensity ─────────────────────────────────────
 
 def _test_get_alert_intensity():
