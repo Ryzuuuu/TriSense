@@ -59,7 +59,7 @@
     <circle cx="25" cy="32" r="8" fill="#10b981" fill-opacity="0.2"/>
     <circle cx="25" cy="32" r="3" fill="#10b981"/>
     <text x="48" y="28" class="box-title">Ultrasonic HC-SR04</text>
-    <text x="48" y="45" class="box-desc">20Hz Spatial Ping Array</text>
+    <text x="48" y="45" class="box-desc">10Hz Spatial Ping Array</text>
   </g>
 
   <!-- I2S Mic INMP441 -->
@@ -77,7 +77,7 @@
     <circle cx="25" cy="32" r="8" fill="#a855f7" fill-opacity="0.2"/>
     <circle cx="25" cy="32" r="3" fill="#a855f7"/>
     <text x="48" y="28" class="box-title">Video Stream</text>
-    <text x="48" y="45" class="box-desc">MediaPipe 3D Hand Tracking</text>
+    <text x="48" y="45" class="box-desc">MediaPipe Hands + Pose</text>
   </g>
 
   <!-- ── Center Column: Processing Engines ────────────────────────────────────── -->
@@ -85,7 +85,7 @@
   <g transform="translate(300, 65)">
     <rect width="250" height="65" rx="8" fill="#0d1117" stroke="#10b981" stroke-width="2" class="hub-border"/>
     <text x="20" y="28" class="box-title">Collision Math &amp; Alert Engine</text>
-    <text x="20" y="45" class="box-desc">Zone Matrix • Haptic/Audio PWM</text>
+    <text x="20" y="45" class="box-desc">TTC + Proximity • Haptics</text>
   </g>
 
   <!-- Offline Vosk ASR Engine -->
@@ -98,8 +98,8 @@
   <!-- 3D Sign Classifier Engine -->
   <g transform="translate(300, 225)">
     <rect width="250" height="65" rx="8" fill="#0d1117" stroke="#a855f7" stroke-width="2" class="hub-border"/>
-    <text x="20" y="28" class="box-title">1D-CNN + GRU Sign Classifier</text>
-    <text x="20" y="45" class="box-desc">EMA α=0.6 • 30-Frame FIFO Deque</text>
+    <text x="20" y="28" class="box-title">CNN + BiGRU Sign Classifier</text>
+    <text x="20" y="45" class="box-desc">Sign Segmentation • 32-Frame</text>
   </g>
 
   <!-- ── Right Column: Actuators / Output ──────────────────────────────────────── -->
@@ -120,7 +120,7 @@
   <!-- Sign Vocabulary Output / TTS -->
   <g transform="translate(615, 225)">
     <rect width="200" height="65" rx="8" fill="#161b22" stroke="#a855f7" stroke-width="1.2" filter="url(#card_shadow)"/>
-    <text x="22" y="28" class="box-title">12-Word Sign Output</text>
+    <text x="22" y="28" class="box-title">100-Word Sign Output</text>
     <text x="22" y="45" class="box-desc">Edge Softmax Prediction</text>
   </g>
 

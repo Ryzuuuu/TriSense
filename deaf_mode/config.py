@@ -12,11 +12,16 @@ DTYPE = "int16"              # 16-bit signed integer PCM
 
 # --- Mode & Environment Override ---
 # Set TRISENSE_MOCK_AUDIO=0 in environment to force hardware microphone input
+# "1" forces the WAV/synthetic mock, "0" forces the microphone. Default: mock
+# (the desktop tests and emulator rely on it); the Pi service sets it to "0".
 MOCK_AUDIO = os.getenv("TRISENSE_MOCK_AUDIO", "1") == "1"
 
 # --- ASR Engine Settings ---
-VOSK_MODEL_PATH = os.getenv("VOSK_MODEL_PATH", "models/vosk-model-small-en-us")
-ASR_MOCK = os.getenv("TRISENSE_ASR_MOCK", "1") == "1"
+_REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+# Absolute by default so the model is found no matter which directory the app is started from.
+VOSK_MODEL_PATH = os.getenv("VOSK_MODEL_PATH", os.path.join(_REPO_ROOT, "models", "vosk-model-small-en-us"))
+# Use the real Vosk recogniser whenever the model is present, unless TRISENSE_ASR_MOCK=1.
+ASR_MOCK = os.getenv("TRISENSE_ASR_MOCK", "0") == "1"
 
 # --- Default paths ---
 DEFAULT_SAMPLE_WAV = "deaf_mode/sample_test.wav"

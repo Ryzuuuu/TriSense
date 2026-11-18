@@ -35,16 +35,16 @@ def get_distance(trig, echo, timeout=ECHO_TIMEOUT_S):
     GPIO.output(trig, GPIO.LOW)
 
     # Wait for ECHO to go HIGH — bail out if it takes too long
-    deadline = time.time() + timeout
+    deadline = time.perf_counter() + timeout
     while GPIO.input(echo) == 0:
-        if time.time() > deadline:
+        if time.perf_counter() > deadline:
             return None           # echo never rose — sensor disconnected or faulty
 
     # Capture the moment ECHO went HIGH, then wait for it to go LOW
-    pulse_start = time.time()
+    pulse_start = time.perf_counter()
     pulse_end   = pulse_start
     while GPIO.input(echo) == 1:
-        pulse_end = time.time()
+        pulse_end = time.perf_counter()
         if (pulse_end - pulse_start) > timeout:
             return None           # echo stuck HIGH — sensor fault or no return
 

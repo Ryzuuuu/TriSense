@@ -14,7 +14,7 @@ import threading
 import time
 from typing import Callable, Dict, Optional, Set
 
-from shared.tts_output import start_tts_worker, stop_tts_worker
+from shared.tts_output import flush as flush_tts, start_tts_worker, stop_tts_worker
 
 
 def _ensure_headless_compat():
@@ -92,77 +92,93 @@ class ResourceGuard:
 
 class BlindModePipeline:
     """
-    Adapter for Blind Mode (`blind_mode/sensor_loop.py`).
-    Runs sensor polling, collision detection, and haptic/audio alerts without
-    modifying `sensor_loop.py` internals.
+    Adapter for Blind Mode. Uses the same BlindEngine as `blind_mode/sensor_loop.py`.
+
+    v1 called pulse_motor() inline (freezing the loop for up to 1.5 s per
+    cycle) and still divided by a fixed 0.1 s, so speeds and TTCs were wrong
+    whenever an alert fired. Now motors are driven by the non blocking
+    HapticDriver and the engine uses real timestamps.
     """
     REQUIRED_RESOURCES = {"SPEAKER", "GPIO_SENSORS", "GPIO_MOTORS"}
 
     def __init__(self):
         self.is_running = False
         self._thread: Optional[threading.Thread] = None
+        self._stop_evt = threading.Event()
+        self._driver = None
         self.on_telemetry: Optional[Callable] = None
+        self.on_state: Optional[Callable] = None
 
     def start(self, **kwargs):
         if self.is_running:
             return
-        # Optional callback(label, distance_m, ttc_s, pulse_s) used by the web emulator
+        # Optional callback(label, distance_cm, ttc_s, pulse_ms) used by the web emulator
         self.on_telemetry = kwargs.get("on_telemetry")
+        # Optional callback(states, phrase) with the full engine output for every cycle
+        self.on_state = kwargs.get("on_state")
         print("[BLIND_PIPELINE] Starting Blind Mode ultrasonic/haptic pipeline...")
         _ensure_headless_compat()
         from blind_mode.gpio_setup import setup
+        from blind_mode.haptic import HapticDriver
         setup()
+        self._driver = HapticDriver()
+        self._stop_evt.clear()
         self.is_running = True
-
-        # Run sensor polling loop in background daemon thread
-        self._thread = threading.Thread(target=self._run_loop_wrapper, daemon=True)
+        self._thread = threading.Thread(target=self._run_loop_wrapper, daemon=True, name="blind-loop")
         self._thread.start()
 
     def _run_loop_wrapper(self):
         _ensure_headless_compat()
         from blind_mode.distance import read_all_sensors
-        from blind_mode.collision import compute_closing_speed, time_to_collision
-        from blind_mode.haptic import get_alert_intensity, pulse_motor
-        from blind_mode.audio_alert import speak_alert, TTC_AUDIO_THRESHOLD_S
-        from blind_mode.config import SENSORS, MOTORS
+        from blind_mode.engine import BlindEngine
+        from blind_mode.audio_alert import speak_alert
+        from blind_mode.config import SENSORS, POLL_INTERVAL_S
 
-        prev_readings = read_all_sensors()
-        while self.is_running:
-            time.sleep(0.1)
-            curr_readings = read_all_sensors()
-            for label, _trig, _echo in SENSORS:
-                d_a = prev_readings[label]
-                d_b = curr_readings[label]
-                speed = compute_closing_speed(d_a, d_b, 0.1)
-                ttc = time_to_collision(d_b, speed)
-                duration = get_alert_intensity(ttc, threshold=1.5)
-                if duration is not None:
-                    pin = MOTORS[label]
-                    pulse_motor(pin, duration)
-                if label == "center" and ttc is not None and ttc < TTC_AUDIO_THRESHOLD_S:
-                    speak_alert("Obstacle ahead")
-
+        engine = BlindEngine([s[0] for s in SENSORS])
+        next_t = time.monotonic()
+        while not self._stop_evt.is_set():
+            readings = read_all_sensors()
+            states = engine.step(readings, time.monotonic())
+            for st in states:
+                if st.pulse_ms:
+                    self._driver.pulse(st.label, st.pulse_ms)
                 if self.on_telemetry:
-                    self.on_telemetry(label, d_b, ttc, duration)
-
-            prev_readings = curr_readings
+                    self.on_telemetry(st.label, st.distance, st.ttc, st.pulse_ms)
+            phrase = BlindEngine.speech_for(states)
+            if phrase:
+                speak_alert(phrase)
+            if self.on_state:
+                self.on_state(states, phrase)
+            next_t += POLL_INTERVAL_S
+            delay = next_t - time.monotonic()
+            if delay < -POLL_INTERVAL_S:  # fell far behind (slow sensors): resynchronise
+                next_t = time.monotonic()
+            self._stop_evt.wait(max(0.0, delay))
 
     def stop(self):
         if not self.is_running:
             return
         print("[BLIND_PIPELINE] Stopping Blind Mode pipeline...")
-        self.is_running = False
+        self._stop_evt.set()
         if self._thread and self._thread.is_alive():
-            self._thread.join(timeout=0.5)
+            self._thread.join(timeout=2.0)
+        if self._driver:
+            self._driver.stop()
+            self._driver = None
         from blind_mode.gpio_setup import cleanup
         cleanup()
+        self.is_running = False
         print("[BLIND_PIPELINE] Blind Mode stopped and GPIO released.")
 
 
 class DeafModePipeline:
     """
     Adapter for Deaf Mode (`deaf_mode/main_loop.py`).
-    Wraps DeafModeApp without modifying internal ASR or OLED modules.
+
+    v1 ran the whole recognition loop inside start(), so switch_mode() did not
+    return until the audio source ended. With a live microphone that meant
+    forever, and the user could never switch away from Deaf Mode. The app now
+    runs in a background thread and stop() ends it.
     """
     REQUIRED_RESOURCES = {"MICROPHONE", "DISPLAY"}
 
@@ -170,8 +186,9 @@ class DeafModePipeline:
         self.is_running = False
         self.app = None
         self.summary = None
+        self._thread: Optional[threading.Thread] = None
 
-    def start(self, wav_path=None, use_mock=True, **kwargs):
+    def start(self, wav_path=None, use_mock=True, wait=False, **kwargs):
         if self.is_running:
             return
         print("[DEAF_PIPELINE] Starting Deaf Mode speech-to-text pipeline...")
@@ -182,11 +199,17 @@ class DeafModePipeline:
         from deaf_mode.caption_renderer import CaptionRenderer
         from deaf_mode.main_loop import DeafModeApp
 
-        audio_streamer = AudioStreamer(callback=None, sample_rate=16000, block_size=4000,
-                                       wav_path=wav_path, use_mock=use_mock)
-        asr_engine = ASREngine(sample_rate=16000, use_mock=not bool(wav_path) and use_mock)
+        audio_source = kwargs.get("audio_source")  # e.g. PushAudioStreamer fed by the browser microphone
+        if audio_source is not None:
+            audio_streamer = audio_source
+            asr_engine = ASREngine(sample_rate=16000)
+        else:
+            audio_streamer = AudioStreamer(callback=None, sample_rate=16000, block_size=4000,
+                                           wav_path=wav_path, use_mock=use_mock)
+            # Real Vosk whenever the model is installed; the mock recogniser only for synthetic audio
+            asr_engine = ASREngine(sample_rate=16000, use_mock=True if (use_mock and not wav_path) else None)
         formatter = CaptionFormatter(max_chars_per_line=20, max_lines=3)
-        display = OLEDDisplay(width=128, height=64, use_mock=True)
+        display = OLEDDisplay(width=128, height=64, use_mock=kwargs.get("mock_display", use_mock))
         renderer = CaptionRenderer(display=display, formatter=formatter, default_header="TriSense ASR [REC]")
 
         self.app = DeafModeApp(
@@ -196,101 +219,146 @@ class DeafModePipeline:
             on_caption_update=kwargs.get("on_caption_update")
         )
         self.is_running = True
-        # Run synchronous stream or launch background execution
-        self.summary = self.app.run(real_time=False)
+        real_time = kwargs.get("real_time", bool(wav_path) and not wait)
+        self._thread = threading.Thread(target=self._run, args=(real_time,), daemon=True, name="deaf-app")
+        self._thread.start()
+        if wait:  # tests / batch transcription: block until the source is exhausted
+            self._thread.join()
+
+    def _run(self, real_time):
+        try:
+            self.summary = self.app.run(real_time=real_time)
+        except Exception as e:
+            print(f"[DEAF_PIPELINE] Deaf Mode crashed: {e}")
+            self.summary = {"error": str(e)}
 
     def stop(self):
         if not self.is_running:
             return
         print("[DEAF_PIPELINE] Stopping Deaf Mode pipeline...")
-        self.is_running = False
         if self.app:
             self.app.close()
+        if self._thread and self._thread.is_alive():
+            self._thread.join(timeout=3.0)
+        self.is_running = False
         print("[DEAF_PIPELINE] Deaf Mode stopped.")
 
 
 class MuteModePipeline:
     """
-    EXTENSION POINT: Mute Mode (Sign Language Recognition -> Speech).
-    Uses camera input and speaker output.
+    Mute Mode (Sign Language Recognition -> Speech). Uses camera input and speaker output.
+
+    Uses the v2 recogniser (hands + upper body landmarks, activity based sign
+    segmentation, SignClassifierV2) when checkpoints/sign_v2.pth exists, and
+    falls back to the original v1 30 frame classifier otherwise.
     """
     REQUIRED_RESOURCES = {"CAMERA", "SPEAKER"}
 
     def __init__(self):
         self.is_running = False
         self._thread = None
-        self.classifier = None
+        self._stop_evt = threading.Event()
         self.streamer = None
+        self.recognizer = None
+        self.version = None
+        self.on_prediction: Optional[Callable] = None
+        self.on_prediction_detail: Optional[Callable] = None
+        self.on_status: Optional[Callable] = None
+        # v1 fallback members
+        self.classifier = None
         self.extractor = None
         self.buffer = None
-        self.on_prediction: Optional[Callable] = None
 
-    def start(self, use_mock=False, **kwargs):
+    def start(self, use_mock=False, video_path=None, **kwargs):
         if self.is_running:
             return
         # Optional callback(word, confidence) used by the web emulator
         self.on_prediction = kwargs.get("on_prediction")
+        # Optional callback(details: dict) with every prediction (accepted or not, top 3)
+        self.on_prediction_detail = kwargs.get("on_prediction_detail")
+        # Optional callback(landmarks, recording) after every processed frame (v2 only)
+        self.on_status = kwargs.get("on_status")
         print("[MUTE_PIPELINE] Starting Mute Mode sign language pipeline...")
         _ensure_headless_compat()
-
-        from mute_mode.train_classifier import load_checkpoint
         from mute_mode.video_stream import VideoStreamer
-        from mute_mode.landmark_extractor import LandmarkExtractor
-        from mute_mode.sequence_buffer import GestureSequenceBuffer
+        from mute_mode.recognizer import DEFAULT_CHECKPOINT
 
-        checkpoint_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "mute_mode", "checkpoints", "final_model.pth"))
-        self.classifier = load_checkpoint(checkpoint_path)
-        self.streamer = VideoStreamer(use_mock=use_mock)
-        self.extractor = LandmarkExtractor()
-        self.buffer = GestureSequenceBuffer()
-        
+        self.streamer = kwargs.get("video_source") or VideoStreamer(video_path=video_path, use_mock=use_mock)
+        if os.path.exists(DEFAULT_CHECKPOINT):
+            from mute_mode.recognizer import LiveSignRecognizer
+            self.recognizer = LiveSignRecognizer(DEFAULT_CHECKPOINT)
+            self.version = "v2"
+            # Warm up: MediaPipe initialises lazily and the first few calls are slow,
+            # which used to swallow the first sign after switching to Mute Mode.
+            import numpy as np
+            blank = np.zeros((240, 320, 3), np.uint8)
+            for i in range(3):
+                self.recognizer.extractor.extract(blank, i)
+        else:
+            from mute_mode.train_classifier import load_checkpoint
+            from mute_mode.landmark_extractor import LandmarkExtractor
+            from mute_mode.sequence_buffer import GestureSequenceBuffer
+            ckpt = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "mute_mode", "checkpoints", "final_model.pth"))
+            self.classifier = load_checkpoint(ckpt)
+            self.extractor = LandmarkExtractor()
+            self.buffer = GestureSequenceBuffer()
+            self.version = "v1"
+        print(f"[MUTE_PIPELINE] Using sign recogniser {self.version}.")
+        self._stop_evt.clear()
         self.is_running = True
-        self._thread = threading.Thread(target=self._run_loop_wrapper, daemon=True)
+        self._thread = threading.Thread(target=self._run_loop_wrapper, daemon=True, name="mute-loop")
         self._thread.start()
 
-    def _run_loop_wrapper(self):
-        from mute_mode.classifier import extract_sequence_tensor
+    def _announce(self, word, confidence):
         from shared.tts_output import speak
-        
-        while self.is_running:
-            time.sleep(0.01)
+        print(f"[MUTE_PIPELINE] Predicted: {word.upper()} (conf: {confidence:.2f})")
+        speak(word, cooldown=1.5)
+        if self.on_prediction:
+            self.on_prediction(word, float(confidence))
+
+    def _run_loop_wrapper(self):
+        while not self._stop_evt.is_set():
             ret, frame = self.streamer.read()
             if not ret or frame is None:
+                self._stop_evt.wait(0.01)
                 continue
+            if self.version == "v2":
+                pred = self.recognizer.process_frame(frame)
+                if self.on_status:
+                    self.on_status(self.recognizer.last_landmarks, self.recognizer.recording)
+                if pred and self.on_prediction_detail:
+                    self.on_prediction_detail(pred)
+                if pred and pred["accepted"]:
+                    self._announce(pred["label"], pred["confidence"])
+            else:
+                self._v1_step(frame)
 
-            extraction = self.extractor.extract(frame)
-            self.buffer.add_frame(extraction)
-            
-            seq = self.buffer.get_sequence()
-            if seq.get("buffer_full", False):
-                tensor = extract_sequence_tensor(seq)
-                pred = self.classifier.predict_step(tensor)
-                
-                if pred["confidence"] > 0.4:
-                    word = pred["label"]
-                    print(f"[MUTE_PIPELINE] Predicted: {word.upper()} (conf: {pred['confidence']:.2f})")
-                    speak(word, cooldown=2.0)
-
-                    if self.on_prediction:
-                        self.on_prediction(word, float(pred["confidence"]))
-
-                    self.buffer.clear()
+    def _v1_step(self, frame):
+        from mute_mode.classifier import extract_sequence_tensor
+        self.buffer.add_frame(self.extractor.extract(frame))
+        seq = self.buffer.get_sequence()
+        if seq.get("buffer_full", False):
+            pred = self.classifier.predict_step(extract_sequence_tensor(seq))
+            if pred["confidence"] > 0.4:
+                self._announce(pred["label"], pred["confidence"])
+                self.buffer.clear()
 
     def stop(self):
         if not self.is_running:
             return
         print("[MUTE_PIPELINE] Stopping Mute Mode pipeline...")
-        self.is_running = False
+        self._stop_evt.set()
         if self._thread and self._thread.is_alive():
-            self._thread.join(timeout=1.0)
-        
+            self._thread.join(timeout=2.0)
         if self.streamer:
             self.streamer.release()
             self.streamer = None
-        if self.extractor:
-            self.extractor.close()
-            self.extractor = None
-        
+        for attr in ("recognizer", "extractor"):
+            obj = getattr(self, attr)
+            if obj is not None:
+                obj.close()
+                setattr(self, attr, None)
+        self.is_running = False
         print("[MUTE_PIPELINE] Mute Mode stopped.")
 
 
@@ -302,6 +370,8 @@ class ModeManager:
     def __init__(self):
         self.resource_guard = ResourceGuard()
         self.current_mode = "IDLE"
+        # switch requests can arrive from the button, the keyboard and the web UI at once
+        self._switch_lock = threading.RLock()
         self._pipelines = {
             "BLIND": BlindModePipeline(),
             "DEAF": DeafModePipeline(),
@@ -321,6 +391,10 @@ class ModeManager:
         2. Acquires required resources for 'new_mode'.
         3. Starts the target pipeline.
         """
+        with self._switch_lock:
+            return self._switch_mode_locked(new_mode, **kwargs)
+
+    def _switch_mode_locked(self, new_mode: str, **kwargs) -> bool:
         new_mode = new_mode.upper()
         if new_mode == self.current_mode:
             print(f"[MODE_MANAGER] Already in mode '{self.current_mode}'. No transition needed.")
@@ -332,7 +406,7 @@ class ModeManager:
         print(f"\n[MODE_MANAGER] === Transitioning Mode: '{self.current_mode}' -> '{new_mode}' ===")
         
         # Step 1: Stop current mode and release resources
-        self.stop_current_mode()
+        self._stop_current_locked()
 
         # Step 2: If switching to IDLE, we are done
         if new_mode == "IDLE":
@@ -366,12 +440,17 @@ class ModeManager:
         """
         Stops whatever mode is currently running and releases its resources.
         """
+        with self._switch_lock:
+            self._stop_current_locked()
+
+    def _stop_current_locked(self):
         if self.current_mode == "IDLE":
             return
 
         pipeline = self._pipelines.get(self.current_mode)
         if pipeline and pipeline.is_running:
             pipeline.stop()
+        flush_tts()  # never read out stale phrases from the previous mode
 
         self.resource_guard.release(self.current_mode)
         print(f"[MODE_MANAGER] Mode '{self.current_mode}' deactivated.")
